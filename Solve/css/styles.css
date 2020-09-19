@@ -1,0 +1,401 @@
+* {
+  margin: 0;
+  border: none;
+  padding: 0;
+  font-family: 'Times New Roman', Times, serif ,sans-serif;
+}
+
+.inner {
+  width: 100%;
+  max-width: 1366px;
+  margin: 0 auto;
+  overflow-x: hidden;
+  text-align: center;
+}
+
+.front {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 8px 2px;
+  box-sizing: border-box;
+}
+
+.front .shiki_field {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid #a1a499;
+  border-radius: 0;
+  box-sizing: border-box;
+  color: inherit;
+  cursor: text;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 1.6em;
+  letter-spacing: 0.05em;
+  margin: 0;
+  padding: 2px 8px;
+  width: 76%;
+}
+
+.front .shiki_field:focus {
+  border: 1px solid #a1a499;
+  box-shadow: none;
+  outline: none;
+}
+
+.front .shiki_field .cursor {
+  width: 0;
+  border: 0.8px solid #555;
+  animation: cursor-animation 1s ease 0s infinite normal forwards running;
+}
+
+.front #key_delete {
+  box-sizing: border-box;
+  margin: 0;
+  font-size: 2.4em;
+  color: #606060;
+  border: none;
+}
+
+.front #key_delete.dont-click {
+  z-index: -2;
+  opacity: 0.36;
+}
+
+.front #key_delete:active {
+  background: none;
+  color: #777;
+}
+
+.front button {
+  -webkit-appearance: none;
+  background-color: #c52929;
+  background-image: none;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 1.6em;
+  margin: 8px 0 0;
+  padding: 2px 12px;
+  text-decoration: none;
+  width: 84%;
+}
+
+.front button:hover, .front button:focus {
+  outline: none;
+}
+
+.front button::-moz-foucus-inner {
+  border: none;
+  padding: 0;
+}
+
+.front button.dont-solve {
+  position: relative;
+  z-index: -2;
+}
+
+.front button.dont-solve::after {
+  background-color: #fff;
+  content: '';
+  width: 110%;
+  top: 50%;
+  height: 110%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.8;
+  position: absolute;
+  z-index: 20;
+}
+
+@keyframes cursor-animation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  51% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#result {
+  display: inline-flex;
+  border-bottom: 1px solid #a1a499;
+  padding: 0 4px 0 12px;
+  font-size: 2.4em;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  margin: 2px 2px 4px;
+}
+
+#result .x-equals {
+  display: flex;
+  align-items: center;
+  font-style: italic;
+}
+
+#result .answer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-style: normal;
+}
+
+#result .answer .numer {
+  padding: 0 4px;
+}
+
+#result .answer .numer .sqrt {
+  position: relative;
+}
+
+#result .answer .numer .sqrt::before {
+  border-top: 1px solid #000;
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -4px;
+  width: 108%;
+  height: 0;
+}
+
+#result .answer .denom {
+  border-top: 1px solid #000;
+  font-size: 1em;
+  padding: 0 4px;
+}
+
+#result .error {
+  color: #ff0000;
+  font-family: sans-serif;
+  font-size: 6.4vw;
+  font-style: normal;
+  letter-spacing: normal;
+}
+
+.keyboards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 12px;
+}
+
+.keyboards .key {
+  width: 16vw;
+  height: 16vw;
+  line-height: 16vw;
+  box-sizing: border-box;
+  border: 1px solid #e5e5e5;
+  color: #282523;
+  font-size: 9.6vw;
+  margin: 4px 2px;
+}
+
+.keyboards .key:active {
+  background-color: #f0f0f0;
+}
+
+.keyboards .key#key_x {
+  font-style: italic;
+}
+
+.keyboards .key#key_x2 {
+  font-style: italic;
+  position: relative;
+}
+
+.keyboards .key#key_x2::after {
+  content: '2';
+  width: 12px;
+  height: 12px;
+  line-height: 12px;
+  font-style: normal;
+  font-size: 0.5em;
+  top: 24%;
+  right: 16%;
+  position: absolute;
+}
+
+.keyboards .key.dont-click {
+  z-index: -2;
+  opacity: 0.36;
+}
+
+.moves {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  margin: 12px 4px;
+}
+
+.moves .move {
+  border: 1px solid #e5e5e5;
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12vw;
+  padding: 12px;
+  width: 1.8em;
+  height: 1.8em;
+}
+
+.moves .move:active {
+  background-color: #f0f0f0;
+}
+
+.moves .move.dont-move {
+  z-index: -2;
+  opacity: 0.36;
+}
+
+@media (orientation: landscape) {
+  .front {
+    margin: 0;
+  }
+  .front .shiki_field {
+    margin: 0;
+    width: 60%;
+    font-size: 4vw;
+    display: inline-block;
+  }
+  .front #key_delete {
+    margin: 0;
+    width: 8.4vw;
+    font-size: 2.4em;
+  }
+  .front button {
+    font-size: 1.44em;
+    margin: 4px 0;
+    width: 24%;
+  }
+  #result {
+    margin-bottom: 4px;
+    font-size: 2em;
+  }
+  .keyboards {
+    width: 96%;
+    margin: 4px auto 0;
+    justify-content: space-between;
+  }
+  .keyboards .key {
+    width: 8.4vw;
+    height: 8.4vw;
+    line-height: 8.4vw;
+    font-size: 7.2vw;
+  }
+  .keyboards .key#key_x {
+    width: 14.4vw;
+  }
+  .keyboards .key#key_x2::after {
+    top: 18%;
+    right: 4%;
+  }
+  .moves {
+    margin: 4px 4px 0;
+  }
+  .moves .move {
+    width: 60px;
+    height: 60px;
+    font-size: 32px;
+  }
+}
+
+@media (min-width: 768px) {
+  .front {
+    justify-content: center;
+    margin: 4px 2px 4px;
+  }
+  .front .shiki_field {
+    font-size: 40px;
+    margin: 0 8px;
+    width: 54%;
+    display: inline-block;
+  }
+  .front #key_delete {
+    width: unset;
+    height: unset;
+    font-size: 4em;
+    margin: 0 8px;
+  }
+  .front #key_delete:hover {
+    background: none;
+    color: #777;
+    cursor: pointer;
+  }
+  .front button {
+    margin: 0 8px;
+    font-size: 1.8em;
+    padding: 4px;
+    width: 24%;
+  }
+  #result {
+    margin: 12px 0 8px;
+    font-size: 48px;
+  }
+  #result .answer .numer .sqrt::before {
+    top: -1.1px;
+    left: -5.4px;
+  }
+  #result .error {
+    font-size: 36px;
+  }
+  .keyboards {
+    width: 720px;
+    margin: 12px auto 0;
+    justify-content: space-between;
+  }
+  .keyboards .key {
+    width: 64px;
+    height: 64px;
+    line-height: 64px;
+    font-size: 48px;
+  }
+  .keyboards .key:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+  }
+  .keyboards .key#key_x {
+    width: 100px;
+  }
+  .keyboards .key#key_x2::after {
+    top: 24%;
+    right: 12%;
+  }
+  .moves {
+    width: 64%;
+    box-sizing: border-box;
+    margin: 16px auto 0;
+  }
+  .moves .move {
+    width: 84px;
+    height: 84px;
+    font-size: 40px;
+  }
+  .moves .move:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+  }
+}
+
+.transparent {
+  opacity: 0 !important;
+}
+
+.none {
+  display: none !important;
+}
