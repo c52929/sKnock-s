@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Yumetan Master</title>
+	<link rel="icon" href="icon.png">
+	<link rel="stylesheet" href="style.css">
+	<!-- <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet"> -->
+</head>
+<body>
+	<div class="inner">
+		<div class="wall">
+			<p id="q_num">English Vocablary Training</p>
+			<p id="question">Yumetan Master</p>
+		</div>
+		<div id="answering" class="answering none">
+			<input type="text" class="text text-test" id="text">
+			<input type="button" id="return" class="button submit-test return" value="Return">
+		</div>
+		<div id="mode" class="mode">
+			<div class="selects">
+				<div class="select_wraper">
+					<select id="unit" class="select-test">
+						<option value="1">UNIT1</option>
+						<option value="2">UNIT2</option>
+						<option value="3">UNIT3</option>
+						<option value="4">UNIT4</option>
+						<option value="5">UNIT5</option>
+						<option value="6">UNIT6</option>
+						<option value="7">UNIT7</option>
+						<option value="8">UNIT8</option>
+					</select>
+				</div>
+				<div class="select_wraper">
+					<select id="a_or_b" class="select-test">
+						<option value="a">前半</option>
+						<option value="b">後半</option>
+					</select>
+				</div>
+			</div>
+			<div class="button submit-test" id="button">START</div>
+		</div>
+		<div class="missed_memo none" id="missed_memo">
+			<h1>ミスメモ</h1>
+			<ul id="missed_list"></ul>
+		</div>
+	</div>
+	<div class="dark none" id="dark"></div>
+	<div class="search none" id="search">
+		<div class="close" id="search_close">×</div>
+		<h1>"<span id="search_word">interesting</span>"<span class="space"> </span>調べる</h1>
+		<div class="search_pages">
+			<div class="search_page" id="search_page_0">
+				<img src="https://weblio.hs.llnwd.net/e7/img/favicon/translate.png">
+				<p>weblio<span class="space"> </span>英和辞典</p>
+			</div>
+			<div class="search_page" id="search_page_1">
+				<img src="https://cdn2.alc.co.jp/eow/sp/images/icon.png">
+				<p>アルク<span class="space"> </span>英辞郎</p>
+			</div>
+			<div class="search_page" id="search_page_2">
+				<img src="https://addd-link.co.jp/wp-content/uploads/2017/03/Google_Translate_Icon-467x467.png">
+				<p>Google<span class="space"> </span>翻訳</p>
+			</div>
+		</div>
+	</div>
+	
+	<script src="data_0.js"></script>
+	<script>
+		'use strict';
+
+		document.getElementById('button').addEventListener('click',()=>{
+			document.getElementById('answering').classList.remove('none');
+			document.getElementById('mode').classList.add('none');
+
+			var unit=document.getElementById('unit').value;
+			var a_or_b=document.getElementById('a_or_b').value;
+			data(unit,a_or_b);
+			new_question();
+		});
+
+		var mode=0;
+
+		var q_num=0;
+
+		var phrases;
+		var words;
+		var history_phrases=[];
+		var history_words=[];
+		var missed_phrases=[];
+		var missed_words=[];
+
+		var number_of_questions=50;
+
+		var text="";
+
+		document.getElementById('return').addEventListener('click',()=>{
+			judge();
+		});
+
+		document.addEventListener('keydown',(event)=>{
+			if(`${event.key}`=='Enter'){
+				judge();
+			}
+		});
+
+		function judge(){
+			if(mode==0 || mode==1){
+				text=document.getElementById('text').value;
+				if(text==words[r]){
+					phrases.splice(r,1);
+					words.splice(r,1);
+					reset();
+					new_question();
+				}else{
+					show_hint();
+					if(history_words.indexOf(words[r])==-1){
+						history_words.push(words[r]);
+						history_phrases.push(phrases[r]);
+					}
+					if(missed_words.indexOf(words[r])==-1){
+						missed_words.push(words[r]);
+						missed_phrases.push(phrases[r]);
+					}else{
+						missed_words.splice(missed_words.indexOf(words[r]),1);
+						missed_phrases.splice(missed_phrases.indexOf(phrases[r]),1);
+						missed_words.splice(0,0,words[r]);
+						missed_phrases.splice(0,0,phrases[r]);
+					}
+				}
+			}
+		}
+
+		function reset(){
+			document.getElementById('text').value="";
+		}
+
+		var r;
+
+		var hint="";
+
+		var hokan=[''];
+		var hokan_i;
+
+		function new_question(){
+			if(words.length==0){
+				if(history_words.length==0){
+					document.getElementById('q_num').textContent='Congratulations!';
+					document.getElementById('question').innerHTML='<span class="strong">Mission Complete!</span>'
+					mode=2;
+					document.activeElement.blur();
+					missed_memo();
+				}else{
+					mode=1;
+					q_num=0;
+					words=Array.from(history_words);
+					phrases=Array.from(history_phrases);
+					history_words=[];
+					history_phrases=[];
+					number_of_questions=words.length;
+				}
+			}
+			if(mode==0 || mode==1){
+
+				q_num++;
+				
+				r=Math.floor(Math.random()*words.length);
+				hokan=[''];
+				
+				for(let i=0; i<phrases[r].length; i++){
+					if(phrases[r].charAt(i)==' '){
+						hokan[0]+='<span class="space"> </span>';
+						i++;
+					}
+					hokan[0]+=phrases[r].charAt(i);
+					if(phrases[r].charAt(i)=='('){
+						hokan_i=i+1;
+						break;
+					}
+				}
+				hokan.push('','');
+				for(let i=hokan_i; i<phrases[r].length; i++){
+					if(phrases[r].charAt(i)==' '){
+						hokan[2]+='<span class="space"> </span>';
+						i++;
+					}
+					hokan[2]+=phrases[r].charAt(i);
+				}
+
+				if(mode==0){
+					document.getElementById('q_num').textContent='Q.'+q_num+'/'+number_of_questions;
+				}else{
+					document.getElementById('q_num').textContent='Missed Q.'+q_num+'/'+number_of_questions;
+				}
+				document.getElementById('question').innerHTML=hokan[0]+hokan[1]+hokan[2];
+				document.getElementById('text').focus();
+			}
+		}
+
+		function show_hint(){
+			if(hokan[1].length==0){
+				for(let i=0; i<words[r].length; i++){
+					hokan[1]+='*';
+				}
+			}else if(hokan[1].charAt(hokan[1].length-1)=='*'){
+				var hint="";
+				for(let i=0; i<hokan[1].length; i++){
+					if(hokan[1].charAt(i)=='*'){
+						var hint_hokan=i;
+						break;
+					}
+					hint+=hokan[1].charAt(i);
+				}
+				hint+=words[r].charAt(hint_hokan);
+				for(let i=hint_hokan+1; i<words[r].length; i++){
+					hint+='*';
+				}
+				hokan[1]=hint;
+			}
+			document.getElementById('question').innerHTML=hokan[0]+hokan[1]+hokan[2];
+			document.getElementById('text').focus();
+		}
+
+		function missed_memo(){
+			document.getElementById('text').classList.add('none');
+			document.getElementById('return').classList.add('none');
+
+			for(let i=0; i<missed_words.length; i++){
+				hokan=[''];
+				for(let j=0; j<(missed_words[i].length+missed_phrases[i].length-2); j++){
+					if(missed_phrases[i].charAt(j)==' '){
+						hokan[0]+='<span class="space"> </span>';
+					}else if(missed_phrases[i].charAt(j)=='('){
+						hokan[0]+='<span class="missed_word" id="search_word_'+i+'">'+missed_words[i]+'</span>';
+						j++;
+					}else{
+						hokan[0]+=missed_phrases[i].charAt(j);
+					}
+				}
+				const add_list=document.createElement('li');
+				add_list.setAttribute('id','search_list_'+i);
+				add_list.innerHTML=hokan[0];
+				document.getElementById('missed_list').appendChild(add_list);
+			}
+			if(missed_words.length==0){
+				const add_perfect=document.createElement('p');
+				add_perfect.classList.add('miss_perfect');
+				add_perfect.textContent="PERFECT!";
+				document.getElementById('missed_memo').appendChild(add_perfect);
+			}
+			document.getElementById('missed_memo').classList.remove('none');
+
+			var var_search_word;
+			for(let i=0; i<missed_words.length; i++){
+				document.getElementById('search_word_'+i).addEventListener('click',()=>{
+					var_search_word=missed_words[i];
+					document.getElementById('search_word').textContent=var_search_word;
+					document.getElementById('dark').classList.remove('none');
+					document.getElementById('search').classList.remove('none');
+				});
+			}
+			for(let i=0; i<3; i++){
+				document.getElementById('search_page_'+i).addEventListener('click',()=>{
+					if(i==0){
+						window.open('https://ejje.weblio.jp/content/'+var_search_word,'_blank');
+					}else if(i==1){
+						window.open('https://eow.alc.co.jp/search?q='+var_search_word, '_blank');
+					}else{
+						window.open('https://translate.google.co.jp/?hl=ja#view=home&op=translate&sl=en&tl=ja&text='+var_search_word,'_blank');
+					}
+					document.getElementById('dark').classList.add('none');
+					document.getElementById('search').classList.add('none');
+				});
+			}
+			
+			document.getElementById('search_close').addEventListener('click',()=>{
+				document.getElementById('dark').classList.add('none');
+				document.getElementById('search').classList.add('none');
+			})
+			document.getElementById('dark').addEventListener('click',()=>{
+				document.getElementById('dark').classList.add('none');
+				document.getElementById('search').classList.add('none');
+			})
+		}
+
+	</script>
+</body>
+</html>
