@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>バイクのゲーム【運ゲー】</title>
+	<link rel="icon" href="icon.png">
+	<link rel="stylesheet" href="css/styles.min.css">
+	<link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" rel="stylesheet">
+</head>
+<body>
+	<div class="inner">
+		<h1>バイクのゲーム</h1>
+		<div id="beforeGaming">
+			<div class="select">
+				<div class="option chosen" id="biking"><i class="fas fa-biking"></i></div>
+				<div class="option" id="bicycle"><i class="fas fa-bicycle"></i></div>
+				<div class="option" id="motorcycle"><i class="fas fa-motorcycle"></i></div>
+			</div>
+			<input type="submit" value="Start" id="start_button" class="input-submit">
+		</div>
+		<div class="courses none" id="courses">
+			<div class="course" id="course0">
+				<i class="fas transparent" id="bike0"></i>
+				<div class="change" id="change0">Change</div>
+				<div class="go none" id="go0">Go!</div>
+			</div>
+			<div class="course" id="course1">
+				<i class="fas" id="bike1"></i>
+				<div class="change none" id="change1">Change</div>
+				<div class="go" id="go1">Go!</div>
+			</div>
+			<div class="course" id="course2">
+				<i class="fas transparent" id="bike2"></i>
+				<div class="change" id="change2">Change</div>
+				<div class="go none" id="go2">Go!</div>
+			</div>
+		</div>
+		<div id="result"></div>
+		<input type="submit" id="again" class="input-submit none" value="Again">
+	</div>
+
+	<script>
+		'use strict';
+		{
+
+			let chosenIcon=0;
+			let position=1;
+
+			const getOptions=document.getElementsByClassName('option');
+			for(let i=0; i<getOptions.length; i++){
+				getOptions[i].addEventListener('click',()=>{
+					if(i!=chosenIcon){
+						getOptions[chosenIcon].classList.remove('chosen');
+						getOptions[i].classList.add('chosen');
+						chosenIcon=i;
+					}
+				})
+			}
+
+			document.getElementById('start_button').addEventListener('click',()=>{
+				document.getElementById('beforeGaming').classList.add('none');
+				document.getElementById('courses').classList.remove('none');
+				for(let i=0; i<3; i++){
+					document.getElementById(`bike${i}`).classList=`fas ${['transparent','','transparent'][i]}`;
+					document.getElementById(`bike${i}`).classList.add(`fa-${['biking','bicycle','motorcycle'][chosenIcon]}`);
+				}
+			})
+
+			let correctPosition;
+			for(let i=0; i<3; i++){
+				document.getElementById(`change${i}`).addEventListener('click',()=>{
+					showHide('show',[`change${position}`,`go${i}`]);
+					showHide('hide',[`go${position}`,`change${i}`]);
+					document.getElementById(`bike${position}`).classList.add('transparent');
+					document.getElementById(`bike${i}`).classList.remove('transparent');
+					position=i;
+				})
+			}
+
+			for(let i=0; i<3; i++){
+				document.getElementById(`go${i}`).addEventListener('click',()=>{
+					correctPosition=Math.floor(Math.random()*3);
+					for(let j=0; j<3; j++){
+						document.getElementById(`change${j}`).classList.add('none');
+						document.getElementById(`go${j}`).classList.add('none');
+					}
+					for(let j=0; j<3; j++){
+						if(j!=correctPosition){
+							document.getElementById(`course${j}`).classList.add('out');
+							if(j!=position){
+								document.getElementById(`course${j}`).classList.add('before');
+							}
+						}
+					}
+					document.getElementsByClassName('out')[0].addEventListener('animationend',(event)=>{
+						if(position==correctPosition){
+							document.getElementById('result').innerHTML='<span style="color:#2c84cc;">Clear!</span>';
+						}else{
+							document.getElementById('result').innerHTML='<span style="color:#c52929;">残念</span>';
+						}
+						document.getElementById('again').classList.remove('none');
+						document.getElementById('again').addEventListener('click',()=>{
+							showHide('hide',['again','courses']);
+							document.getElementById('result').textContent='';
+							document.getElementById(`bike${position}`).classList.add('transparent');
+							for(let j=0; j<3; j++){
+								document.getElementById(`course${j}`).classList.remove('out');
+							}
+							showHide('show',['beforeGaming','change0','go1','change2']);
+							document.getElementById('bike1').classList.remove('transparent');
+							position=1;
+						})
+					})
+				})
+			}
+
+			function showHide(showHide,ids){
+				for(let i=0; i<ids.length; i++){
+					if(showHide=='show'){
+						document.getElementById(ids[i]).classList.remove('none');
+					}else if(showHide=='hide'){
+						document.getElementById(ids[i]).classList.add('none');
+					}
+				}
+			}
+
+		}
+	</script>
+</body>
+</html>
