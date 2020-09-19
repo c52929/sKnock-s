@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="百人一首ができるコード書いたよ。">
+	<title>ひとりでさみしい百人一首</title>
+	<link rel="icon" href="icon.png">
+	<link rel="stylesheet" href="css/styles.min.css">
+	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+</head>
+<body>
+	
+	<div class="inner">
+		<div class="none" id="game">
+			<div class="margin"><span class="m1">　</span><span class="m2">　</span></div>
+			<div class="question" id="question">
+				<div id="kami_q">
+					<div class="hider" id="kamihider"></div>
+				</div>
+				<div id="shimo_q">
+					<div class="hider" id="shimohider"></div>
+				</div>
+			</div>
+			<div class="cards" id="cards"></div>
+			<div class="circle" id="circle"></div>
+			<div class="footer" id="footer">
+				<div class="menu" id="stop"><i class="fas fa-pause" id="play_state_sign"></i></div>
+				<div></div>
+				<div class="menu" id="skip"><i class="fas fa-angle-double-right"></i></div>
+			</div>
+			<!-- <div class="stopper none" id="stopper"></div> -->
+		</div>
+		<div class="settings">
+			<h1 id="title">ひとりでさみしい百人一首</h1>
+			<p class="description">百人一首ができるゲームを作ったけど、ひとりだとやっぱり<b>つまんない</b>し、<b>飽きる</b>し、<b>目も悪くなる</b>ので、、うーん。<b>あまりよろしくない</b>。</p>
+			<p class="description">できるだけ、デヴァイスの所有者ご自身及びお子様をこのゲームから遠ざけ、ご家族やお友達と一緒に<b>カルタで</b>遊びましょう。その方が楽しいですし、楽しいですし、楽しいですし、、何より<b>さみしくない</b>です。</p>
+			<div class="setting" id="setting">
+				<div>
+					<span>枚数</span>
+					<input type="number" class="how_many" id="how_many" max=100 min=10 placeholder="枚数を入力">
+				</div>
+				<p class="error none" id="error"></p>
+				<div>
+					<span>上の句で止める</span>
+					<div class="on-off off" id="tooRead"></div>
+				</div>
+			</div>
+			<button id="start_button">はじめる</button>
+		</div>
+		<div class="again none" id="again">もういちど</div>
+	</div>
+
+	<script src="js/script.js"></script>
+</body>
+</html>
