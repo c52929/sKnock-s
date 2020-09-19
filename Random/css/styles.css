@@ -1,0 +1,122 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  border: none;
+  padding: 0;
+  font-family: 'Verdana','Arial',YuGothic,'Yu Gothic','ヒラギノ角ゴシック','Hiragino Sans','Osaka','ヒラギノ明朝 ProN','Hiragino Mincho ProN','Meiryo UI',sans-serif;
+}
+
+.inner {
+  width: 100%;
+  max-width: 1366px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+ul, ol {
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+.text {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid #a1a499;
+  border-radius: 0;
+  color: inherit;
+  font-family: inherit;
+  font-size: 1em;
+  padding: 4px 8px;
+  width: 60%;
+}
+
+.text:focus {
+  border: 1px solid #a1a499;
+  box-shadow: none;
+  outline: none;
+}
+
+.button {
+  -webkit-appearance: none;
+  background-color: #c52929;
+  background-image: none;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1em;
+  margin: 0;
+  padding: 4px 12px;
+  text-decoration: none;
+}
+
+.button:hover, .button:focus {
+  outline: none;
+}
+
+.button::-moz-foucus-inner {
+  border: none;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.adding {
+  text-align: center;
+}
+
+.adding #error {
+  color: #ff0000;
+}
+
+.list_container {
+  text-align: center;
+  margin: 12px auto 0;
+  padding: 4px;
+  border: 1px solid #a1a499;
+  width: 96%;
+  box-sizing: border-box;
+}
+
+.list_container #list {
+  margin-top: 0;
+  text-align: left;
+}
+
+#start_button {
+  width: 84%;
+  font-size: 20px;
+  margin: 12px auto;
+  display: block;
+}
+
+.result_container {
+  text-align: center;
+  border: 1px solid #282523;
+  width: 96%;
+  box-sizing: border-box;
+  margin: 8px auto;
+  padding: 4px 2px;
+}
+
+.result_container #result {
+  margin: 8px 2px 0;
+}
+
+.transparent {
+  opacity: 0 !important;
+}
+
+.none {
+  display: none !important;
+}

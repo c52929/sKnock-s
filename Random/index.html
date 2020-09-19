@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>乱数発生プログラム</title>
+	<!-- <link rel="icon" href="#"> -->
+	<link rel="stylesheet" href="css/styles.min.css">
+	<!-- <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet"> -->
+</head>
+<body>
+	<div class="inner">
+		<h1>乱数発生プログラム</h1>
+		<div class="adding">
+			<input type="text" name="add_content" id="add_content" class="text">
+			<input type="submit" value="追加" id="add_button" class="button">
+			<div id="error"></div>
+		</div>
+		<div class="list_container">
+			<h2>リスト</h2>
+			<ul id="list"></ul>
+		</div>
+		<input type="submit" value="決定" id="start_button" class="button">
+		<div class="result_container">
+			<h2>Result</h2>
+			<div class="result" id="result"></div>
+		</div>
+	</div>
+
+	<script>
+		'use strict';
+
+		let list=[];
+
+		document.getElementById('add_content').focus();
+	
+		document.getElementById('add_button').addEventListener('click',()=>{
+			put_function();
+		})
+		document.addEventListener('keydown',(event)=>{
+			if(`${event.key}`=='Enter'){
+				let check=document.getElementById('add_content');
+				let active=document.activeElement;
+				if(check==active){
+					put_function();
+				}
+			}
+		})
+		function put_function(){
+			if(add_content.value==''){
+				document.getElementById('error').textContent='文字を入力してください';
+			}else if(list.indexOf(add_content.value)>-1){
+				document.getElementById('error').textContent='「'+add_content.value+'」: リストに追加済みです';
+			}else{
+				document.getElementById('error').textContent='';
+				const add=document.createElement('li');
+				add.textContent=add_content.value;
+				document.getElementById('list').appendChild(add);
+				list.push(add_content.value);
+				document.getElementById('add_content').value='';
+				document.getElementById('add_content').focus();
+			}
+		}
+
+		document.getElementById('start_button').addEventListener('click',()=>{
+			if(list.length<=1){
+				document.getElementById('error').textContent='要素数が少ないです';
+			}
+			document.getElementById('result').textContent=list[Math.floor(Math.random()*list.length)];
+			document.getElementById('error').textContent='';
+		})
+	</script>
+</body>
+</html>
