@@ -32,9 +32,12 @@
 .projects {
   background-color: #afd;
   box-sizing: border-box;
-  margin: 12px 4px;
-  padding: 2px 8px;
+  margin: 12px auto;
+  padding: 2px;
   width: 92%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .projects h2 {
@@ -42,20 +45,26 @@
   margin: 8px 2px 0;
 }
 
-.projects ul, .projects ol {
-  margin: 0;
-  margin-block-start: 12px;
-  margin-block-end: 12px;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding-inline-start: 40px;
+.projects .project {
+  box-sizing: border-box;
+  margin: 1%;
+  width: 48%;
+  text-decoration: none;
 }
 
-.projects a {
+.projects .project img {
+  max-width: 84px;
+  max-height: 84px;
+  margin: 0 auto;
+  display: block;
+  color: #282523;
+}
+
+.projects .project p {
   color: #2c84cc;
-  text-decoration: none;
   font-weight: bold;
   font-size: 24px;
+  text-align: center;
 }
 
 .transparent {
