@@ -1,9 +1,8 @@
-@charset "UTF-8";
 * {
   margin: 0;
   border: none;
   padding: 0;
-  font-family: 'Verdana','Arial',YuGothic,'Yu Gothic','ヒラギノ角ゴシック','Hiragino Sans','Osaka','ヒラギノ明朝 ProN','Hiragino Mincho ProN','Meiryo UI',sans-serif;
+  font-family: Arial,'Yu Gothic','Hiragino Kaku Gothic ProN','Yu Mincho Light','Hiragino Mincho ProN','Meiryo UI',sans-serif;
 }
 
 .inner {
@@ -14,11 +13,11 @@
 }
 
 ul, ol {
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding-inline-start: 40px;
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-inline-start: 2em;
 }
 
 .text {
@@ -33,6 +32,7 @@ ul, ol {
   font-family: inherit;
   font-size: 1em;
   padding: 4px 8px;
+  margin: 0 4px;
   width: 60%;
 }
 
@@ -44,7 +44,6 @@ ul, ol {
 
 .button {
   -webkit-appearance: none;
-  background-color: #c52929;
   background-image: none;
   border: none;
   border-radius: 5px;
@@ -55,6 +54,18 @@ ul, ol {
   margin: 0;
   padding: 4px 12px;
   text-decoration: none;
+}
+
+.button#add_button {
+  background-color: #0a5;
+  margin: 0 4px;
+  padding: 2px 12px;
+}
+
+.button#start_button {
+  background-color: #2c84cc;
+  text-indent: 0.1em;
+  letter-spacing: 0.1em;
 }
 
 .button:hover, .button:focus {
@@ -76,7 +87,8 @@ h1 {
 }
 
 .adding #error {
-  color: #ff0000;
+  margin-top: 2px;
+  color: #f00;
 }
 
 .list_container {
@@ -86,6 +98,7 @@ h1 {
   border: 1px solid #a1a499;
   width: 96%;
   box-sizing: border-box;
+  position: relative;
 }
 
 .list_container #list {
@@ -100,17 +113,60 @@ h1 {
   display: block;
 }
 
-.result_container {
-  text-align: center;
+.results {
   border: 1px solid #282523;
   width: 96%;
   box-sizing: border-box;
   margin: 8px auto;
-  padding: 4px 2px;
+  padding: 4px 1px 0;
+  position: relative;
 }
 
-.result_container #result {
-  margin: 8px 2px 0;
+.results h2 {
+  text-align: center;
+  margin: 2px 0 4px;
+}
+
+.results .result {
+  padding: 4px;
+  margin: 0;
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.results .result .time {
+  margin-left: auto;
+  color: #777;
+}
+
+.results .result .time .dec {
+  font-size: 0.84em;
+}
+
+.results .result.even {
+  background-color: #f1f1f1;
+}
+
+.results .result.odd {
+  background-color: #e3e3e3;
+}
+
+.results .result:first-of-type {
+  font-weight: bold;
+  font-size: 1.08em;
+}
+
+.clear {
+  background-color: #c52929;
+  border-radius: 0 0 0 4px;
+  content: '';
+  color: #fff;
+  top: 0;
+  right: 0;
+  padding: 2px 4px;
+  position: absolute;
 }
 
 .transparent {
