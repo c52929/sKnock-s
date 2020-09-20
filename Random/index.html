@@ -19,11 +19,12 @@
 		<div class="list_container">
 			<h2>リスト</h2>
 			<ul id="list"></ul>
+			<div class="clear none" id="listClear">クリア</div>
 		</div>
 		<input type="submit" value="決定" id="start_button" class="button">
-		<div class="result_container">
-			<h2>Result</h2>
-			<div class="result" id="result"></div>
+		<div class="results" id="results">
+			<h2 id="result_title">Result</h2>
+			<div class="clear none" id="resultClear">クリア</div>
 		</div>
 	</div>
 
@@ -59,15 +60,50 @@
 				list.push(add_content.value);
 				document.getElementById('add_content').value='';
 				document.getElementById('add_content').focus();
+				document.getElementById('listClear').classList.remove('none');
 			}
+		}
+
+		let historyLength=0;
+		let date;
+		let timeInfo;
+		function getDate(){
+			date=new Date();
+			timeInfo=[`${('00'+date.getHours()).slice(-2)}:${('00'+date.getMinutes()).slice(-2)}:${('00'+date.getSeconds()).slice(-2)}`,`${('000'+Math.floor(date.getMilliseconds())).slice(-3)}`];
 		}
 
 		document.getElementById('start_button').addEventListener('click',()=>{
 			if(list.length<=1){
 				document.getElementById('error').textContent='要素数が少ないです';
+			}else{
+				document.getElementById('resultClear').classList.remove('none');
+				document.getElementById('error').textContent='';
+				const addResult=document.createElement('div');
+				addResult.classList.add('result');
+				addResult.classList.add(`${['even','odd'][historyLength%2]}`);
+				getDate();
+				addResult.innerHTML=`<span>${list[Math.floor(Math.random()*list.length)]}</span><span class="time">${timeInfo[0]}<span class="dec">.${timeInfo[1]}</span></span>`;
+				document.getElementById('result_title').parentNode.insertBefore(addResult,document.getElementById('result_title').nextSibling);
+				historyLength++;
 			}
-			document.getElementById('result').textContent=list[Math.floor(Math.random()*list.length)];
-			document.getElementById('error').textContent='';
+		})
+
+		document.getElementById('listClear').addEventListener('click',()=>{
+			list=[];
+			let removeList=document.querySelectorAll('li');
+			for(let i=0; i<removeList.length; i++){
+				removeList[i].remove();
+			}
+			document.getElementById('listClear').classList.add('none');
+			document.getElementById('add_content').focus();
+		})
+
+		document.getElementById('resultClear').addEventListener('click',()=>{
+			let removeResult=document.querySelectorAll('.result');
+			for(let i=0; i<removeResult.length; i++){
+				removeResult[i].remove();
+			}
+			document.getElementById('resultClear').classList.add('none');
 		})
 	</script>
 </body>
