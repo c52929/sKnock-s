@@ -179,6 +179,9 @@
 			document.getElementById('shimohider').classList.add('none');
 			document.getElementById('skip').classList.add('skipped');
 			document.getElementById('stop').classList.add('skipped');
+			document.getElementById('play_state_sign').classList.remove('fa-pause');
+			document.getElementById('play_state_sign').classList.add('fa-play');
+			now=3;
 		}
 	})
 
@@ -194,7 +197,7 @@
 				document.getElementById('stop').classList.add('skipped');
 				now++;
 			})
-		}else{
+		}else if(now!=3){
 			document.getElementById('kamihider').classList.toggle('stopped');
 			document.getElementById('shimohider').classList.toggle('stopped');
 			document.getElementById('play_state_sign').classList.toggle('fa-pause');
