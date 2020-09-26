@@ -1,0 +1,142 @@
+* {
+  margin: 0;
+  border: none;
+  padding: 0;
+  font-family: Arial,'Yu Gothic','Hiragino Kaku Gothic ProN','Yu Mincho Light','Hiragino Mincho ProN','Meiryo UI',sans-serif;
+}
+
+.inner {
+  width: 100%;
+  max-width: 1366px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+/* ul,ol{
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	padding-inline-start: 40px;
+} */
+table {
+  border-collapse: collapse;
+  margin: 12px auto;
+}
+
+table tr td.color {
+  border: 1px solid #000;
+  padding: 16px;
+}
+
+table tr td.color.b {
+  background-color: #00f;
+}
+
+table tr td.color.w {
+  background-color: #fff;
+}
+
+table tr td.color.r {
+  background-color: #f00;
+}
+
+table tr td.color.y {
+  background-color: #ff0;
+}
+
+table tr td.color.g {
+  background-color: #0f0;
+}
+
+table tr td.color.o {
+  background-color: #f90;
+}
+
+table tr:nth-of-type(1) td:nth-of-type(2), table tr:nth-of-type(7) td:nth-of-type(2), table tr:nth-of-type(10) td:nth-of-type(2) {
+  border-left: 2px solid #000;
+}
+
+table tr:nth-of-type(1) td:nth-of-type(2),
+table tr:nth-of-type(1) td:nth-of-type(3),
+table tr:nth-of-type(1) td:nth-of-type(4), table tr:nth-of-type(7) td:nth-of-type(2),
+table tr:nth-of-type(7) td:nth-of-type(3),
+table tr:nth-of-type(7) td:nth-of-type(4), table tr:nth-of-type(10) td:nth-of-type(2),
+table tr:nth-of-type(10) td:nth-of-type(3),
+table tr:nth-of-type(10) td:nth-of-type(4) {
+  border-top: 2px solid #000;
+}
+
+table tr:nth-of-type(1) td:nth-of-type(4), table tr:nth-of-type(7) td:nth-of-type(4), table tr:nth-of-type(10) td:nth-of-type(4) {
+  border-right: 2px solid #000;
+}
+
+table tr:nth-of-type(3) td, table tr:nth-of-type(12) td {
+  border-bottom: 2px solid #000;
+}
+
+table tr:nth-of-type(2) td:nth-of-type(3), table tr:nth-of-type(3) td:nth-of-type(3), table tr:nth-of-type(8) td:nth-of-type(3), table tr:nth-of-type(9) td:nth-of-type(3), table tr:nth-of-type(11) td:nth-of-type(3), table tr:nth-of-type(12) td:nth-of-type(3) {
+  border-right: 2px solid #000;
+}
+
+table tr:nth-of-type(4) td:nth-of-type(1), table tr:nth-of-type(5) td:nth-of-type(1), table tr:nth-of-type(6) td:nth-of-type(1) {
+  border-left: 2px solid #000;
+}
+
+table tr:nth-of-type(4) td:nth-of-type(3), table tr:nth-of-type(5) td:nth-of-type(3), table tr:nth-of-type(6) td:nth-of-type(3) {
+  border-right: 2px solid #000;
+}
+
+table tr:nth-of-type(4) td:nth-of-type(7), table tr:nth-of-type(5) td:nth-of-type(7), table tr:nth-of-type(6) td:nth-of-type(7) {
+  border-left: 2px solid #000;
+}
+
+table tr:nth-of-type(4) td:nth-of-type(9), table tr:nth-of-type(5) td:nth-of-type(9), table tr:nth-of-type(6) td:nth-of-type(9) {
+  border-right: 2px solid #000;
+}
+
+table tr:nth-of-type(4):nth-of-type(4) td:nth-of-type(1),
+table tr:nth-of-type(4):nth-of-type(4) td:nth-of-type(2),
+table tr:nth-of-type(4):nth-of-type(4) td:nth-of-type(3),
+table tr:nth-of-type(4):nth-of-type(4) td:nth-of-type(7),
+table tr:nth-of-type(4):nth-of-type(4) td:nth-of-type(8),
+table tr:nth-of-type(4):nth-of-type(4) td:nth-of-type(9), table tr:nth-of-type(5):nth-of-type(4) td:nth-of-type(1),
+table tr:nth-of-type(5):nth-of-type(4) td:nth-of-type(2),
+table tr:nth-of-type(5):nth-of-type(4) td:nth-of-type(3),
+table tr:nth-of-type(5):nth-of-type(4) td:nth-of-type(7),
+table tr:nth-of-type(5):nth-of-type(4) td:nth-of-type(8),
+table tr:nth-of-type(5):nth-of-type(4) td:nth-of-type(9), table tr:nth-of-type(6):nth-of-type(4) td:nth-of-type(1),
+table tr:nth-of-type(6):nth-of-type(4) td:nth-of-type(2),
+table tr:nth-of-type(6):nth-of-type(4) td:nth-of-type(3),
+table tr:nth-of-type(6):nth-of-type(4) td:nth-of-type(7),
+table tr:nth-of-type(6):nth-of-type(4) td:nth-of-type(8),
+table tr:nth-of-type(6):nth-of-type(4) td:nth-of-type(9) {
+  border-top: 2px solid #000;
+}
+
+table tr:nth-of-type(4):nth-of-type(6) td:nth-of-type(1),
+table tr:nth-of-type(4):nth-of-type(6) td:nth-of-type(2),
+table tr:nth-of-type(4):nth-of-type(6) td:nth-of-type(3),
+table tr:nth-of-type(4):nth-of-type(6) td:nth-of-type(7),
+table tr:nth-of-type(4):nth-of-type(6) td:nth-of-type(8),
+table tr:nth-of-type(4):nth-of-type(6) td:nth-of-type(9), table tr:nth-of-type(5):nth-of-type(6) td:nth-of-type(1),
+table tr:nth-of-type(5):nth-of-type(6) td:nth-of-type(2),
+table tr:nth-of-type(5):nth-of-type(6) td:nth-of-type(3),
+table tr:nth-of-type(5):nth-of-type(6) td:nth-of-type(7),
+table tr:nth-of-type(5):nth-of-type(6) td:nth-of-type(8),
+table tr:nth-of-type(5):nth-of-type(6) td:nth-of-type(9), table tr:nth-of-type(6):nth-of-type(6) td:nth-of-type(1),
+table tr:nth-of-type(6):nth-of-type(6) td:nth-of-type(2),
+table tr:nth-of-type(6):nth-of-type(6) td:nth-of-type(3),
+table tr:nth-of-type(6):nth-of-type(6) td:nth-of-type(7),
+table tr:nth-of-type(6):nth-of-type(6) td:nth-of-type(8),
+table tr:nth-of-type(6):nth-of-type(6) td:nth-of-type(9) {
+  border-bottom: 2px solid #000;
+}
+
+.transparent {
+  opacity: 0 !important;
+}
+
+.none {
+  display: none !important;
+}
