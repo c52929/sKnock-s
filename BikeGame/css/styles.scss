@@ -24,11 +24,13 @@ h1{
 			background-color: #ddd;
 			border-radius: 4px;
 			color:#282523;
-			padding: 3.2vw;
-			font-size: 12vw;
+			padding: 5.4vw 3.6vw;
 			&.chosen{
 				background-color: #00aaff;
 				color:#fff;
+			}
+			i{
+				font-size: 12vw;
 			}
 		}
 	}
@@ -95,7 +97,6 @@ h1{
 			margin:2px 12px;
 		}
 		&.out{
-			justify-content: space-between;
 			&::after{
 				position:absolute;
 				right:0;
@@ -153,7 +154,7 @@ h1{
 	#beforeGaming{
 		.select{
 			.option{
-				padding: 12px;
+				padding:16px 12px;
 				i{
 					font-size: 5vw;
 				}

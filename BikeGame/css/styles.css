@@ -28,13 +28,16 @@ h1 {
   background-color: #ddd;
   border-radius: 4px;
   color: #282523;
-  padding: 3.2vw;
-  font-size: 12vw;
+  padding: 5.4vw 3.6vw;
 }
 
 #beforeGaming .select .option.chosen {
   background-color: #00aaff;
   color: #fff;
+}
+
+#beforeGaming .select .option i {
+  font-size: 12vw;
 }
 
 .input-submit {
@@ -108,10 +111,6 @@ h1 {
   margin: 2px 12px;
 }
 
-.courses .course.out {
-  justify-content: space-between;
-}
-
 .courses .course.out::after {
   position: absolute;
   right: 0;
@@ -170,7 +169,7 @@ h1 {
     font-size: 25.6px;
   }
   #beforeGaming .select .option {
-    padding: 12px;
+    padding: 16px 12px;
   }
   #beforeGaming .select .option i {
     font-size: 5vw;
