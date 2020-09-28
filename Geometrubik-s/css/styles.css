@@ -68,6 +68,7 @@ ul, ol {
 
 #hamburger_menu {
   background-color: #fff;
+  box-sizing: border-box;
   content: '';
   width: 84%;
   height: 100%;
@@ -99,6 +100,17 @@ ul, ol {
   padding: 4px 12px;
   color: #2c84cc;
   font-weight: bold;
+}
+
+#hamburger_menu p {
+  content: '';
+  bottom: 12px;
+  color: #a1a499;
+  font-size: 4.8vw;
+  left: 0;
+  text-align: center;
+  position: absolute;
+  width: 100%;
 }
 
 table {
