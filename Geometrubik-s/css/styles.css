@@ -18,7 +18,9 @@ ul, ol {
 }
 
 .header {
-  position: sticky;
+  position: fixed;
+  top: 0;
+  left: 0;
   background-color: pink;
   height: 2.56em;
   position: relative;
@@ -60,6 +62,10 @@ ul, ol {
   height: 100%;
 }
 
+#hider.none {
+  z-index: -2;
+}
+
 #hamburger_menu {
   background-color: #fff;
   content: '';
@@ -70,6 +76,10 @@ ul, ol {
   padding: calc(2.56em + 8px) 4px 8px;
   position: absolute;
   z-index: 4;
+}
+
+#hamburger_menu.none {
+  z-index: -2;
 }
 
 #hamburger_menu h1 {
