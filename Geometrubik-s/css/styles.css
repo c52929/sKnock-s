@@ -17,7 +17,7 @@ ul, ol {
   padding-inline-start: 2em;
 }
 
-.header {
+#header {
   box-sizing: border-box;
   position: fixed;
   top: 0;
@@ -28,7 +28,7 @@ ul, ol {
   z-index: 5;
 }
 
-.header h1 {
+#header h1 {
   content: '';
   top: 50%;
   left: 50%;
@@ -39,7 +39,7 @@ ul, ol {
   text-indent: 0.04em;
 }
 
-.header i {
+#header i {
   box-sizing: border-box;
   font-size: 20px;
   position: absolute;
@@ -49,6 +49,41 @@ ul, ol {
   transform: translateY(-50%);
   width: 1.8em;
   padding: 0.4em;
+}
+
+#header p#timer {
+  box-sizing: border-box;
+  font-size: 1.8em;
+  content: '';
+  top: 50%;
+  left: 8px;
+  transform: translateY(-50%);
+  position: absolute;
+}
+
+#header p#timer.solved {
+  color: #2c84cc;
+  font-weight: bold;
+}
+
+#header p#timer span#timer_small {
+  font-size: 0.8em;
+}
+
+#wallpaper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: #0ca;
+  border: 2px solid #fff;
+  border-radius: 1px 12px 1px 12px;
+  font-size: 40px;
+  padding: 16px 2px;
+  width: 80%;
+  line-height: 1.2em;
+  z-index: 257;
 }
 
 #hider {
@@ -97,10 +132,14 @@ ul, ol {
 
 #hamburger_menu ul li {
   border-top: 1px solid #e5e5e5;
-  margin: 0 4px;
+  margin: 2px 4px;
   padding: 4px 12px;
   color: #2c84cc;
   font-weight: bold;
+}
+
+#hamburger_menu ul li:last-child {
+  border-bottom: 1px solid #e5e5e5;
 }
 
 #hamburger_menu p#version {
@@ -194,6 +233,57 @@ table tr:nth-of-type(4) td:nth-of-type(1), table tr:nth-of-type(4) td:nth-of-typ
 
 table tr:nth-of-type(6) td:nth-of-type(1), table tr:nth-of-type(6) td:nth-of-type(2), table tr:nth-of-type(6) td:nth-of-type(3), table tr:nth-of-type(6) td:nth-of-type(7), table tr:nth-of-type(6) td:nth-of-type(8), table tr:nth-of-type(6) td:nth-of-type(9) {
   border-bottom: 2px solid #000;
+}
+
+@media (orientation: landscape) {
+  #header {
+    background: transparent;
+    background-color: transparent;
+  }
+  #header h1 {
+    display: none;
+  }
+  #hamburger_menu {
+    padding: 4px;
+  }
+  #hamburger_menu ul li {
+    margin: 0 4px;
+  }
+  #hamburger_menu p#version {
+    bottom: 4px;
+    font-size: 3.6vw;
+  }
+  table {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  table tr td.color {
+    width: 7.2vh;
+    height: 7.2vh;
+  }
+}
+
+@media (min-width: 768px) {
+  #header i {
+    cursor: pointer;
+  }
+  #hamburger_menu h1 {
+    font-size: 48px;
+  }
+  #hamburger_menu ul li {
+    font-size: 18px;
+  }
+  #hamburger_menu ul li:hover {
+    background-color: #efefef;
+    cursor: pointer;
+  }
+  #hamburger_menu p#version {
+    bottom: 12px;
+    font-size: 25.6px;
+  }
+  table tr td.color:hover {
+    cursor: not-allowed;
+  }
 }
 
 .transparent {

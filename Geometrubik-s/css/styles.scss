@@ -14,7 +14,7 @@ ul,ol{
 	margin:4px 0;
 	padding-inline-start:2em;
 }
-.header{
+#header{
 	box-sizing:border-box;
 	position:fixed;
 	top:0;
@@ -44,6 +44,37 @@ ul,ol{
 		width:1.8em;
 		padding:0.4em;
 	}
+	p#timer{
+		box-sizing: border-box;
+		font-size: 1.8em;
+		content:'';
+		top:50%;
+		left:8px;
+		transform:translateY(-50%);
+		position:absolute;
+		&.solved{
+			color:#2c84cc;
+			font-weight: bold;
+		}
+		span#timer_small{
+			font-size: 0.8em;
+		}
+	}
+}
+#wallpaper{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	background-color: #0ca;
+	border:2px solid #fff;
+	border-radius: 1px 12px 1px 12px;
+	font-size: 40px;
+	padding: 16px 2px;
+	width:80%;
+	line-height: 1.2em;
+	z-index: 257;
 }
 #hider{
 	z-index:2;
@@ -83,10 +114,13 @@ ul,ol{
 		padding: 0;
 		li{
 			border-top:1px solid #e5e5e5;
-			margin: 0 4px;
+			margin: 2px 4px;
 			padding: 4px 12px;
 			color:#2c84cc;
 			font-weight: bold;
+			&:last-child{
+				border-bottom:1px solid #e5e5e5;
+			}
 		}
 	}
 	p#version{
@@ -207,6 +241,87 @@ table{
 		}
 	}
 }
+
+
+@media(orientation:landscape){
+	#header{
+		background: transparent;
+		background-color:transparent;
+		h1{
+			display: none;
+		}
+	}
+	#hamburger_menu{
+		padding: 4px;
+		ul li{
+			margin:0 4px;
+		}
+		p#version{
+			bottom:4px;
+			font-size: 3.6vw;
+		}
+	}
+	table{
+		top:50%;
+		transform: translate(-50%,-50%);
+		tr{
+			td.color{
+				width:7.2vh;
+				height:7.2vh;
+			}
+		}
+	}
+}
+@media(min-width:768px){
+	#header{
+		i{
+			cursor: pointer;
+		}
+	}
+	#hamburger_menu{
+		h1{
+			font-size: 48px;
+		}
+		ul li{
+			font-size: 18px;
+			&:hover{
+				// opacity:0.8;
+				background-color: #efefef;
+				cursor: pointer;
+			}
+		}
+		p#version{
+			bottom:12px;
+			font-size: 25.6px;
+		}
+	}
+	table{
+		tr{
+			td.color:hover{
+				cursor: not-allowed;
+				// &.b{
+				// 	background-color: #00c;
+				// }
+				// &.w{
+				// 	background-color: #ccc;
+				// }
+				// &.r{
+				// 	background-color: #c00;
+				// }
+				// &.y{
+				// 	background-color: #cc0;
+				// }
+				// &.g{
+				// 	background-color: #0c0;
+				// }
+				// &.o{
+				// 	background-color: #c50;
+				// }
+			}
+		}
+	}
+}
+
 .transparent{
 	opacity:0 !important;
 }
