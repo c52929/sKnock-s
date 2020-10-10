@@ -3,6 +3,9 @@
 	let colors;
 	reset(0);
 
+	let moratorium=0;
+	let counting=0;
+
 	function reset(mode){
 		colors=[];
 		for(let i=0; i<12; i++){
@@ -159,6 +162,7 @@
 					}
 				}
 			}
+			// console.log(colors);
 		})
 	}
 
@@ -177,268 +181,277 @@
 
 	function pattern(cmd,dir,spotNum){
 		let hokan;
-		// console.log(cmd);
-		if(cmd==pL || cmd==pM || cmd==pR){
-			if(dir=='toUp'){
-				hokan=[colors[cmd[0]],colors[cmd[1]],colors[cmd[2]]];
-				for(let i=0; i<9; i++){
-					colors[cmd[i]]=colors[cmd[i+3]];
-				}
-				for(let i=0; i<3; i++){
-					colors[cmd[i+9]]=hokan[i];
-				}
-				if(cmd==pL){
-					hokan=[colors[9],colors[10]];
-					colors[9]=colors[11];
-					colors[10]=colors[20];
-					colors[11]=colors[29];
-					colors[20]=colors[28];
-					colors[29]=colors[27];
-					colors[28]=colors[18];
-					colors[27]=hokan[0];
-					colors[18]=hokan[1];
-				}else if(cmd==pR){
-					hokan=[colors[17],colors[16]];
-					colors[17]=colors[15];
-					colors[16]=colors[24];
-					colors[15]=colors[33];
-					colors[24]=colors[34];
-					colors[33]=colors[35];
-					colors[34]=colors[26];
-					colors[35]=hokan[0];
-					colors[26]=hokan[1];
-				}
-			}else{
-				hokan=[colors[cmd[9]],colors[cmd[10]],colors[cmd[11]]];
-				for(let i=0; i<3; i++){
-					for(let j=0; j<3; j++){
-						colors[cmd[3*(3-i)+j]]=colors[cmd[3*(2-i)+j]];
+		if(moratorium==0){
+			// console.log(cmd);
+			if(cmd==pL || cmd==pM || cmd==pR){
+				if(dir=='toUp'){
+					hokan=[colors[cmd[0]],colors[cmd[1]],colors[cmd[2]]];
+					for(let i=0; i<9; i++){
+						colors[cmd[i]]=colors[cmd[i+3]];
+					}
+					for(let i=0; i<3; i++){
+						colors[cmd[i+9]]=hokan[i];
+					}
+					if(cmd==pL){
+						hokan=[colors[9],colors[10]];
+						colors[9]=colors[11];
+						colors[10]=colors[20];
+						colors[11]=colors[29];
+						colors[20]=colors[28];
+						colors[29]=colors[27];
+						colors[28]=colors[18];
+						colors[27]=hokan[0];
+						colors[18]=hokan[1];
+					}else if(cmd==pR){
+						hokan=[colors[17],colors[16]];
+						colors[17]=colors[15];
+						colors[16]=colors[24];
+						colors[15]=colors[33];
+						colors[24]=colors[34];
+						colors[33]=colors[35];
+						colors[34]=colors[26];
+						colors[35]=hokan[0];
+						colors[26]=hokan[1];
+					}
+				}else{
+					hokan=[colors[cmd[9]],colors[cmd[10]],colors[cmd[11]]];
+					for(let i=0; i<3; i++){
+						for(let j=0; j<3; j++){
+							colors[cmd[3*(3-i)+j]]=colors[cmd[3*(2-i)+j]];
+						}
+					}
+					for(let i=0; i<3; i++){
+						colors[cmd[i]]=hokan[i];
+					}
+					if(cmd==pL){
+						hokan=[colors[11],colors[10]];
+						colors[11]=colors[9];
+						colors[10]=colors[18];
+						colors[9]=colors[27];
+						colors[18]=colors[28];
+						colors[27]=colors[29];
+						colors[28]=colors[20];
+						colors[29]=hokan[0];
+						colors[20]=hokan[1];
+					}else if(cmd==pR){
+						hokan=[colors[15],colors[16]];
+						colors[15]=colors[17];
+						colors[16]=colors[26];
+						colors[17]=colors[35];
+						colors[26]=colors[34];
+						colors[35]=colors[33];
+						colors[34]=colors[24];
+						colors[33]=hokan[0];
+						colors[24]=hokan[1];
 					}
 				}
-				for(let i=0; i<3; i++){
-					colors[cmd[i]]=hokan[i];
+			}else if(cmd==pU || cmd==pE || cmd==pD){
+				// console.log(dir=='toRight');
+				if(cmd==pU){
+					if((dir=='toLeft' && [51,52,53].indexOf(spotNum)<0) || (dir=='toRight' && [51,52,53].indexOf(spotNum)>-1)){
+						hokan=[colors[pU[0]],colors[pU[1]],colors[pU[2]]];
+						for(let i=0; i<9; i++){
+							colors[pU[i]]=colors[pU[i+3]];
+						}
+						for(let i=0; i<3; i++){
+							colors[pU[i+9]]=hokan[i];
+						}
+						hokan=[colors[2],colors[1]];
+						colors[2]=colors[0];
+						colors[1]=colors[3];
+						colors[0]=colors[6];
+						colors[3]=colors[7];
+						colors[6]=colors[8];
+						colors[7]=colors[5];
+						colors[8]=hokan[0];
+						colors[5]=hokan[1];
+					}else{
+						hokan=[colors[pU[9]],colors[pU[10]],colors[pU[11]]];
+						for(let i=0; i<9; i++){
+							colors[pU[11-i]]=colors[pU[8-i]];
+						}
+						for(let i=0; i<3; i++){
+							colors[pU[i]]=hokan[i];
+						}
+						hokan=[colors[0],colors[1]];
+						colors[0]=colors[2];
+						colors[1]=colors[5];
+						colors[2]=colors[8];
+						colors[5]=colors[7];
+						colors[8]=colors[6];
+						colors[7]=colors[3];
+						colors[6]=hokan[0];
+						colors[3]=hokan[1];
+					}
+				}else if(cmd==pD){
+					if((dir=='toLeft' && [45,46,47].indexOf(spotNum)<0) || (dir=='toRight' && [45,46,47].indexOf(spotNum)>-1)){
+						hokan=[colors[pD[0]],colors[pD[1]],colors[pD[2]]];
+						for(let i=0; i<9; i++){
+							colors[pD[i]]=colors[pD[i+3]];
+						}
+						for(let i=0; i<3; i++){
+							colors[pD[i+9]]=hokan[i];
+						}
+						hokan=[colors[36],colors[37]];
+						colors[36]=colors[38];
+						colors[37]=colors[41];
+						colors[38]=colors[44];
+						colors[41]=colors[43];
+						colors[44]=colors[42];
+						colors[43]=colors[39];
+						colors[42]=hokan[0];
+						colors[39]=hokan[1];
+					}else{
+						hokan=[colors[pD[9]],colors[pD[10]],colors[pD[11]]];
+						for(let i=0; i<9; i++){
+							colors[pD[11-i]]=colors[pD[8-i]];
+						}
+						for(let i=0; i<3; i++){
+							colors[pD[i]]=hokan[i];
+						}
+						hokan=[colors[38],colors[37]];
+						colors[38]=colors[36];
+						colors[37]=colors[39];
+						colors[36]=colors[42];
+						colors[39]=colors[43];
+						colors[42]=colors[44];
+						colors[43]=colors[41];
+						colors[44]=hokan[0];
+						colors[41]=hokan[1];
+					}
+				}else{
+					if((dir=='toLeft' && [48,49,50].indexOf(spotNum)<0) || (dir=='toRight' && [48,49,50].indexOf(spotNum)>-1)){
+						hokan=[colors[pE[0]],colors[pE[1]],colors[pE[2]]];
+						for(let i=0; i<9; i++){
+							colors[pE[i]]=colors[pE[i+3]];
+						}
+						for(let i=0; i<3; i++){
+							colors[pE[i+9]]=hokan[i];
+						}
+					}else{
+						hokan=[colors[pE[9]],colors[pE[10]],colors[pE[11]]];
+						for(let i=0; i<9; i++){
+							colors[pE[11-i]]=colors[pE[8-i]];
+						}
+						for(let i=0; i<3; i++){
+							colors[pE[i]]=hokan[i];
+						}
+					}
 				}
-				if(cmd==pL){
-					hokan=[colors[11],colors[10]];
-					colors[11]=colors[9];
-					colors[10]=colors[18];
-					colors[9]=colors[27];
-					colors[18]=colors[28];
-					colors[27]=colors[29];
-					colors[28]=colors[20];
-					colors[29]=hokan[0];
-					colors[20]=hokan[1];
-				}else if(cmd==pR){
-					hokan=[colors[15],colors[16]];
-					colors[15]=colors[17];
-					colors[16]=colors[26];
-					colors[17]=colors[35];
-					colors[26]=colors[34];
-					colors[35]=colors[33];
-					colors[34]=colors[24];
-					colors[33]=hokan[0];
-					colors[24]=hokan[1];
+			}else if(cmd==pB || cmd==pS || cmd==pF){
+				if(cmd==pB){
+					if(([0,1,2].indexOf(spotNum)>-1 && direction=='toLeft') || ([9,18,27].indexOf(spotNum)>-1 && direction=='toDown') || ([42,43,44].indexOf(spotNum)>-1 && direction=='toRight') || ([17,26,35].indexOf(spotNum)>-1 && direction=='toUp')){
+						hokan=[colors[pB[0]],colors[pB[1]],colors[pB[2]]];
+						for(let i=0; i<9; i++){
+							colors[pB[i]]=colors[pB[i+3]];
+						}
+						for(let i=0; i<3; i++){
+							colors[pB[i+9]]=hokan[i];
+						}
+						hokan=[colors[47],colors[46]];
+						colors[47]=colors[45];
+						colors[46]=colors[48];
+						colors[45]=colors[51];
+						colors[48]=colors[52];
+						colors[51]=colors[53];
+						colors[52]=colors[50];
+						colors[53]=hokan[0];
+						colors[50]=hokan[1];
+					}else{
+						hokan=[colors[pB[9]],colors[pB[10]],colors[pB[11]]];
+						for(let i=0; i<9; i++){
+							colors[pB[11-i]]=colors[pB[8-i]];
+						}
+						for(let i=0; i<3; i++){
+							colors[pB[i]]=hokan[i];
+						}
+						hokan=[colors[45],colors[46]];
+						colors[45]=colors[47];
+						colors[46]=colors[50];
+						colors[47]=colors[53];
+						colors[50]=colors[52];
+						colors[53]=colors[51];
+						colors[52]=colors[48];
+						colors[51]=hokan[0];
+						colors[48]=hokan[1];
+					}
+				}else if(cmd==pF){
+					if(([6,7,8].indexOf(spotNum)>-1 && direction=='toLeft') || ([11,20,29].indexOf(spotNum)>-1 && direction=='toDown') || ([36,37,38].indexOf(spotNum)>-1 && direction=='toRight') || ([15,24,33].indexOf(spotNum)>-1 && direction=='toUp')){
+						hokan=[colors[pF[0]],colors[pF[1]],colors[pF[2]]];
+						for(let i=0; i<9; i++){
+							colors[pF[i]]=colors[pF[i+3]];
+						}
+						for(let i=0; i<3; i++){
+							colors[pF[i+9]]=hokan[i];
+						}
+						hokan=[colors[12],colors[13]];
+						colors[12]=colors[14];
+						colors[13]=colors[23];
+						colors[14]=colors[32];
+						colors[23]=colors[31];
+						colors[32]=colors[30];
+						colors[31]=colors[21];
+						colors[30]=hokan[0];
+						colors[21]=hokan[1];
+					}else{
+						hokan=[colors[pF[9]],colors[pF[10]],colors[pF[11]]];
+						for(let i=0; i<9; i++){
+							colors[pF[11-i]]=colors[pF[8-i]];
+						}
+						for(let i=0; i<3; i++){
+							colors[pF[i]]=hokan[i];
+						}
+						hokan=[colors[14],colors[13]];
+						colors[14]=colors[12];
+						colors[13]=colors[21];
+						colors[12]=colors[30];
+						colors[21]=colors[31];
+						colors[30]=colors[32];
+						colors[31]=colors[23];
+						colors[32]=hokan[0];
+						colors[23]=hokan[1];
+					}
+				}else{
+					if(([3,4,5].indexOf(spotNum)>-1 && direction=='toLeft') || ([10,19,28].indexOf(spotNum)>-1 && direction=='toDown') || ([39,40,41].indexOf(spotNum)>-1 && direction=='toRight') || ([16,25,34].indexOf(spotNum)>-1 && direction=='toUp')){
+						hokan=[colors[pS[0]],colors[pS[1]],colors[pS[2]]];
+						for(let i=0; i<9; i++){
+							colors[pS[i]]=colors[pS[i+3]];
+						}
+						for(let i=0; i<3; i++){
+							colors[pS[i+9]]=hokan[i];
+						}
+					}else{
+						hokan=[colors[pS[9]],colors[pS[10]],colors[pS[11]]];
+						for(let i=0; i<9; i++){
+							colors[pS[11-i]]=colors[pS[8-i]];
+						}
+						for(let i=0; i<3; i++){
+							colors[pS[i]]=hokan[i];
+						}
+					}
 				}
 			}
-		}else if(cmd==pU || cmd==pE || cmd==pD){
-			// console.log(dir=='toRight');
-			if(cmd==pU){
-				if((dir=='toLeft' && [51,52,53].indexOf(spotNum)<0) || (dir=='toRight' && [51,52,53].indexOf(spotNum)>-1)){
-					hokan=[colors[pU[0]],colors[pU[1]],colors[pU[2]]];
-					for(let i=0; i<9; i++){
-						colors[pU[i]]=colors[pU[i+3]];
-					}
-					for(let i=0; i<3; i++){
-						colors[pU[i+9]]=hokan[i];
-					}
-					hokan=[colors[2],colors[1]];
-					colors[2]=colors[0];
-					colors[1]=colors[3];
-					colors[0]=colors[6];
-					colors[3]=colors[7];
-					colors[6]=colors[8];
-					colors[7]=colors[5];
-					colors[8]=hokan[0];
-					colors[5]=hokan[1];
-				}else{
-					hokan=[colors[pU[9]],colors[pU[10]],colors[pU[11]]];
-					for(let i=0; i<9; i++){
-						colors[pU[11-i]]=colors[pU[8-i]];
-					}
-					for(let i=0; i<3; i++){
-						colors[pU[i]]=hokan[i];
-					}
-					hokan=[colors[0],colors[1]];
-					colors[0]=colors[2];
-					colors[1]=colors[5];
-					colors[2]=colors[8];
-					colors[5]=colors[7];
-					colors[8]=colors[6];
-					colors[7]=colors[3];
-					colors[6]=hokan[0];
-					colors[3]=hokan[1];
-				}
-			}else if(cmd==pD){
-				if((dir=='toLeft' && [45,46,47].indexOf(spotNum)<0) || (dir=='toRight' && [45,46,47].indexOf(spotNum)>-1)){
-					hokan=[colors[pD[0]],colors[pD[1]],colors[pD[2]]];
-					for(let i=0; i<9; i++){
-						colors[pD[i]]=colors[pD[i+3]];
-					}
-					for(let i=0; i<3; i++){
-						colors[pD[i+9]]=hokan[i];
-					}
-					hokan=[colors[36],colors[37]];
-					colors[36]=colors[38];
-					colors[37]=colors[41];
-					colors[38]=colors[44];
-					colors[41]=colors[43];
-					colors[44]=colors[42];
-					colors[43]=colors[39];
-					colors[42]=hokan[0];
-					colors[39]=hokan[1];
-				}else{
-					hokan=[colors[pD[9]],colors[pD[10]],colors[pD[11]]];
-					for(let i=0; i<9; i++){
-						colors[pD[11-i]]=colors[pD[8-i]];
-					}
-					for(let i=0; i<3; i++){
-						colors[pD[i]]=hokan[i];
-					}
-					hokan=[colors[38],colors[37]];
-					colors[38]=colors[36];
-					colors[37]=colors[39];
-					colors[36]=colors[42];
-					colors[39]=colors[43];
-					colors[42]=colors[44];
-					colors[43]=colors[41];
-					colors[44]=hokan[0];
-					colors[41]=hokan[1];
-				}
-			}else{
-				if((dir=='toLeft' && [48,49,50].indexOf(spotNum)<0) || (dir=='toRight' && [48,49,50].indexOf(spotNum)>-1)){
-					hokan=[colors[pE[0]],colors[pE[1]],colors[pE[2]]];
-					for(let i=0; i<9; i++){
-						colors[pE[i]]=colors[pE[i+3]];
-					}
-					for(let i=0; i<3; i++){
-						colors[pE[i+9]]=hokan[i];
-					}
-				}else{
-					hokan=[colors[pE[9]],colors[pE[10]],colors[pE[11]]];
-					for(let i=0; i<9; i++){
-						colors[pE[11-i]]=colors[pE[8-i]];
-					}
-					for(let i=0; i<3; i++){
-						colors[pE[i]]=hokan[i];
-					}
-				}
+			// console.log(colors);
+			$('.color').removeClass().addClass('color');
+			for(let i=0; i<54; i++){
+				document.getElementsByClassName('color')[i].classList.add(colors[i]);
 			}
-		}else if(cmd==pB || cmd==pS || cmd==pF){
-			if(cmd==pB){
-				if(([0,1,2].indexOf(spotNum)>-1 && direction=='toLeft') || ([9,18,27].indexOf(spotNum)>-1 && direction=='toDown') || ([42,43,44].indexOf(spotNum)>-1 && direction=='toRight') || ([17,26,35].indexOf(spotNum)>-1 && direction=='toUp')){
-					hokan=[colors[pB[0]],colors[pB[1]],colors[pB[2]]];
-					for(let i=0; i<9; i++){
-						colors[pB[i]]=colors[pB[i+3]];
-					}
-					for(let i=0; i<3; i++){
-						colors[pB[i+9]]=hokan[i];
-					}
-					hokan=[colors[47],colors[46]];
-					colors[47]=colors[45];
-					colors[46]=colors[48];
-					colors[45]=colors[51];
-					colors[48]=colors[52];
-					colors[51]=colors[53];
-					colors[52]=colors[50];
-					colors[53]=hokan[0];
-					colors[50]=hokan[1];
-				}else{
-					hokan=[colors[pB[9]],colors[pB[10]],colors[pB[11]]];
-					for(let i=0; i<9; i++){
-						colors[pB[11-i]]=colors[pB[8-i]];
-					}
-					for(let i=0; i<3; i++){
-						colors[pB[i]]=hokan[i];
-					}
-					hokan=[colors[45],colors[46]];
-					colors[45]=colors[47];
-					colors[46]=colors[50];
-					colors[47]=colors[53];
-					colors[50]=colors[52];
-					colors[53]=colors[51];
-					colors[52]=colors[48];
-					colors[51]=hokan[0];
-					colors[48]=hokan[1];
-				}
-			}else if(cmd==pF){
-				if(([6,7,8].indexOf(spotNum)>-1 && direction=='toLeft') || ([11,20,29].indexOf(spotNum)>-1 && direction=='toDown') || ([36,37,38].indexOf(spotNum)>-1 && direction=='toRight') || ([15,24,33].indexOf(spotNum)>-1 && direction=='toUp')){
-					hokan=[colors[pF[0]],colors[pF[1]],colors[pF[2]]];
-					for(let i=0; i<9; i++){
-						colors[pF[i]]=colors[pF[i+3]];
-					}
-					for(let i=0; i<3; i++){
-						colors[pF[i+9]]=hokan[i];
-					}
-					hokan=[colors[12],colors[13]];
-					colors[12]=colors[14];
-					colors[13]=colors[23];
-					colors[14]=colors[32];
-					colors[23]=colors[31];
-					colors[32]=colors[30];
-					colors[31]=colors[21];
-					colors[30]=hokan[0];
-					colors[21]=hokan[1];
-				}else{
-					hokan=[colors[pF[9]],colors[pF[10]],colors[pF[11]]];
-					for(let i=0; i<9; i++){
-						colors[pF[11-i]]=colors[pF[8-i]];
-					}
-					for(let i=0; i<3; i++){
-						colors[pF[i]]=hokan[i];
-					}
-					hokan=[colors[14],colors[13]];
-					colors[14]=colors[12];
-					colors[13]=colors[21];
-					colors[12]=colors[30];
-					colors[21]=colors[31];
-					colors[30]=colors[32];
-					colors[31]=colors[23];
-					colors[32]=hokan[0];
-					colors[23]=hokan[1];
-				}
-			}else{
-				if(([3,4,5].indexOf(spotNum)>-1 && direction=='toLeft') || ([10,19,28].indexOf(spotNum)>-1 && direction=='toDown') || ([39,40,41].indexOf(spotNum)>-1 && direction=='toRight') || ([16,25,34].indexOf(spotNum)>-1 && direction=='toUp')){
-					hokan=[colors[pS[0]],colors[pS[1]],colors[pS[2]]];
-					for(let i=0; i<9; i++){
-						colors[pS[i]]=colors[pS[i+3]];
-					}
-					for(let i=0; i<3; i++){
-						colors[pS[i+9]]=hokan[i];
-					}
-				}else{
-					hokan=[colors[pS[9]],colors[pS[10]],colors[pS[11]]];
-					for(let i=0; i<9; i++){
-						colors[pS[11-i]]=colors[pS[8-i]];
-					}
-					for(let i=0; i<3; i++){
-						colors[pS[i]]=hokan[i];
-					}
-				}
-			}
-		}
-		// console.log(colors);
-		$('.color').removeClass().addClass('color');
-		for(let i=0; i<54; i++){
-			document.getElementsByClassName('color')[i].classList.add(colors[i]);
 		}
 	}
 
 	// document.addEventListener('keydown',(event)=>{
-	// 	if(`${event.key}`=='a'  ||  `${event.key}`=='d'){
-	// 		const jq=jQuery(":hover")[jQuery(":hover").length-1];
-	// 		if(jq==points[13]){
-	// 			alert('おぉぉっけぇぇぇぇ');
-	// 		}
+	// 	if(`${event.key}`=='s' || `${event.key}`=='LeftArrow'){
+	// 		// ←
+	// 		// const jq=jQuery(":hover")[jQuery(":hover").length-1];
+	// 		// if(jq==points[13]){
+	// 		// 	// console.log('おぉぉっけぇぇぇぇ');
+	// 		// }
+	// 	}else if( `${event.key}`=='f' || `${event.key}`=='RightArrow'){
+	// 		// →
+	// 	}else if(`${event.key}`=='e' || `${event.key}`=='UpArrow'){
+	// 		// ↑
+	// 	}else if(`${event.key}`=='d' || `${event.key}`=='DownArrow'){
+	// 		// ↓
 	// 	}
 	// })
 
@@ -454,13 +467,12 @@
 		document.getElementById('hider').classList.toggle('none');
 		document.getElementById('hamburger_menu').classList.toggle('none');
 	}
-	const allPatterns=[pR,pM,pL,pU,pE,pD,pF,pS,pB];
-	document.getElementById('menuScramble').addEventListener('click',()=>{
-	// 	let r;
-	// 	let r2;
-		let rs=[];
+
+	function randomScramble(){
+		moratorium=0;
+		let rs;
 		for(let i=0; i<25; i++){
-			rs=[allPatterns[Math.floor(Math.random()*9)], Math.floor(Math.random()*3)+1];
+			rs=[[pR,pM,pL,pU,pE,pD,pF,pS,pB][Math.floor(Math.random()*9)], Math.floor(Math.random()*3)+1];
 			rs.push(Math.floor(Math.random()*rs[0].length));
 			rs.push(rs[0][rs[2]]);
 			for(let j=0; j<rs[1]; j++){
@@ -473,9 +485,21 @@
 				}
 			}
 		}
+		// console.log(colors);
+	}
+	
+	document.getElementById('menuScramble').addEventListener('click',()=>{
+		counting=0;
+		document.getElementById('timer').classList.add('none');
+		document.getElementById('title').classList.remove('none');
+		randomScramble();
 		menu_toggle();
 	})
 	document.getElementById('menuReset').addEventListener('click',()=>{
+		counting=0;
+		moratorium=0;
+		document.getElementById('timer').classList.add('none');
+		document.getElementById('title').classList.remove('none');
 		$('.color').removeClass().addClass('color');
 		reset(1);
 		for(let i=0; i<54; i++){
@@ -483,4 +507,132 @@
 		}
 		menu_toggle();
 	})
+	let startTime;
+	let stopTimer=0;
+	document.getElementById('menuTimer').addEventListener('click',()=>{
+		stopTimer=1;
+		counting=0; // !important
+		randomScramble();
+		menu_toggle();
+		document.getElementById('title').classList.add('none');
+		document.getElementById('timer').innerHTML='15.<span id="timer_small">00</span>';
+		document.getElementById('timer').classList.remove('none');
+		document.getElementById('timer').classList.remove('solved');
+		document.getElementById('wallpaper').classList.add('none');
+		moratorium=1;
+		document.getElementById('wallpaper').textContent='Inspection Time';
+		document.getElementById('wallpaper').classList.remove('none');
+		setTimeout(() => {
+			document.getElementById('wallpaper').classList.add('none');
+			counting=1; // !important
+			startTime=Date.now();
+			timer_moratorium();
+		}, 2000);
+	})
+
+	function timer_moratorium(){
+		if(counting==1){
+			// let nowTime=new Date();
+			// let timeData=[nowTime.getHours(),nowTime.getMinutes(),nowTime.getSeconds(),nowTime.getMilliseconds()];
+			// console.log(nowTime);
+			// console.log(nowTime + 15);
+			let millitime=15000-Date.now()+startTime;
+			document.getElementById('timer').innerHTML=`${Math.floor(millitime/1000)}.<span id="timer_small">${('00'+Math.floor(((millitime/1000)-Math.floor(millitime/1000))*100)).slice(-2)}</span>`;
+			if(counting==1 && startTime+15000>Date.now()){
+				setTimeout(() => {
+					timer_moratorium();
+				}, 18);
+			}else{
+				moratorium=0;
+				document.getElementById('timer').innerHTML='0.<span id="timer_small">00</span>';
+				document.getElementById('wallpaper').textContent='Start!';
+				document.getElementById('wallpaper').classList.remove('none');
+				setTimeout(() => {
+					document.getElementById('wallpaper').classList.add('none');
+					startTime=Date.now();
+					timer_count();
+				}, 1000);
+			}
+		}
+	}
+
+	function timer_count(){
+		let millitime=Date.now()-startTime;
+		document.getElementById('timer').innerHTML=`${Math.floor(millitime/1000)}.<span id="timer_small">${('00'+Math.floor(((millitime/1000)-Math.floor(millitime/1000))*100)).slice(-2)}</span>`;
+		let solvedCheck=0;
+		for(let i=0; i<5; i++){
+			if(i==0 || i==4){
+				// console.log(9*i);
+				for(let j=1; j<9; j++){
+					if(colors[9*i]==colors[9*i+j]){
+						solvedCheck++;
+						// console.log(`${colors[9*i]==colors[9*i+j]} (i,j)=(${i},${j}) ${9*i+j} ${solvedCheck}`);
+					}else{
+						// console.log(`${colors[9*i]==colors[9*i+j]} (i,j)=(${i},${j}) ${9*i+j} ${solvedCheck}`);
+						break;
+					}
+				}
+				// console.log('--- END ---');
+				if(solvedCheck%8>0){
+					break;
+				}
+			}else if(i==1){
+				// console.log(9*i);
+				for(let j=0; j<3; j++){
+					for(let k=0; k<3; k++){
+						for(let l=0; l<3; l++){
+							if(colors[3*j+9*i]==colors[3*j+9*i+9*k+l]){
+								solvedCheck++;
+								// console.log(`${colors[3*j+9*i]==colors[3*j+9*i+9*k+l]} (i,j,k,l)=(${i},${j},${k},${l}) ${3*j+9*i+9*k+l} ${solvedCheck}`);
+							}else{
+								// console.log(`${colors[3*j+9*i]==colors[3*j+9*i+9*k+l]} (i,j,k,l)=(${i},${j},${k},${l}) ${3*j+9*i+9*k+l} ${solvedCheck}`);
+								break;
+							}
+						}
+						// console.log(solvedCheck);
+						// console.log(11+8*j+3*k);
+						if(solvedCheck!=11+8*j+3*k){
+							break;
+						}
+					}
+					if(solvedCheck%8==1 && solvedCheck==17+8*j){
+						solvedCheck--;
+						// console.log(solvedCheck);
+					}else{
+						break;
+					}
+				}
+			}
+		}
+		// console.log(solvedCheck);
+		if(counting==1 && solvedCheck<40){
+			stopTimer=0;
+			setTimeout(() => {
+				timer_count();
+			}, 16);
+		}else{
+			if(stopTimer==0){
+				document.getElementById('timer').classList.add('solved');
+			}else{
+				stopTimer=0;
+				document.getElementById('timer').innerHTML='15.<span id="timer_small">00</span>';
+				document.getElementById('timer').classList.remove('none');
+				document.getElementById('timer').classList.remove('solved');
+			}
+		}
+	}
+
+	// document.addEventListener('keydown',(event)=>{
+	// 	// console.log(`${event.key}`,`${event.key}`=='Enter');
+	// 	if(`${event.key}`=='Enter'){
+	// 		reset(1);
+	// 		$('.color').removeClass().addClass('color');
+	// 		for(let i=0; i<54; i++){
+	// 			document.getElementsByClassName('color')[i].classList.add(colors[i]);
+	// 		}
+	// 		// console.log(colors);
+	// 		// timer_count();
+	// 	}
+	// })
+
 }
