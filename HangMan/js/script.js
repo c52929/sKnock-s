@@ -100,7 +100,7 @@
 		if(words.length<1){
 			getWordsData();
 		}
-		console.log(words);
+		// console.log(words);
 		newQuestion();
 	})
 }
