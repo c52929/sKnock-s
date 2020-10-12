@@ -1,0 +1,1 @@
+const wordsdata=['effort','dawn','supply','grade','instrument','means','rate','subject','access','glance'];
