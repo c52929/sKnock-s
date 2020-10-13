@@ -83,18 +83,35 @@
 		document.getElementById('question').textContent=answer[0];
 		if(asterisks==0){
 			document.getElementById('alphabets').classList.add('none');
-			document.getElementById('buttonNext').textContent='Try Again';
-			document.getElementById('buttonNext').classList.remove('none');
+			document.getElementById('buttonSearch').classList.remove('none');
+			document.getElementById('buttonAgain').classList.remove('none');
+			document.getElementById('searchTitle').innerHTML=`Search <b>"${answer[0]}"</b>`;
+			document.getElementsByClassName('site')[0].setAttribute('href',`https://https://ejje.weblio.jp/content/${answer[0].toLowerCase()}`,'_blank');
+			document.getElementsByClassName('site')[1].setAttribute('href',`https://eow.alc.co.jp/search?q=${answer[0].toLowerCase()}`,'_blank');
+			document.getElementsByClassName('site')[2].setAttribute('href',`https://translate.google.co.jp/?hl=ja#view=home&op=translate&sl=en&tl=ja&text=${answer[0].toLowerCase()}`,'_blank');
 		}
 	}
 
-	document.getElementById('buttonNext').addEventListener('click',()=>{
+	document.getElementById('buttonSearch').addEventListener('click',()=>{
+		document.getElementById('hider').classList.remove('none');
+		document.getElementById('searchMenu').classList.remove('none');
+	})
+	document.getElementById('closeMenu').addEventListener('click',()=>{
+		document.getElementById('hider').classList.add('none');
+		document.getElementById('searchMenu').classList.add('none');
+	})
+	document.getElementById('hider').addEventListener('click',()=>{
+		document.getElementById('hider').classList.add('none');
+		document.getElementById('searchMenu').classList.add('none');
+	})
+	document.getElementById('buttonAgain').addEventListener('click',()=>{
 		let getGuessed=document.getElementsByClassName('guessed');
 		while(getGuessed.length>0){
 			// console.log(getGuessed);
 			getGuessed[0].classList.remove('guessed');
 		}
-		document.getElementById('buttonNext').classList.add('none');
+		document.getElementById('buttonSearch').classList.add('none');
+		document.getElementById('buttonAgain').classList.add('none');
 		document.getElementById('alphabets').classList.remove('none');
 		words.splice(words.indexOf(answer[0]),1);
 		if(words.length<1){
