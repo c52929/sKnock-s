@@ -38,10 +38,14 @@
 	let r;
 	let correct;
 	let answer;
+	let missed;
 
 	newQuestion();
 
 	function newQuestion(){
+		missed=0;
+		document.getElementById('hangImage').removeAttribute('src');
+		document.getElementById('hangImage').setAttribute('src','img/miss0.svg');
 		aliveKey=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 		r=Math.floor(Math.random()*words.length);
 		correct=[];
@@ -56,20 +60,53 @@
 		// console.log(answer);
 	}
 
-	let getKey=document.getElementsByClassName('alive');
-	for(let i=0; i<getKey.length; i++){
+	let getKey=document.getElementsByClassName('alphabet');
+	for(let i=0; i<26; i++){
 		getKey[i].addEventListener('click',()=>{
-			// console.log(`Hi! ${i}`);
-			for(let j=0; j<correct.length; j++){
-				if(correct[j]==aliveKey[i]){
-					answer[j+1]=aliveKey[i];
+			if(aliveKey[i].length>0){
+				// console.log(`Hi! ${aliveKey[i]}`);
+				if(correct.indexOf(aliveKey[i])>-1){
+					for(let j=0; j<correct.length; j++){
+						if(correct[j]==aliveKey[i]){
+							answer[j+1]=aliveKey[i];
+						}
+					}
+					reloadAnswer();
+				}else{
+					missed++;
+					let lives='[';
+					for(let i=0; i<6-missed; i++){
+						lives+=' ♡';
+					}
+					lives+=' ]';
+					document.getElementById('hangImage').removeAttribute('src');
+					document.getElementById('hangImage').setAttribute('src',`img/miss${missed}.svg`);
+					document.getElementById('hangImage').removeAttribute('alt');
+					document.getElementById('hangImage').setAttribute('alt',`Lives ${lives}`);
+					if(missed==6){
+						document.getElementById('continueBlack').classList.add('show');
+						document.getElementById('alphabets').classList.add('none');
+						document.getElementById('buttonContinue').classList.remove('none');
+					}
 				}
+				// console.log(answer);
+				aliveKey[i]='';
+				getKey[i].classList.add('guessed');
+				// getKey[i].classList.remove('alive');
 			}
-			reloadAnswer();
-			// console.log(answer);
-			getKey[i].classList.add('guessed');
 		})
 	}
+
+	document.getElementById('buttonContinue').addEventListener('click',()=>{
+		missed=0;
+		document.getElementById('hangImage').removeAttribute('src');
+		document.getElementById('hangImage').setAttribute('src',`img/miss0.svg`);
+		document.getElementById('hangImage').removeAttribute('alt');
+		document.getElementById('hangImage').setAttribute('alt',`Lives [ ♡ ♡ ♡ ♡ ♡ ♡ ]`);
+		document.getElementById('buttonContinue').classList.add('none');
+		document.getElementById('alphabets').classList.remove('none');
+		document.getElementById('continueBlack').classList.remove('show');
+	})
 
 	function reloadAnswer(){
 		let asterisks=0;
@@ -82,13 +119,17 @@
 		}
 		document.getElementById('question').textContent=answer[0];
 		if(asterisks==0){
+			document.getElementById('correctCircle').classList.add('show');
 			document.getElementById('alphabets').classList.add('none');
 			document.getElementById('buttonSearch').classList.remove('none');
 			document.getElementById('buttonAgain').classList.remove('none');
 			document.getElementById('searchTitle').innerHTML=`Search <b>"${answer[0]}"</b>`;
-			document.getElementsByClassName('site')[0].setAttribute('href',`https://https://ejje.weblio.jp/content/${answer[0].toLowerCase()}`,'_blank');
+			document.getElementsByClassName('site')[0].setAttribute('href',`https://ejje.weblio.jp/content/${answer[0].toLowerCase()}`,'_blank');
 			document.getElementsByClassName('site')[1].setAttribute('href',`https://eow.alc.co.jp/search?q=${answer[0].toLowerCase()}`,'_blank');
 			document.getElementsByClassName('site')[2].setAttribute('href',`https://translate.google.co.jp/?hl=ja#view=home&op=translate&sl=en&tl=ja&text=${answer[0].toLowerCase()}`,'_blank');
+			document.getElementById('correctCircle').addEventListener('animationend',()=>{
+				document.getElementById('correctCircle').classList.remove('show');
+			})
 		}
 	}
 
