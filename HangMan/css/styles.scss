@@ -35,27 +35,35 @@
 	padding:6px;
 	text-align: center;
 }
+#hangImage{
+	display: block;
+	margin: 0 auto;
+}
 #buttons{
 	box-sizing: border-box;
 	position:fixed;
 	bottom:10%;
 	left:0;
 	width:100%;
+	z-index: 28;
 	.input-submit{
 		color:#fff;
 		font-size: 8.4vw;
 		width:54%;
 		margin: 12px auto 8px;
 		&#buttonSearch{
-			background-color: #2c84cc;
+			background-color: #0a5;
 		}
 		&#buttonAgain{
 			background-color: #fff;
 			border: 1px solid #efefef;
-			color:#2c84cc;
+			color:#0a5;
 		}
 		&#buttonContinue{
+			transition: 1.2s;
+			border:1px solid #fff;
 			background-color: #c52929;
+			// z-index: 24;
 		}
 	}
 }
@@ -68,6 +76,52 @@
 	left:0;
 	z-index: 227;
 	opacity: 0.7;
+}
+#continueBlack{
+	position: fixed;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	z-index: -12;
+	&.show{
+		transition: 1.2s;
+		z-index: 18;
+		background-color: #000;
+		opacity: 0.7;
+	}
+}
+#correctCircle{
+	border-radius: 50%;
+	box-sizing: border-box;
+	position: fixed;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+	z-index: -12;
+	&.show{
+		animation:showCircle 1.8s ease-out 0s 1 normal backwards running;
+		@keyframes showCircle {
+			0%{
+				border:6.4vmin none transparent;
+				width: 1vmin;
+				height: 1vmin;
+				opacity: 1;
+			}
+			75%{
+				border:6.4vmin solid #2c84cc;
+				width:60vmin;
+				height:60vmin;
+				opacity: 1;
+			}
+			100%{
+				border:6.4vmin solid #2c84cc;
+				width:60vmin;
+				height:60vmin;
+				opacity: 0;
+			}
+		}
+	}
 }
 #searchMenu{
 	background-color: #fff;
@@ -82,12 +136,15 @@
 	width:96%;
 	z-index: 256;
 	h1{
+		box-sizing: border-box;
+		font-size: 8.4vw;
 		font-weight: normal;
-		width: 100%;
 		text-align: center;
-		margin: 8px 2px;
+		margin: 8px 7.2vw;
+		width: 100%;
 		b{
 			font-family: 'Courier','Avenir','Helvetica Neue','Helvetica', sans-serif;
+			overflow-wrap: break-word;
 		}
 	}
 	a{
@@ -155,6 +212,8 @@
 		&.guessed{
 			border:1px dotted #e5e5e5;
 			color:#ccc;
+			position: relative;
+			z-index: -10;
 			&:active{
 				background-color: #fff;
 				color:#ccc;
