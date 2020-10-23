@@ -28,6 +28,9 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
+	&.featured{
+		background-color: #fbe;
+	}
 	h2{
 		text-align: center;
 		margin: 8px auto 0;

@@ -34,6 +34,10 @@
   justify-content: space-around;
 }
 
+.projects.featured {
+  background-color: #fbe;
+}
+
 .projects h2 {
   text-align: center;
   margin: 8px auto 0;
