@@ -1,0 +1,111 @@
+*{
+	margin:0;
+	border:none;
+	padding:0;
+	font-family: 'Consolas','Arial','Yu Mincho Light','Hiragino Mincho ProN','Yu Gothic','Hiragino Kaku Gothic ProN','Meiryo UI',sans-serif;
+}
+.inner{
+	width:100%;
+	max-width:1366px;
+	margin:0 auto;
+	overflow-x:hidden;
+}
+/* ul,ol{
+	margin: 8px 0;
+	padding-inline-start: 2em;
+} */
+.wall{
+	background-color: #444;
+	color:#fff;
+	text-align: center;
+	padding: 4px;
+	margin: 0;
+	p#qNum{
+		color:#2c84cc;
+		margin:0 4px;
+	}
+	p#question{
+		font-size: 9.6vw;
+	}
+}
+.selects{
+	background-color: #f1f1f1;
+	border:1px solid #a1a499;
+	border-radius: 5px;
+	box-sizing: border-box;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+	margin: 12px auto 4px;
+	padding: 0.8em;
+	width:92%;
+	.select{
+		background-color: #fff;
+		box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+		box-sizing: border-box;
+		text-align: center;
+		padding: 0.8em 4px;
+		&:not(:last-child){
+			margin-bottom: 0.8em;
+		}
+		&.selected{
+			background-color: #fda;
+		}
+		&.correct{
+			background-color: #a8dba8;
+		}
+		&.incorrect{
+			background-color: #f38181;
+		}
+		&.nothing{
+			background-color: #ddd;
+		}
+		&.wascorrect{
+			border:2px solid #0c1;
+		}
+	}
+}
+.input-submit{
+	-webkit-appearance:none;
+	background-color:#c52929;
+	background-image:none;
+	border:none;
+	border-radius:4px;
+	color:#fff;
+	cursor:pointer;
+	display:inline-block;
+	font-size:24px;
+	margin:18px auto 4px;
+	padding:6px 2px;
+	text-align: center;
+	text-decoration:none;
+	width:64%;
+	&:hover, &:focus{
+		outline:none;
+	}
+	&::-moz-foucus-inner{
+		border:none;
+		padding:0;
+	}
+}
+#return{
+	display: block;
+	&.next{
+		background-color: #2c84cc;
+	}
+}
+.buttons{
+	display: flex;
+	justify-content: space-around;
+	.input-submit{
+		padding: 4px 0;
+		box-sizing: border-box;
+		width:40%;
+	}
+}
+
+.transparent{
+	opacity:0 !important;
+}
+.none{
+	display:none !important;
+}
