@@ -44,6 +44,8 @@
 #hangImage {
   display: block;
   margin: 0 auto;
+  height: 50vh;
+  object-fit: contain;
 }
 
 #buttons {
@@ -121,21 +123,21 @@
 
 @keyframes showCircle {
   0% {
-    border: 6.4vmin none transparent;
-    width: 1vmin;
-    height: 1vmin;
+    border: 6.4vw none transparent;
+    width: 1vw;
+    height: 1vw;
     opacity: 1;
   }
   75% {
-    border: 6.4vmin solid #2c84cc;
-    width: 60vmin;
-    height: 60vmin;
+    border: 6.4vw solid #2c84cc;
+    width: 60vw;
+    height: 60vw;
     opacity: 1;
   }
   100% {
-    border: 6.4vmin solid #2c84cc;
-    width: 60vmin;
-    height: 60vmin;
+    border: 6.4vw solid #2c84cc;
+    width: 60vw;
+    height: 60vw;
     opacity: 0;
   }
 }
@@ -227,10 +229,11 @@
 #alphabets .alphabet {
   text-align: center;
   box-sizing: border-box;
+  border-radius: 2px;
   width: 12.8%;
   border: 1px solid #a1a499;
   padding: 4px;
-  margin: 4px 2px;
+  margin: 4px 2px 2px;
   font-size: 4.8vw;
 }
 
@@ -259,6 +262,25 @@
   background-color: transparent;
   height: 0;
   padding: 0;
+}
+
+@media (orientation: landscape) {
+  .header {
+    display: none;
+  }
+  #question {
+    margin: 6px 0 2px;
+  }
+  #alphabets {
+    width: 100%;
+  }
+  #alphabets .alphabet {
+    width: calc((100% - 54px) / 13);
+    margin: 2px;
+  }
+  #hangImage {
+    height: 40vh;
+  }
 }
 
 @media (min-width: 768px) {
