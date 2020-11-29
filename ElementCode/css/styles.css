@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  border: none;
+  padding: 0;
+  font-family: 'Consolas','CourierNew','Courier',monospace;
+}
+
+.inner {
+  width: 100%;
+  max-width: 1366px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+h1 {
+  margin: 0.2em;
+  text-align: center;
+}
+
+.input-text {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid #a1a499;
+  border-radius: 2px;
+  color: #282523;
+  font-family: inherit;
+  font-size: 5.4vw;
+  padding: 2px 4px 3px;
+  margin: 4px 0 2px 8px;
+  width: 64vw;
+}
+
+.input-text:focus {
+  border: 1px solid #a1a499;
+  box-shadow: none;
+  outline: none;
+}
+
+.input-submit {
+  -webkit-appearance: none;
+  background-color: #eee;
+  background-image: none;
+  border: 1px solid #a1a499;
+  border-radius: 4px;
+  color: #282523;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 5.4vw;
+  margin: 4px 0 2px;
+  padding: 2px 4px 3px;
+  text-decoration: none;
+}
+
+.input-submit:hover, .input-submit:focus {
+  outline: none;
+}
+
+.input-submit::-moz-foucus-inner {
+  border: none;
+  padding: 0;
+}
+
+.input-submit:hover {
+  background-color: #dfdfdf;
+  cursor: pointer;
+}
+
+.input-submit:active {
+  background-color: #ccc;
+}
+
+#returned {
+  margin: 12px 8px;
+  font-size: 1.2em;
+}
+
+#returned p {
+  font-size: 14.4px;
+  margin: 0;
+  color: #f00;
+  font-weight: bold;
+}
+
+.transparent {
+  opacity: 0 !important;
+}
+
+.none {
+  display: none !important;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    text-align: left;
+    margin: 4px 12px 6px;
+  }
+  .input-text {
+    font-size: 1em;
+    width: 14em;
+  }
+  .input-submit {
+    font-size: 1em;
+  }
+  #returned {
+    font-size: 32px;
+  }
+  #returned p {
+    font-size: 18px;
+  }
+}
