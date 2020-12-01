@@ -14,7 +14,6 @@
 
 	document.getElementById('roman_text').focus();
 	document.getElementById('roman_text').value='gensogasuki';
-	create();
 	document.getElementById('create_button').addEventListener('click',()=>{
 		create();
 	})
@@ -79,7 +78,7 @@
 							if(test[0]<0){
 								makeEmpty([2*i-1,2*i,2*i+2,2*i+3,2*i+5]);
 							}else{
-								makeEmpty([2*i-1,2*i+1,2*i+2,2*i+4,2*i+5,2*i+7]);
+								makeEmpty([2*i-1,2*i+1,2*i+2,2*i+4,2*i+5]);
 								// tttt[i]=hozonban[2*i];
 							}
 							// console.log(tttt);
