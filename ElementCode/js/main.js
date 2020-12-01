@@ -14,6 +14,7 @@
 
 	document.getElementById('roman_text').focus();
 	document.getElementById('roman_text').value='gensogasuki';
+	create();
 	document.getElementById('create_button').addEventListener('click',()=>{
 		create();
 	})
@@ -72,16 +73,35 @@
 						test.push(elm.indexOf(hozonban[j].toUpperCase()));
 					}
 					// console.log(test);
-					if(test.filter(function(x){return x==-1}).length==2 && test[0]+test[4]>-2){
-						// console.log('yaaaay!');
-						if(test[0]<0){
-							makeEmpty([2*i-1,2*i,2*i+2,2*i+3,2*i+5]);
+					if(test.filter(function(x){return x==-1}).length==2){
+						if(test[0]+test[4]>-2){
+							// console.log('yaaaay!');
+							if(test[0]<0){
+								makeEmpty([2*i-1,2*i,2*i+2,2*i+3,2*i+5]);
+							}else{
+								makeEmpty([2*i-1,2*i+1,2*i+2,2*i+4,2*i+5,2*i+7]);
+								// tttt[i]=hozonban[2*i];
+							}
+							// console.log(tttt);
+							// console.log(hozonban);
 						}else{
-							makeEmpty([2*i-1,2*i+1,2*i+2,2*i+4,2*i+5,2*i+7]);
-							// tttt[i]=hozonban[2*i];
+							// console.log(hozonban);
+							let r=[];
+							for(let i=0; i<test[1]; i++){
+								r.push(1);
+							}
+							for(let i=0; i<test[3]; i++){
+								r.push(3);
+							}
+							r=[r[Math.floor(Math.random()*r.length)]];
+							if(r[0]==1){
+								makeEmpty([2*i-1,2*i,2*i+2,2*i+3,2*i+5]);
+							}else{
+								makeEmpty([2*i-1,2*i+1,2*i+2,2*i+4,2*i+5]);
+							}
+							// console.log(r);
+							// console.log(hozonban);
 						}
-						// console.log(tttt);
-						// console.log(hozonban);
 					}else if(test.filter(function(x){return x==-1}).length==0 || (test.filter(function(x){return x==-1}).length==1 && test[2]<0)){
 						// choose.push(2,i,i+1);
 						// console.log(choose);
@@ -161,41 +181,50 @@
 					// console.log(hozonban);
 					i+=3;
 				}else if(couples[i-1]!=true){
+					// console.log(couples);
 					let end;
 					for(let j=i; j<couples.length+1; j++){
 						if(couples[j]!=true){
-							end=j;
+							end=j-1;
 							break;
 						}
 					}
+					// console.log(i,end);
 					// console.log(end-i);
-					if((end-i)%2>0){
-						for(let j=0; j<end-i+1; j++){
+					if((end-i)%2==0){
+						// console.log(hozonban);
+						hozonban[2*i-1]='';
+						for(let j=0; j<end-i+2; j++){
 							hozonban[2*(i+j)]='';
 						}
-						for(let j=0; j<(end-i-1)/2; j++){
-							hozonban[2*i+3+4*j]='';
+						for(let j=1; j<(end-i)/2+1; j++){
+							hozonban[2*i-1+4*j]='';
 						}
+						// console.log(hozonban);
 					}else{
 						let r;
-						if(elm.indexOf(hozonban[2*i].toUpperCase())*elm.indexOf(hozonban[2*(i+end)].toUpperCase())>-1){
+						// console.log(hozonban);
+						// console.log(i,end,2*(i+end));
+						// console.log(hozonban[2*i],hozonban[2*end+2]);
+						if(elm.indexOf(hozonban[2*i].toUpperCase())+elm.indexOf(hozonban[2*end+2].toUpperCase())<-1){
 							r=Math.floor(Math.random()*2);
 						}
 						if(elm.indexOf(hozonban[2*i].toUpperCase())>-1 || r==0){
-							for(let j=1; j<end-i+1; j++){
+							for(let j=1; j<end-i+2; j++){
 								hozonban[2*(i+j)]='';
 							}
-							for(let j=0; j<(end-i)/2; j++){
+							for(let j=0; j<(end-i+1)/2; j++){
 								hozonban[2*i+1+4*j]='';
 							}
 						}else{
-							for(let j=0; j<end-i; j++){
-								hozonban[2*(i+j)]='';
+							for(let j=0; j<end-i+1; j++){
+								hozonban[2*i+2*j]='';
 							}
-							for(let j=0; j<(end-i)/2; j++){
+							for(let j=0; j<(end-i+1)/2; j++){
 								hozonban[2*i+3+4*j]='';
 							}
 						}
+						hozonban[2*i-1]='';
 					}
 					// console.log(hozonban);
 				}
@@ -233,7 +262,7 @@
 			// console.log(code);
 			document.getElementById('returned').textContent=code;
 		}else{
-			document.getElementById('returned').innerHTML=`<p>私の下手なプログラムにより、暗号化に失敗しました。</p><p>暗号化したかった単語をメアドかなんかで教えてください。</p><p>(参考)誤った暗号: ${code}</p>`;
+			document.getElementById('returned').innerHTML=`<p>私の下手なプログラムにより、暗号化に失敗しました。</p><p>暗号化したかった単語をメアドかなんかで教えてください。</p><p>(参考)誤った暗号:${code}</p>`;
 		}
 	}
 }
