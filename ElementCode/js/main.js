@@ -137,6 +137,23 @@
 							makeEmpty([2*i-1,2*i+1,2*i+2,2*i+4,2*i+5]);
 						}
 						// console.log(hozonban);
+					}else if(test.filter(function(x){return x==-1}).length==3){
+						// console.log('yaaay!');
+						let r=[];
+						for(let i=0; i<test[1]; i++){
+							r.push(1);
+						}
+						for(let i=0; i<test[3]; i++){
+							r.push(3);
+						}
+						r=[r[Math.floor(Math.random()*r.length)]];
+						if(r[0]==1){
+							makeEmpty([2*i-1,2*i,2*i+2,2*i+3,2*i+5]);
+						}else{
+							makeEmpty([2*i-1,2*i+1,2*i+2,2*i+4,2*i+5]);
+						}
+						// console.log(r);
+						// console.log(hozonban);
 					}
 					i+=2;
 				}else if(couples[i-1]!=true && couples[i+1]!=true){
@@ -259,9 +276,9 @@
 		// console.log(check);
 		if(check.toUpperCase()==roman_text.value.toUpperCase()){
 			// console.log(code);
-			document.getElementById('returned').textContent=code;
+			document.getElementById('returnedNum').textContent=code;
 		}else{
-			document.getElementById('returned').innerHTML=`<p>私の下手なプログラムにより、暗号化に失敗しました。</p><p>暗号化したかった単語をメアドかなんかで教えてください。</p><p>(参考)誤った暗号:${code}</p>`;
+			document.getElementById('returnedNum').innerHTML=`<p>私の下手なプログラムにより、暗号化に失敗しました。</p><p>暗号化したかった単語をメアドかなんかで教えてください。</p><p>(参考)誤った暗号:${code}</p>`;
 		}
 	}
 }
