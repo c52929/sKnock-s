@@ -30,7 +30,7 @@ h1 {
   font-size: 5.4vw;
   padding: 2px 4px 3px;
   margin: 4px 0 2px 8px;
-  width: 64vw;
+  width: 60vw;
 }
 
 .input-text:focus {
@@ -55,7 +55,13 @@ h1 {
 }
 
 .input-submit:hover, .input-submit:focus {
+  background-color: #dfdfdf;
+  cursor: pointer;
   outline: none;
+}
+
+.input-submit:active {
+  background-color: #ccc;
 }
 
 .input-submit::-moz-foucus-inner {
@@ -63,21 +69,13 @@ h1 {
   padding: 0;
 }
 
-.input-submit:hover {
-  background-color: #dfdfdf;
-  cursor: pointer;
-}
-
-.input-submit:active {
-  background-color: #ccc;
-}
-
-#returned {
-  margin: 12px 8px;
+.returned {
+  margin: 8px 8px 18px;
   font-size: 1.2em;
+  overflow-wrap: break-word;
 }
 
-#returned p {
+.returned p {
   font-size: 14.4px;
   margin: 0;
   color: #f00;
@@ -104,10 +102,10 @@ h1 {
   .input-submit {
     font-size: 1em;
   }
-  #returned {
+  .returned {
     font-size: 32px;
   }
-  #returned p {
+  .returned p {
     font-size: 18px;
   }
 }
