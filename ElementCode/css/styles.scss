@@ -27,7 +27,7 @@ h1{
 	font-size: 5.4vw;
 	padding: 2px 4px 3px;
 	margin: 4px 0 2px 8px;
-	width: 64vw;
+	width: 60vw;
 	&:focus{
 		border:1px solid #a1a499;
 		box-shadow:none;
@@ -48,20 +48,16 @@ h1{
 	padding: 2px 4px 3px;
 	text-decoration:none;
 	&:hover, &:focus{
+		background-color: #dfdfdf;
+		cursor: pointer;
 		outline:none;
+	}
+	&:active{
+		background-color: #ccc;
 	}
 	&::-moz-foucus-inner{
 		border:none;
 		padding:0;
-	}
-}
-.input-submit{
-	&:hover{
-		background-color: #dfdfdf;
-		cursor: pointer;
-	}
-	&:active{
-		background-color: #ccc;
 	}
 }
 
@@ -87,9 +83,10 @@ h1{
 // 	}
 // }
 
-#returned{
-	margin: 12px 8px;
+.returned{
+	margin: 8px 8px 18px;
 	font-size: 1.2em;
+	overflow-wrap: break-word;
 	p{
 		font-size: 14.4px;
 		margin: 0;
@@ -120,7 +117,7 @@ h1{
 	.input-submit{
 		font-size: 1em;
 	}
-	#returned{
+	.returned{
 		font-size: 32px;
 		p{
 			font-size: 18px;
