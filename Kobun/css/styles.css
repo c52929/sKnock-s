@@ -119,7 +119,11 @@
 .buttons .input-submit {
   padding: 4px 0;
   box-sizing: border-box;
-  width: 40%;
+  width: 28%;
+}
+
+.buttons .input-submit.startButton {
+  font-size: 5.4vw;
 }
 
 .transparent {
