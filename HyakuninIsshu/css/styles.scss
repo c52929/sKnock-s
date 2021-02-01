@@ -88,27 +88,27 @@
 				background-color:#fff;
 				border-radius:20px;
 				content:'';
-			width:31px;
-			height:31px;
-			top:50%;
-			transform:translateY(-50%);
-			position:absolute;
-			transition:0.25s;
-		}
-		&.on-off.off{
-			background-color: #e9e9eb;
-			&::after{
-				left:3px;
+				width:31px;
+				height:31px;
+				top:50%;
+				transform:translateY(-50%);
+				position:absolute;
+				transition:0.25s;
 			}
-		}
-		&.on-off.on{
-			background-color: #35c75a;
-			&::after{
-				left:26px;
+			&.off{
+				background-color: #e9e9eb;
+				&::after{
+					left:3px;
+				}
+			}
+			&.on{
+				background-color: #35c75a;
+				&::after{
+					left:26px;
+				}
 			}
 		}
 	}
-}
 
 	button{
 		-webkit-appearance:none;
