@@ -108,19 +108,19 @@
   transition: 0.25s;
 }
 
-.settings .setting .on-off.on-off.off {
+.settings .setting .on-off.off {
   background-color: #e9e9eb;
 }
 
-.settings .setting .on-off.on-off.off::after {
+.settings .setting .on-off.off::after {
   left: 3px;
 }
 
-.settings .setting .on-off.on-off.on {
+.settings .setting .on-off.on {
   background-color: #35c75a;
 }
 
-.settings .setting .on-off.on-off.on::after {
+.settings .setting .on-off.on::after {
   left: 26px;
 }
 
