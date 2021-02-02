@@ -92,7 +92,7 @@
 				document.getElementById('question').innerHTML=info[0];
 				document.getElementById('question').classList.remove('none');
 			}
-			console.log(choices[r].length);
+			// console.log(choices[r].length);
 			document.getElementById('hints').innerHTML='';
 			if(choices[r].length>0){
 				hint=[''];
@@ -157,12 +157,16 @@
 
 	function review(sentence){
 		let info=[''];
+		let junfudo=[];
 		for(let i=0; i<sentence.length; i++){
-			if(sentence.charAt(i)=='['){
+			if(sentence.charAt(i)=='[' || sentence.charAt(i)=='{'){
 				info[0]+=`<input type="text" id="text${info.length}" class="input-text">`;
 				info.push('');
 				for(let j=i+1; j<sentence.length; j++){
-					if(sentence.charAt(j)==']'){
+					if(sentence.charAt(j)==']' || sentence.charAt(j)=='}'){
+						// if(sentence.charAt(j)=='}'){
+						// 	info[info.length-1]+='|';
+						// }
 						i=j;
 						break;
 					}
@@ -170,6 +174,19 @@
 				}
 				continue;
 			}
+			// if(sentence.charAt(i)=='{'){
+			// 	info[0]+=`<input type="text" id="text${info.length}" class="input-text">`;
+			// 	info.push('%junfudo');
+			// 	junfudo.push('');
+			// 	for(let j=i+1; j<sentence.length; j++){
+			// 		if(sentence.charAt(j)=='}'){
+			// 			i=j;
+			// 			break;
+			// 		}
+			// 		junfudo[junfudo.length-1]+=sentence.charAt(j);
+			// 	}
+			// 	continue;
+			// }
 			if(sentence.charAt(i)=='%'){
 				continue;
 			}
@@ -204,6 +221,7 @@
 			info[0]+=sentence.charAt(i);
 		}
 		// console.log(info);
+		// console.log(junfudo);
 		return info;
 	}
 
@@ -220,12 +238,34 @@
 		}
 	}
 
+	let active;
+
+	document.addEventListener('keydown',(event)=>{
+		if(event.key=='Enter'){
+			active=[document.activeElement.id,''];
+			if(active[0].charAt(0)+active[0].charAt(1)+active[0].charAt(2)+active[0].charAt(3)=='text'){
+				for(let i=4; i<active[0].length; i++){
+					active[1]+=active[0].charAt(i);
+				}
+				// console.log(active);
+				active[1]=document.getElementById(`text${Number(active[1])+1}`);
+				if(active[1]!=null){
+					active[1].focus();
+				}else{
+					document.getElementById('text1').focus();
+				}
+			}
+		}
+	})
+
 	document.getElementById('answerButton').addEventListener('click',()=>{
 		let ans;
 		let correct;
+		let jfCorrect;
 		for(let i=1; i<info.length; i++){
 			ans=document.getElementById(`text${i}`);
 			correct=[''];
+			jfCorrect=[];
 			for(let j=0; j<info[i].length; j++){
 				if(info[i].charAt(j)=='/'){
 					correct.push('');
