@@ -91,7 +91,7 @@ h1#title {
   border-radius: 0;
   color: inherit;
   font-family: inherit;
-  font-size: 0.95em;
+  font-size: 16px;
   margin: 0 3px;
   padding: 2px;
   width: 6em;
@@ -214,18 +214,16 @@ div#hint div.hintTitle {
 
 div#hint div.hintTitle h2 {
   font-size: 5.4vw;
-  width: 25%;
   display: inline-block;
   margin: 0 auto;
 }
 
 div#hint div.hintTitle .on-off-wrapper {
-  right: 0;
   position: absolute;
+  right: 0;
 }
 
 div#hint div.hintTitle .on-off-wrapper .on-off {
-  margin: 2px;
   width: 60px;
   height: 36px;
   border-radius: 18px;
@@ -237,7 +235,7 @@ div#hint div.hintTitle .on-off-wrapper .on-off {
 
 div#hint div.hintTitle .on-off-wrapper .on-off::after {
   background-color: #fff;
-  border-radius: 20px;
+  border-radius: 50%;
   content: '';
   width: 31px;
   height: 31px;
@@ -266,7 +264,7 @@ div#hint div.hintTitle .on-off-wrapper .on-off:not(.off)::after {
 div#hint div#hints {
   border: 1px solid #a1a499;
   border-radius: 4px;
-  margin: 8px 12px 4px;
+  margin: 8px 6px 4px;
   padding: 6px 2px 4px;
   display: flex;
   flex-wrap: wrap;
@@ -274,7 +272,85 @@ div#hint div#hints {
 }
 
 div#hint div#hints span.hint {
-  margin: 0 2px;
+  margin: 0 3px;
+}
+
+@media (orientation: landscape) {
+  h1#title {
+    font-size: 36px;
+    margin: 2px 0 4px;
+  }
+  input[type=checkbox] {
+    margin: 0 4px;
+  }
+  .input-submit#answerButton {
+    margin: 6px auto 0;
+  }
+  div#hint {
+    padding: 8px 0;
+    margin: 12px auto 4px;
+  }
+  div#hint div.hintTitle h2 {
+    font-size: 24px;
+  }
+  div#hint div.hintTitle .on-off-wrapper .on-off {
+    width: 40px;
+    height: 24px;
+    border-radius: 12px;
+  }
+  div#hint div.hintTitle .on-off-wrapper .on-off:after {
+    width: 18px;
+    height: 18px;
+    transition: 0.25s;
+  }
+  div#hint div.hintTitle .on-off-wrapper .on-off.off::after {
+    left: 3px;
+  }
+  div#hint div.hintTitle .on-off-wrapper .on-off:not(.off)::after {
+    left: 19px;
+  }
+  div#hint div#hints span.hint {
+    margin: 0 6px;
+  }
+}
+
+@media (min-width: 768px) {
+  h1#title {
+    font-size: 54px;
+    margin: 4px 0 8px;
+  }
+  input[type=checkbox] {
+    margin: 0 4px;
+  }
+  .input-submit#answerButton {
+    margin: 6px auto 0;
+  }
+  div#hint {
+    padding: 8px 0;
+    margin: 12px auto 4px;
+  }
+  div#hint div.hintTitle h2 {
+    font-size: 24px;
+  }
+  div#hint div.hintTitle .on-off-wrapper .on-off {
+    width: 40px;
+    height: 24px;
+    border-radius: 12px;
+  }
+  div#hint div.hintTitle .on-off-wrapper .on-off:after {
+    width: 18px;
+    height: 18px;
+    transition: 0.25s;
+  }
+  div#hint div.hintTitle .on-off-wrapper .on-off.off::after {
+    left: 3px;
+  }
+  div#hint div.hintTitle .on-off-wrapper .on-off:not(.off)::after {
+    left: 19px;
+  }
+  div#hint div#hints span.hint {
+    margin: 0 6px;
+  }
 }
 
 .transparent {
