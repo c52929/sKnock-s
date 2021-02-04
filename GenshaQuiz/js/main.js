@@ -7,6 +7,7 @@
 	let checkCondition=[false,false,false,false,false,false];
 	let r, info;
 	let qNum=[], hint=[], againSentences=[], againChoices=[];
+	let ans, correct, supplement;
 	selAll.addEventListener('click',()=>{
 		for(let i=1; i<rangeForm.length; i++){
 			changeCheck(i,selAll.checked);
@@ -127,6 +128,7 @@
 			}else{
 				document.getElementById('hint').classList.add('none');
 			}
+			document.getElementById('modal').innerHTML='';
 			document.getElementById('text1').focus();
 		}else{
 			if(againSentences.length>0){
@@ -157,7 +159,6 @@
 
 	function review(sentence){
 		let info=[''];
-		let junfudo=[];
 		for(let i=0; i<sentence.length; i++){
 			if(sentence.charAt(i)=='[' || sentence.charAt(i)=='{'){
 				info[0]+=`<input type="text" id="text${info.length}" class="input-text">`;
@@ -229,10 +230,12 @@
 		for(let i=1; i<info.length; i++){
 			let now=document.getElementById(`text${i}`);
 			now.addEventListener('keyup',(event)=>{
-				if(now.value.length>6){
-					now.style=`width:${now.value.length}em;`;
-				}else{
-					now.style=`width:6em;`;
+				if(event.key!='Enter'){
+					if(now.value.length>6){
+						now.style=`width:${now.value.length}em;`;
+					}else{
+						now.style=`width:6em;`;
+					}
 				}
 			})
 		}
@@ -242,10 +245,13 @@
 
 	document.addEventListener('keydown',(event)=>{
 		if(event.key=='Enter'){
-			active=[document.activeElement.id,''];
-			if(active[0].charAt(0)+active[0].charAt(1)+active[0].charAt(2)+active[0].charAt(3)=='text'){
-				for(let i=4; i<active[0].length; i++){
-					active[1]+=active[0].charAt(i);
+			active=[document.activeElement,''];
+			// console.log(active);
+			if(active[0].id.charAt(0)+active[0].id.charAt(1)+active[0].id.charAt(2)+active[0].id.charAt(3)=='text'){
+				// console.log(active[0]);
+				active[0].style=`width:${active[0].value.length}em;`;
+				for(let i=4; i<active[0].id.length; i++){
+					active[1]+=active[0].id.charAt(i);
 				}
 				// console.log(active);
 				active[1]=document.getElementById(`text${Number(active[1])+1}`);
@@ -259,13 +265,10 @@
 	})
 
 	document.getElementById('answerButton').addEventListener('click',()=>{
-		let ans;
-		let correct;
-		let jfCorrect;
+		supplement=[];
 		for(let i=1; i<info.length; i++){
-			ans=document.getElementById(`text${i}`);
+			supplement.push(null,null);
 			correct=[''];
-			jfCorrect=[];
 			for(let j=0; j<info[i].length; j++){
 				if(info[i].charAt(j)=='/'){
 					correct.push('');
@@ -274,32 +277,100 @@
 				correct[correct.length-1]+=info[i].charAt(j);
 			}
 			// console.log(correct);
-			if(correct.indexOf(ans.value)>-1){
-				// console.log('correct');
-				ans.classList.add('correct');
-				if(info[0].charAt(0)+info[0].charAt(1)+info[0].charAt(2)+info[0].charAt(3)!='<tr>'){
-					if(correct[correct.indexOf(ans.value)].length>6){
-						ans.style=`width:${correct[correct.indexOf(ans.value)].length}em;`;
-					}else{
-						ans.style=`width:6em;`;
+			ans=[document.getElementById(`text${i}`),document.getElementById(`text${i}`).value];
+			// console.log(ans);
+			if(ans[1].charAt(0)==' ' || ans[1].charAt(0)=='　'){
+				ans.push('');
+				for(let j=1; j<ans[1].length; j++){
+					if(ans[1].charAt(j)==' ' || ans[1].charAt(j)=='　'){
+						break;
 					}
+					ans[2]+=ans[1].charAt(j);
+				}
+				ans.splice(1,1);
+			}
+			if(ans[1].charAt(ans[1].length-1)==' ' || ans[1].charAt(ans[1].length-1)=='　'){
+				ans.push('');
+				for(let j=ans[1].length-2; j>0; j--){
+					if(ans[1].charAt(j)==' ' || ans[1].charAt(j)=='　'){
+						break;
+					}
+					ans[2]=ans[1].charAt(j)+ans[2];
+				}
+				ans.splice(1,1);
+			}
+			// console.log(ans);
+			ans[0].value=ans[1];
+			if(correct.indexOf(ans[1])>-1){
+				// correct;
+				ans[0].classList.add('correct');
+				if(info[0].charAt(0)+info[0].charAt(1)+info[0].charAt(2)+info[0].charAt(3)!='<tr>'){
+					ans[0].style=`width:${ans[1].length}em;`;
 				}
 			}else{
-				// console.log(incorrect);
+				// incorrect;
 				if(againSentences[againSentences.length-1]!=sentences[r]){
 					againSentences.push(sentences[r]);
 					againChoices.push(choices[r]);
 				}
-				ans.classList.add('incorrect');
-				ans.value=correct[0];
+				ans[0].classList.add('incorrect');
+				ans[0].value=correct[0];
 				if(info[0].charAt(0)+info[0].charAt(1)+info[0].charAt(2)+info[0].charAt(3)!='<tr>'){
-					if(correct[0].length>6){
-						ans.style=`width:${correct[0].length}em;`;
+					ans[0].style=`width:${correct[0].length}em;`;
+				}
+				// console.log(ans);
+				supplement[supplement.length-2]=ans[1];
+			}
+			if(correct.length>1 || supplement[supplement.length-2]!=null){
+				for(let i=1; i<correct.length;){
+					correct[0]+=`/${correct[1]}`;
+					correct.splice(1,1);
+				}
+				supplement[supplement.length-1]=correct[0];
+			}
+		}
+		// console.log(supplement);
+		for(let i=0; i<supplement.length/2; i++){
+			if(supplement[2*i]!=null || supplement[2*i+1]!=null){
+				const addTitle=document.createElement('h3');
+				addTitle.textContent=`(${i+1})`;
+				document.getElementById('modal').appendChild(addTitle);
+				if(supplement[2*i]!=null){
+					const addMiss=document.createElement('p');
+					addMiss.classList.add('miss');
+					if(supplement[2*i]==''){
+						addMiss.innerHTML='<i class="fas fa-times" ></i>(無回答)';
 					}else{
-						ans.style=`width:6em;`;
+						addMiss.innerHTML=`<i class="fas fa-times" ></i>${supplement[2*i]}`;
+					}
+					document.getElementById('modal').appendChild(addMiss);
+				}
+				if(supplement[2*i+1]!=null){
+					correct=[''];
+					for(let j=0; j<supplement[2*i+1].length; j++){
+						if(supplement[2*i+1].charAt(j)=='/'){
+							correct.push('');
+							continue;
+						}
+						correct[correct.length-1]+=supplement[2*i+1].charAt(j);
+					}
+					for(let j=0; j<correct.length; j++){
+						const addAno=document.createElement('p');
+						addAno.classList.add('solution');
+						addAno.innerHTML=`<i class="far fa-circle" ></i>${correct[j]}`;
+						document.getElementById('modal').appendChild(addAno);
 					}
 				}
 			}
+		}
+		for(let i=0; i<supplement.length; i++){
+			if(supplement[i]==null){
+				supplement.splice(i,1);
+				i--;
+			}
+		}
+		if(supplement.length>0){
+			document.getElementById('info').classList.remove('none');
 		}
 		sentences.splice(r,1);
 		choices.splice(r,1);
@@ -307,8 +378,30 @@
 		document.getElementById('nextButton').classList.remove('none');
 		document.getElementById('nextButton').focus();
 	})
+
+	document.getElementById('info').addEventListener('click',()=>{
+		modal(true);
+	})
+	document.getElementById('black').addEventListener('click',()=>{
+		modal(false);
+	})
+	
+	function modal(bool){
+		if(bool){
+			document.getElementById('black').classList.toggle('blackNone');
+			document.getElementById('modal').classList.toggle('modalNone');
+			document.getElementById('info').classList.toggle('fa-info-circle');
+			document.getElementById('info').classList.toggle('fa-times-circle');
+		}else{
+			document.getElementById('black').classList.add('blackNone');
+			document.getElementById('modal').classList.add('modalNone');
+			document.getElementById('info').classList.add('fa-info-circle');
+			document.getElementById('info').classList.remove('fa-times-circle');
+		}
+	}
 	
 	document.getElementById('nextButton').addEventListener('click',()=>{
+		document.getElementById('info').classList.add('none');
 		document.getElementById('answerButton').classList.remove('none');
 		document.getElementById('nextButton').classList.add('none');
 		newQ();

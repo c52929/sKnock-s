@@ -20,13 +20,24 @@ div.wall {
   background-color: #353535;
   box-sizing: border-box;
   padding: 4px;
+  position: relative;
   text-align: center;
   width: 100%;
+  z-index: 300;
 }
 
 div.wall p#qNum {
   color: #2c84cc;
   font-family: 'Consolas', 'Courier New', Courier, 'Yu Gothic', monospace;
+}
+
+div.wall i#info {
+  color: #fff;
+  font-size: 1.05em;
+  top: 50%;
+  right: 4%;
+  transform: translateY(-50%);
+  position: absolute;
 }
 
 h1#title {
@@ -192,7 +203,7 @@ table#table span.ib {
   margin-left: 0.5em;
 }
 
-.checkboxes span.tab {
+span.tab {
   margin-left: 1.2em;
 }
 
@@ -273,6 +284,64 @@ div#hint div#hints {
 
 div#hint div#hints span.hint {
   margin: 0 3px;
+}
+
+div#black {
+  background-color: #000;
+  opacity: 0.84;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 256;
+  transition: 0.36s;
+}
+
+div#black.blackNone {
+  opacity: 0;
+  z-index: -256;
+}
+
+div#modal {
+  background-color: #fff;
+  opacity: 1;
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 1.2em 0 0 0.4em;
+  width: 84%;
+  height: 100%;
+  z-index: 289;
+  transition: 0.36s;
+}
+
+div#modal.modalNone {
+  width: 0;
+  opacity: 0;
+  z-index: -250;
+}
+
+div#modal h3 {
+  margin-top: 0.7em;
+}
+
+div#modal p.miss {
+  text-indent: 6px;
+}
+
+div#modal p.miss i {
+  color: #c52929;
+  margin-right: 6px;
+}
+
+div#modal p.solution {
+  text-indent: 5px;
+}
+
+div#modal p.solution i {
+  color: #0a5;
+  margin-right: 3px;
 }
 
 @media (orientation: landscape) {
