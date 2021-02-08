@@ -10,15 +10,17 @@
 	margin:0 auto;
 	overflow-x:hidden;
 }
-/* ul,ol{
+ul,ol{
 	margin: 8px 0;
 	padding-inline-start: 2em;
-} */
+}
 div.wall{
 	background-color: #353535;
 	box-sizing: border-box;
 	padding: 4px;
-	position: relative;
+	position: sticky;
+	top:0;
+	left:0;
 	text-align: center;
 	width:100%;
 	z-index:300;
@@ -77,6 +79,13 @@ h1#title{
 }
 #question{
 	margin:6px 8px;
+	p.attention{
+		color:#f00;
+		font-weight:bold;
+	}
+	p.indent{
+		margin-left: 0.8em;
+	}
 }
 .input-text{
 	-moz-appearance:none;
@@ -108,74 +117,130 @@ h1#title{
 		text-align: center;
 	}
 }
-table#table{
-	border:1px solid #a1a499;
-	border-collapse: collapse;
-	margin:12px auto;
-	tr{
-		&:first-of-type{
-			border-bottom: 2px solid #282523;
-		}
-		&:nth-of-type(2){
-			th:first-of-type,
-			th:nth-of-type(2){
-				border-bottom: 2px solid #a1a499;
-			}
-		}
-		&:nth-of-type(3){
-			td:first-of-type,
-			td:nth-of-type(2){
-				border-bottom: 2px solid #a1a499;
-			}
-		}
-		&:nth-of-type(4){
-			th:nth-of-type(2){
-				border-bottom: 2px solid #a1a499;
-			}
-		}
-		&:nth-of-type(6){
-			td:first-of-type,
-			td:nth-of-type(2){
-				border-bottom: 2px solid #a1a499;
-			}
-		}
-	}
-	th,td{
+div#tableWrapper{
+	table{
 		border:1px solid #a1a499;
-		padding:0 4px;
-	}
-	th{
-		&.sosho{
-			width:5.4em;
-			input{
-				width:5.4em;
+		border-collapse: collapse;
+		margin:12px auto;
+		th,td{
+			border:1px solid #a1a499;
+			padding:0 4px;
+			text-align: center;
+		}
+		&.tableSosho{
+			tr{
+				&:first-of-type{
+					border-bottom: 2px solid #282523;
+				}
+				&:nth-of-type(2){
+					th:first-of-type,
+					th:nth-of-type(2){
+						border-bottom: 2px solid #a1a499;
+					}
+				}
+				&:nth-of-type(3){
+					td:first-of-type,
+					td:nth-of-type(2){
+						border-bottom: 2px solid #a1a499;
+					}
+				}
+				&:nth-of-type(4){
+					th:nth-of-type(2){
+						border-bottom: 2px solid #a1a499;
+					}
+				}
+				&:nth-of-type(6){
+					td:first-of-type,
+					td:nth-of-type(2){
+						border-bottom: 2px solid #a1a499;
+					}
+				}
+			}
+			th{
+				&.sosho{
+					width:5.4em;
+					input{
+						width:5.4em;
+					}
+				}
+				&:not(.sosho){
+					width:3.2em;
+					input{
+						width:3.2em;
+					}
+				}
+			}
+			td{
+				&.number{
+					width: 1.2em;
+				}
+				&:not(.number){
+					width: 5.4em;
+					padding: 0;
+				}
+				input.inTd{
+					width:5.4em;
+					margin: 0 4px;
+				}
 			}
 		}
-		&:not(.sosho){
-			width:3.2em;
-			input{
-				width:3.2em;
+		&.tableGiketsu{
+			tr{
+				&:first-of-type{
+					border-bottom: 2px solid #282523;
+				}
+				th{
+					&:first-of-type{
+						width:2em;
+					}
+					&:nth-of-type(2){
+						width:5em;
+					}
+				}
+				td{
+					input{
+						width:2em;
+					}
+					&.letters3 input{
+						width:3em;
+					}
+				}
 			}
 		}
-	}
-	td{
-		text-align: center;
-		width:calc(100% / 8);
-		&.number{
-			width: 1.2em;
+		&.tableSaibanninn{
+			tr{
+				td{
+					&:nth-of-type(1),
+					&:nth-of-type(2){
+						border-right:2px solid #a1a499;
+					}
+				}
+				th{
+					padding: 0;
+					&:nth-of-type(2),
+					&:nth-of-type(3){
+						border-right:2px solid #a1a499;
+					}
+					&:nth-of-type(1){
+						border-right:2px solid #282523;
+					}
+					&.letters4 input{
+						width:4em;
+					}
+					&.letters5 input{
+						width:5em;
+					}
+				}
+				&:nth-of-type(1){
+					th{
+						border-bottom:2px solid #282523;
+					}
+				}
+			}
 		}
-		&:not(.number){
-			width: 5.4em;
-			padding: 0;
+		span.ib{
+			display: inline-block;
 		}
-
-		input.inTd{
-			width:5.4em;
-			margin: 0 4px;
-		}
-	}
-	span.ib{
-		display: inline-block;
 	}
 }
 .checkboxes{
@@ -269,12 +334,14 @@ div#black{
 div#modal{
 	background-color: #fff;
 	opacity: 1;
+	overflow-y: scroll;
 	position: fixed;
 	top:0;
 	right:0;
+	bottom:0;
 	padding: 1.2em 0 0 0.4em;
 	width:84%;
-	height:100%;
+	// height:100%;
 	z-index: 289;
 	transition: 0.36s;
 	&.modalNone{
@@ -352,6 +419,22 @@ div#modal{
 	}
 	.input-submit#answerButton{
 		margin: 6px auto 0;
+	}
+	div#tableWrapper{
+		table{
+			&.tableSosho th{
+				&.sosho,
+				&:not(.sosho){
+					width:unset;
+				}
+			}
+			&.tableGiketsu tr th{
+				&:first-of-type,
+				&:nth-of-type(2){
+					width: unset;
+				}
+			}
+		}
 	}
 	div#hint{
 		padding: 8px 0;

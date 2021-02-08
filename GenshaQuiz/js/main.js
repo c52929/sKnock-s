@@ -2,56 +2,25 @@
 {
 	const selAll=document.getElementById('sellectAll');
 	const rangeForm=document.sellectRange.range;
-	const selCha=[document.getElementById('sellectChapter1'),document.getElementById('sellectChapter2')];
-	const selSec=[document.getElementById('sellectSection1-2'),document.getElementById('sellectSection2-1'),document.getElementById('sellectSection2-2')];
-	let checkCondition=[false,false,false,false,false,false];
-	let r, info;
+	let checkCondition=[false,false,false,false,false,false,false,false,false,false];
+	let active, ans, correct, info, r, supplement;
 	let qNum=[], hint=[], againSentences=[], againChoices=[];
-	let ans, correct, supplement;
 	selAll.addEventListener('click',()=>{
 		for(let i=1; i<rangeForm.length; i++){
 			changeCheck(i,selAll.checked);
-			// checkCondition[i]=selAll.checked;
-			// rangeForm[i].checked=selAll.checked;
 		}
 	})
-	selCha[0].addEventListener('click',()=>{
-		changeCheck(2,selCha[0].checked);
-		// checkCondition[2]=selCha[0].checked;
-		// rangeForm[2].checked=selCha[0].checked;
-	})
-	selCha[1].addEventListener('click',()=>{
-		for(let i=4; i<6; i++){
-			changeCheck(i,selCha[1].checked);
-			// checkCondition[i]=selCha[1].checked;
-			// rangeForm[i].checked=selCha[1].checked;
-		}
-	})
-	selSec[0].addEventListener('click',()=>{
-		changeCheck(1,selSec[0].checked);
-		// checkCondition[1]=selSec[0].checked;
-		// rangeForm[1].checked=selSec[0].checked;
-	})
-	for(let i=1; i<3; i++){
-		selSec[i].addEventListener('click',()=>{
-			changeCheck(3,selSec[1].checked && selSec[2].checked);
-			// checkCondition[3]=selSec[1].checked && selSec[2].checked;
-			// rangeForm[3].checked=selSec[1].checked && selSec[2].checked;
-		})
-	}
 	for(let i=0; i<rangeForm.length; i++){
 		rangeForm[i].addEventListener('click',()=>{
 			checkCondition[i]=rangeForm[i].checked;
-			if(rangeForm[i].checked==false){
-				// checkCondition[i]=false; // 不要だよね？笑
-				rangeForm[0].checked=false;
-			}
-			// console.log(checkCondition);
 			if(checkCondition.indexOf(true)>-1){
 				document.getElementById('startButton').classList.add('enable');
 			}else{
 				document.getElementById('startButton').classList.remove('enable');
 			}
+			checkCondition.splice(0,1);
+			checkCondition.splice(0,0,checkCondition.indexOf(false)<0);
+			rangeForm[0].ked=checkCondition.indexOf(false)<0;
 		})
 	}
 	function changeCheck(index,TorF){
@@ -65,10 +34,9 @@
 			document.getElementById('startButton').classList.add('none');
 			document.getElementById('title').classList.add('none');
 			document.getElementById('QandA').classList.remove('none');
-			checkCondition.splice(0,2);
-			checkCondition.splice(1,1);
-			// console.log(checkCondition);
-			QandA(checkCondition);
+			QandA0(checkCondition);
+			QandA1(checkCondition);
+			QandA2(checkCondition);
 			qNum=[sentences.length,0];
 			newQ();
 		}
@@ -82,14 +50,14 @@
 			document.getElementById('qNum').textContent=`Q.${qNum[1]}/${qNum[0]}`;
 			r=Math.floor(Math.random()*sentences.length);
 			info=review(sentences[r]);
-			if(info[0].charAt(0)+info[0].charAt(1)+info[0].charAt(2)+info[0].charAt(3)=='<tr>'){
+			if(info[0].charAt(0)+info[0].charAt(1)+info[0].charAt(2)+info[0].charAt(3)+info[0].charAt(4)+info[0].charAt(5)=='<table'){
 				document.getElementById('question').innerHTML='';
 				document.getElementById('question').classList.add('none');
-				document.getElementById('table').innerHTML=info[0];
-				document.getElementById('table').classList.remove('none');
+				document.getElementById('tableWrapper').innerHTML=info[0];
+				document.getElementById('tableWrapper').classList.remove('none');
 			}else{
-				document.getElementById('table').innerHTML='';
-				document.getElementById('table').classList.add('none');
+				document.getElementById('tableWrapper').innerHTML='';
+				document.getElementById('tableWrapper').classList.add('none');
 				document.getElementById('question').innerHTML=info[0];
 				document.getElementById('question').classList.remove('none');
 			}
@@ -129,7 +97,9 @@
 				document.getElementById('hint').classList.add('none');
 			}
 			document.getElementById('modal').innerHTML='';
-			document.getElementById('text1').focus();
+			if(document.getElementById('text1')!=null){
+				document.getElementById('text1').focus();
+			}
 		}else{
 			if(againSentences.length>0){
 				sentences=Array.from(againSentences);
@@ -191,7 +161,7 @@
 			if(sentence.charAt(i)=='%'){
 				continue;
 			}
-			if(sentence.charAt(i)=='…' && sentence.charAt(i)!='%'){
+			if(sentence.charAt(i)=='…' && sentence.charAt(i-1)!='%'){
 				info[0]+=`<span style="font-family:'Meiryo','Hiragino Mincho ProN';">…</span>`;
 				continue;
 			}
@@ -210,6 +180,41 @@
 			if(sentence.charAt(i)+sentence.charAt(i+1)+sentence.charAt(i+2)=='coj'){
 				info[0]+='憲法第';
 				for(let j=i+3; j<sentence.length; j++){
+					if(sentence.charAt(j)=='-'){
+						info[0]+='条第';
+						for(let k=j+1; k<sentence.length; k++){
+							if(sentence.charAt(k)==';'){
+								info[0]+='項';
+								i=k;
+								break;
+							}
+							info[0]+=sentence.charAt(k);
+						}
+						break;
+					}
+					if(sentence.charAt(j)==';'){
+						info[0]+='条';
+						i=j;
+						break;
+					}
+					info[0]+=sentence.charAt(j);
+				}
+				continue;
+			}
+			if(sentence.charAt(i)+sentence.charAt(i+1)=='cj'){
+				for(let j=i+2; j<sentence.length; j++){
+					if(sentence.charAt(j)=='-'){
+						info[0]+='条';
+						for(let k=j+1; k<sentence.length; k++){
+							if(sentence.charAt(k)==';'){
+								info[0]+='項';
+								i=k;
+								break;
+							}
+							info[0]+=sentence.charAt(k);
+							break;
+						}
+					}
 					if(sentence.charAt(j)==';'){
 						info[0]+='条';
 						i=j;
@@ -226,45 +231,57 @@
 		return info;
 	}
 
-	document.getElementById('question').onkeyup=function changeLength(){
-		for(let i=1; i<info.length; i++){
-			let now=document.getElementById(`text${i}`);
-			now.addEventListener('keyup',(event)=>{
-				if(event.key!='Enter'){
-					if(now.value.length>6){
-						now.style=`width:${now.value.length}em;`;
+	document.addEventListener('keyup',(event)=>{
+		active=[document.activeElement,''];
+		if(active[0].id.charAt(0)+active[0].id.charAt(1)+active[0].id.charAt(2)+active[0].id.charAt(3)=='text'){
+			if(event.key=="Enter"){
+				if(info[0].charAt(0)+info[0].charAt(1)+info[0].charAt(2)+info[0].charAt(3)+info[0].charAt(4)+info[0].charAt(5)!='<table'){
+					if(active[0].value.length>1){
+						active[0].style=`width:${active[0].value.length}em;`;
+					}else if(active[0].value.length<1){
+						active[0].style=`width:6em;`;
+						active[1]='わーいわーい';
 					}else{
-						now.style=`width:6em;`;
+						active[0].style=`width:2em;`;
 					}
 				}
-			})
-		}
-	}
-
-	let active;
-
-	document.addEventListener('keydown',(event)=>{
-		if(event.key=='Enter'){
-			active=[document.activeElement,''];
-			// console.log(active);
-			if(active[0].id.charAt(0)+active[0].id.charAt(1)+active[0].id.charAt(2)+active[0].id.charAt(3)=='text'){
-				// console.log(active[0]);
-				active[0].style=`width:${active[0].value.length}em;`;
-				for(let i=4; i<active[0].id.length; i++){
-					active[1]+=active[0].id.charAt(i);
-				}
 				// console.log(active);
-				active[1]=document.getElementById(`text${Number(active[1])+1}`);
-				if(active[1]!=null){
-					active[1].focus();
-				}else{
-					document.getElementById('text1').focus();
+				if(active[1]!='わーいわーい'){
+					if(document.getElementById('text2')==null){
+						clickAnswerButton();
+					}else{
+						active[1]='';
+						for(let i=4; i<active[0].id.length; i++){
+							active[1]+=active[0].id.charAt(i);
+						}
+						active.push(document.getElementById(`text${Number(active[1])+1}`));
+						// console.log(active);
+						if(active[2]!=null){
+							active[2].focus();
+						}else{
+							if(document.getElementById('text1')!=null){
+								document.getElementById('text1').focus();
+							}
+						}
+					}
+				}
+			}else{
+				if(info[0].charAt(0)+info[0].charAt(1)+info[0].charAt(2)+info[0].charAt(3)+info[0].charAt(4)+info[0].charAt(5)!='<table'){
+					if(active[0].value.length>5){
+						active[0].style=`width:${active[0].value.length}em;`;
+					}else{
+						active[0].style=`width:6em;`;
+					}
 				}
 			}
 		}
 	})
 
 	document.getElementById('answerButton').addEventListener('click',()=>{
+		clickAnswerButton();
+	})
+
+	function clickAnswerButton(){
 		supplement=[];
 		for(let i=1; i<info.length; i++){
 			supplement.push(null,null);
@@ -377,7 +394,7 @@
 		document.getElementById('answerButton').classList.add('none');
 		document.getElementById('nextButton').classList.remove('none');
 		document.getElementById('nextButton').focus();
-	})
+	}
 
 	document.getElementById('info').addEventListener('click',()=>{
 		modal(true);

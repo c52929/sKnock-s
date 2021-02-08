@@ -12,15 +12,18 @@
   overflow-x: hidden;
 }
 
-/* ul,ol{
-	margin: 8px 0;
-	padding-inline-start: 2em;
-} */
+ul, ol {
+  margin: 8px 0;
+  padding-inline-start: 2em;
+}
+
 div.wall {
   background-color: #353535;
   box-sizing: border-box;
   padding: 4px;
-  position: relative;
+  position: sticky;
+  top: 0;
+  left: 0;
   text-align: center;
   width: 100%;
   z-index: 300;
@@ -92,6 +95,15 @@ h1#title {
   margin: 6px 8px;
 }
 
+#question p.attention {
+  color: #f00;
+  font-weight: bold;
+}
+
+#question p.indent {
+  margin-left: 0.8em;
+}
+
 .input-text {
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -126,76 +138,120 @@ h1#title {
   text-align: center;
 }
 
-table#table {
+div#tableWrapper table {
   border: 1px solid #a1a499;
   border-collapse: collapse;
   margin: 12px auto;
 }
 
-table#table tr:first-of-type {
+div#tableWrapper table th, div#tableWrapper table td {
+  border: 1px solid #a1a499;
+  padding: 0 4px;
+  text-align: center;
+}
+
+div#tableWrapper table.tableSosho tr:first-of-type {
   border-bottom: 2px solid #282523;
 }
 
-table#table tr:nth-of-type(2) th:first-of-type,
-table#table tr:nth-of-type(2) th:nth-of-type(2) {
+div#tableWrapper table.tableSosho tr:nth-of-type(2) th:first-of-type,
+div#tableWrapper table.tableSosho tr:nth-of-type(2) th:nth-of-type(2) {
   border-bottom: 2px solid #a1a499;
 }
 
-table#table tr:nth-of-type(3) td:first-of-type,
-table#table tr:nth-of-type(3) td:nth-of-type(2) {
+div#tableWrapper table.tableSosho tr:nth-of-type(3) td:first-of-type,
+div#tableWrapper table.tableSosho tr:nth-of-type(3) td:nth-of-type(2) {
   border-bottom: 2px solid #a1a499;
 }
 
-table#table tr:nth-of-type(4) th:nth-of-type(2) {
+div#tableWrapper table.tableSosho tr:nth-of-type(4) th:nth-of-type(2) {
   border-bottom: 2px solid #a1a499;
 }
 
-table#table tr:nth-of-type(6) td:first-of-type,
-table#table tr:nth-of-type(6) td:nth-of-type(2) {
+div#tableWrapper table.tableSosho tr:nth-of-type(6) td:first-of-type,
+div#tableWrapper table.tableSosho tr:nth-of-type(6) td:nth-of-type(2) {
   border-bottom: 2px solid #a1a499;
 }
 
-table#table th, table#table td {
-  border: 1px solid #a1a499;
-  padding: 0 4px;
-}
-
-table#table th.sosho {
+div#tableWrapper table.tableSosho th.sosho {
   width: 5.4em;
 }
 
-table#table th.sosho input {
+div#tableWrapper table.tableSosho th.sosho input {
   width: 5.4em;
 }
 
-table#table th:not(.sosho) {
+div#tableWrapper table.tableSosho th:not(.sosho) {
   width: 3.2em;
 }
 
-table#table th:not(.sosho) input {
+div#tableWrapper table.tableSosho th:not(.sosho) input {
   width: 3.2em;
 }
 
-table#table td {
-  text-align: center;
-  width: calc(100% / 8);
-}
-
-table#table td.number {
+div#tableWrapper table.tableSosho td.number {
   width: 1.2em;
 }
 
-table#table td:not(.number) {
+div#tableWrapper table.tableSosho td:not(.number) {
   width: 5.4em;
   padding: 0;
 }
 
-table#table td input.inTd {
+div#tableWrapper table.tableSosho td input.inTd {
   width: 5.4em;
   margin: 0 4px;
 }
 
-table#table span.ib {
+div#tableWrapper table.tableGiketsu tr:first-of-type {
+  border-bottom: 2px solid #282523;
+}
+
+div#tableWrapper table.tableGiketsu tr th:first-of-type {
+  width: 2em;
+}
+
+div#tableWrapper table.tableGiketsu tr th:nth-of-type(2) {
+  width: 5em;
+}
+
+div#tableWrapper table.tableGiketsu tr td input {
+  width: 2em;
+}
+
+div#tableWrapper table.tableGiketsu tr td.letters3 input {
+  width: 3em;
+}
+
+div#tableWrapper table.tableSaibanninn tr td:nth-of-type(1), div#tableWrapper table.tableSaibanninn tr td:nth-of-type(2) {
+  border-right: 2px solid #a1a499;
+}
+
+div#tableWrapper table.tableSaibanninn tr th {
+  padding: 0;
+}
+
+div#tableWrapper table.tableSaibanninn tr th:nth-of-type(2), div#tableWrapper table.tableSaibanninn tr th:nth-of-type(3) {
+  border-right: 2px solid #a1a499;
+}
+
+div#tableWrapper table.tableSaibanninn tr th:nth-of-type(1) {
+  border-right: 2px solid #282523;
+}
+
+div#tableWrapper table.tableSaibanninn tr th.letters4 input {
+  width: 4em;
+}
+
+div#tableWrapper table.tableSaibanninn tr th.letters5 input {
+  width: 5em;
+}
+
+div#tableWrapper table.tableSaibanninn tr:nth-of-type(1) th {
+  border-bottom: 2px solid #282523;
+}
+
+div#tableWrapper table span.ib {
   display: inline-block;
 }
 
@@ -306,12 +362,13 @@ div#black.blackNone {
 div#modal {
   background-color: #fff;
   opacity: 1;
+  overflow-y: scroll;
   position: fixed;
   top: 0;
   right: 0;
+  bottom: 0;
   padding: 1.2em 0 0 0.4em;
   width: 84%;
-  height: 100%;
   z-index: 289;
   transition: 0.36s;
 }
@@ -393,6 +450,12 @@ div#modal p.solution i {
   }
   .input-submit#answerButton {
     margin: 6px auto 0;
+  }
+  div#tableWrapper table.tableSosho th.sosho, div#tableWrapper table.tableSosho th:not(.sosho) {
+    width: unset;
+  }
+  div#tableWrapper table.tableGiketsu tr th:first-of-type, div#tableWrapper table.tableGiketsu tr th:nth-of-type(2) {
+    width: unset;
   }
   div#hint {
     padding: 8px 0;
