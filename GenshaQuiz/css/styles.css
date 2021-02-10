@@ -41,6 +41,7 @@ div.wall i#info {
   right: 4%;
   transform: translateY(-50%);
   position: absolute;
+  cursor: pointer;
 }
 
 h1#title {
@@ -150,6 +151,22 @@ div#tableWrapper table th, div#tableWrapper table td {
   text-align: center;
 }
 
+div#tableWrapper table th.letters2 input, div#tableWrapper table td.letters2 input {
+  width: 2em;
+}
+
+div#tableWrapper table th.letters3 input, div#tableWrapper table td.letters3 input {
+  width: 3em;
+}
+
+div#tableWrapper table th.letters4 input, div#tableWrapper table td.letters4 input {
+  width: 4em;
+}
+
+div#tableWrapper table th.letters5 input, div#tableWrapper table td.letters5 input {
+  width: 5em;
+}
+
 div#tableWrapper table.tableSosho tr:first-of-type {
   border-bottom: 2px solid #282523;
 }
@@ -219,10 +236,6 @@ div#tableWrapper table.tableGiketsu tr td input {
   width: 2em;
 }
 
-div#tableWrapper table.tableGiketsu tr td.letters3 input {
-  width: 3em;
-}
-
 div#tableWrapper table.tableSaibanninn tr td:nth-of-type(1), div#tableWrapper table.tableSaibanninn tr td:nth-of-type(2) {
   border-right: 2px solid #a1a499;
 }
@@ -239,24 +252,34 @@ div#tableWrapper table.tableSaibanninn tr th:nth-of-type(1) {
   border-right: 2px solid #282523;
 }
 
-div#tableWrapper table.tableSaibanninn tr th.letters4 input {
-  width: 4em;
-}
-
-div#tableWrapper table.tableSaibanninn tr th.letters5 input {
-  width: 5em;
-}
-
 div#tableWrapper table.tableSaibanninn tr:nth-of-type(1) th {
   border-bottom: 2px solid #282523;
+}
+
+div#tableWrapper table.tableShuchoGikai {
+  border: none;
+}
+
+div#tableWrapper table.tableShuchoGikai tr th, div#tableWrapper table.tableShuchoGikai tr td {
+  padding: 6px 4px;
+}
+
+div#tableWrapper table.tableShuchoGikai tr th.title, div#tableWrapper table.tableShuchoGikai tr td.title {
+  border: none;
+  font-size: 1.1em;
+  padding-bottom: 8px;
 }
 
 div#tableWrapper table span.ib {
   display: inline-block;
 }
 
-.checkboxes {
+form.checkboxes {
   margin-left: 0.5em;
+}
+
+form.checkboxes input[type=checkbox] {
+  margin: 0 2px;
 }
 
 span.tab {
