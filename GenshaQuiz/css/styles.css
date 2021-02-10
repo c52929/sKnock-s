@@ -232,7 +232,7 @@ div#tableWrapper table.tableGiketsu tr th:nth-of-type(2) {
   width: 5em;
 }
 
-div#tableWrapper table.tableGiketsu tr td input {
+div#tableWrapper table.tableGiketsu tr td:not(.letters3) input {
   width: 2em;
 }
 
