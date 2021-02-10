@@ -210,7 +210,7 @@ div#tableWrapper{
 						width:5em;
 					}
 				}
-				td{
+				td:not(.letters3){
 					input{
 						width:2em;
 					}

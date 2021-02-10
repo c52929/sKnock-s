@@ -117,11 +117,12 @@
 				document.getElementById('qNum').textContent='あなた賢いですねぇ';
 				document.getElementById('title').textContent='さぁ第二ラウンドだ';
 				document.getElementById('title').classList.remove('none');
-				for(let i=0; i<6; i++){
+				for(let i=0; i<10; i++){
 					changeCheck(i,false);
 				}
 				document.getElementById('sellectRange').classList.remove('none');
-				document.getElementById('startButton').classList.remove('none');
+				document.getElementById('startButton').classList.remove('none','enable');
+				document.getElementById('hint').classList.add('none');
 			}
 		}
 	}
