@@ -127,6 +127,9 @@ div#tableWrapper{
 			border:1px solid #a1a499;
 			padding:0 4px;
 			text-align: center;
+			&.letters1 input{
+				width:1em;
+			}
 			&.letters2 input{
 				width:2em;
 			}
@@ -255,6 +258,36 @@ div#tableWrapper{
 				}
 			}
 		}
+		&.tableSeikyu{
+			tr{
+				th,td{
+					&:first-of-type{
+						width:3em;
+					}
+					&:nth-of-type(2){
+						input{
+							width:2em;
+						}
+					}
+					&:nth-of-type(3){
+						width:5em;
+					}
+					&:nth-of-type(4){
+						width:4.8em;
+					}
+				}
+			}
+		}
+		// &.tableHonshi{
+		// 	border:none;
+		// 	tr{
+		// 		th,td{
+		// 			&.title{
+		// 				border:none;
+		// 			}
+		// 		}
+		// 	}
+		// }
 		span.ib{
 			display: inline-block;
 		}

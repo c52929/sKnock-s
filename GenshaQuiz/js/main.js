@@ -170,9 +170,9 @@
 				info[0]+=`<span style="font-family:'Meiryo','Hiragino Mincho ProN';">…</span>`;
 				continue;
 			}
-			if(sentence.charAt(i)+sentence.charAt(i+1)=='li'){
+			if(sentence.charAt(i)+sentence.charAt(i+1)+sentence.charAt(i+2)=='&li'){
 				info[0]+='<span style="background:linear-gradient(transparent 60%, #faa 60%)">';
-				for(let j=i+2; j<sentence.length; j++){
+				for(let j=i+3; j<sentence.length; j++){
 					if(sentence.charAt(j)+sentence.charAt(j+1)=='ne'){
 						info[0]+='</span>';
 						i=j+1;
