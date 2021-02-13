@@ -151,6 +151,10 @@ div#tableWrapper table th, div#tableWrapper table td {
   text-align: center;
 }
 
+div#tableWrapper table th.letters1 input, div#tableWrapper table td.letters1 input {
+  width: 1em;
+}
+
 div#tableWrapper table th.letters2 input, div#tableWrapper table td.letters2 input {
   width: 2em;
 }
@@ -268,6 +272,22 @@ div#tableWrapper table.tableShuchoGikai tr th.title, div#tableWrapper table.tabl
   border: none;
   font-size: 1.1em;
   padding-bottom: 8px;
+}
+
+div#tableWrapper table.tableSeikyu tr th:first-of-type, div#tableWrapper table.tableSeikyu tr td:first-of-type {
+  width: 3em;
+}
+
+div#tableWrapper table.tableSeikyu tr th:nth-of-type(2) input, div#tableWrapper table.tableSeikyu tr td:nth-of-type(2) input {
+  width: 2em;
+}
+
+div#tableWrapper table.tableSeikyu tr th:nth-of-type(3), div#tableWrapper table.tableSeikyu tr td:nth-of-type(3) {
+  width: 5em;
+}
+
+div#tableWrapper table.tableSeikyu tr th:nth-of-type(4), div#tableWrapper table.tableSeikyu tr td:nth-of-type(4) {
+  width: 4.8em;
 }
 
 div#tableWrapper table span.ib {
