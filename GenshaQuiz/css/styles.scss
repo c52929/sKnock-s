@@ -82,6 +82,9 @@ h1#title{
 	margin:6px 8px;
 	p.attention{
 		color:#f00;
+		&.black{
+			color: #282523;
+		}
 		font-weight:bold;
 	}
 	p.indent{
@@ -275,6 +278,46 @@ div#tableWrapper{
 					&:nth-of-type(4){
 						width:4.8em;
 					}
+				}
+			}
+		}
+		&.tableSeitosei{
+			tr{
+				th{
+					&:first-of-type{
+						width:5.8em;
+					}
+					&:nth-of-type(2){
+						width:5em;
+					}
+				}
+				th span,
+				td span{
+					&.green{
+						color:#0a0;
+					}
+					&.red{
+						color:#b00;
+					}
+				}
+			}
+		}
+		&.tableSenkyoseido{
+			tr{
+				th:first-of-type{
+					width:5em;
+				}
+				th:nth-of-type(2){
+					width:5.8em;
+				}
+			}
+			th span,
+			td span{
+				&.green{
+					color:#0a0;
+				}
+				&.red{
+					color:#b00;
 				}
 			}
 		}
