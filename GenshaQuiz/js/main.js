@@ -135,11 +135,11 @@
 	function review(sentence){
 		let info=[''];
 		for(let i=0; i<sentence.length; i++){
-			if(sentence.charAt(i)=='[' || sentence.charAt(i)=='{'){
+			if(sentence.charAt(i)=='['){
 				info[0]+=`<input type="text" id="text${info.length}" class="input-text">`;
 				info.push('');
 				for(let j=i+1; j<sentence.length; j++){
-					if(sentence.charAt(j)==']' || sentence.charAt(j)=='}'){
+					if(sentence.charAt(j)==']'){
 						// if(sentence.charAt(j)=='}'){
 						// 	info[info.length-1]+='|';
 						// }
