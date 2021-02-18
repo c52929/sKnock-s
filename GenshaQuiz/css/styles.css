@@ -101,6 +101,10 @@ h1#title {
   font-weight: bold;
 }
 
+#question p.attention.black {
+  color: #282523;
+}
+
 #question p.indent {
   margin-left: 0.8em;
 }
@@ -288,6 +292,42 @@ div#tableWrapper table.tableSeikyu tr th:nth-of-type(3), div#tableWrapper table.
 
 div#tableWrapper table.tableSeikyu tr th:nth-of-type(4), div#tableWrapper table.tableSeikyu tr td:nth-of-type(4) {
   width: 4.8em;
+}
+
+div#tableWrapper table.tableSeitosei tr th:first-of-type {
+  width: 5.8em;
+}
+
+div#tableWrapper table.tableSeitosei tr th:nth-of-type(2) {
+  width: 5em;
+}
+
+div#tableWrapper table.tableSeitosei tr th span.green,
+div#tableWrapper table.tableSeitosei tr td span.green {
+  color: #0a0;
+}
+
+div#tableWrapper table.tableSeitosei tr th span.red,
+div#tableWrapper table.tableSeitosei tr td span.red {
+  color: #b00;
+}
+
+div#tableWrapper table.tableSenkyoseido tr th:first-of-type {
+  width: 5em;
+}
+
+div#tableWrapper table.tableSenkyoseido tr th:nth-of-type(2) {
+  width: 5.8em;
+}
+
+div#tableWrapper table.tableSenkyoseido th span.green,
+div#tableWrapper table.tableSenkyoseido td span.green {
+  color: #0a0;
+}
+
+div#tableWrapper table.tableSenkyoseido th span.red,
+div#tableWrapper table.tableSenkyoseido td span.red {
+  color: #b00;
 }
 
 div#tableWrapper table span.ib {
