@@ -71,8 +71,15 @@
 				hint=[''];
 				for(let i=0; i<choices[r].length; i++){
 					if(choices[r].charAt(i)==',' || choices[r].charAt(i)=='/'){
-						hint.push('');
-						continue;
+						if(choices[r].charAt(i)=='/'){
+							if(choices[r].charAt(i-1)!='<'){
+								hint.push('');
+								continue;
+							}
+						}else{
+							hint.push('');
+							continue;
+						}
 					}
 					hint[hint.length-1]+=choices[r].charAt(i);
 				}
@@ -92,7 +99,7 @@
 					r2=Math.floor(Math.random()*(hint.length-i));
 					const addHint=document.createElement('span');
 					addHint.classList.add('hint');
-					addHint.textContent=hint[r2];
+					addHint.innerHTML=hint[r2];
 					document.getElementById('hints').appendChild(addHint);
 					hint.splice(r2,1);
 				}
@@ -331,6 +338,7 @@
 					continue;
 				}
 				correct[correct.length-1]+=info[i].charAt(j);
+				correct[correct.length-1]=correct[correct.length-1].toUpperCase();
 			}
 			// console.log(correct);
 			ans=[document.getElementById(`text${i}`),document.getElementById(`text${i}`).value];
@@ -352,6 +360,7 @@
 						break;
 					}
 					ans[2]=ans[1].charAt(j)+ans[2];
+					ans[2]=ans[2].toUpperCase();
 				}
 				ans.splice(1,1);
 			}
