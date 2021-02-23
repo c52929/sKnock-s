@@ -13,7 +13,7 @@
 			changeCheck(i,selAll.checked);
 		}
 	})
-	for(let i=1; i<rangeForm.length; i++){
+	for(let i=0; i<rangeForm.length; i++){
 		rangeForm[i].addEventListener('click',()=>{
 			checkCondition[i]=rangeForm[i].checked;
 			if(checkCondition.indexOf(true)>-1){
