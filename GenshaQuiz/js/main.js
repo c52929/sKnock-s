@@ -2,15 +2,18 @@
 {
 	const selAll=document.getElementById('sellectAll');
 	const rangeForm=document.sellectRange.range;
-	let checkCondition=[false,false,false,false,false,false,false,false,false,false];
+	let checkCondition=[];
 	let active, ans, correct, info, r, supplement, saveValue;
 	let qNum=[], hint=[], cheat=[], againSentences=[], againChoices=[];
+	for(let i=0; i<rangeForm.length; i++){
+		checkCondition.push(false);
+	}
 	selAll.addEventListener('click',()=>{
 		for(let i=1; i<rangeForm.length; i++){
 			changeCheck(i,selAll.checked);
 		}
 	})
-	for(let i=0; i<rangeForm.length; i++){
+	for(let i=1; i<rangeForm.length; i++){
 		rangeForm[i].addEventListener('click',()=>{
 			checkCondition[i]=rangeForm[i].checked;
 			if(checkCondition.indexOf(true)>-1){
@@ -20,7 +23,7 @@
 			}
 			checkCondition.splice(0,1);
 			checkCondition.splice(0,0,checkCondition.indexOf(false)<0);
-			rangeForm[0].ked=checkCondition.indexOf(false)<0;
+			rangeForm[0].checked=checkCondition.indexOf(false)<0;
 		})
 	}
 	function changeCheck(index,TorF){
@@ -84,7 +87,7 @@
 					hint[hint.length-1]+=choices[r].charAt(i);
 				}
 				for(let i=0; i<sentences[r].length; i++){
-					if(sentences[r].charAt(i)=='['){
+					if(sentences[r].charAt(i)=='[' && sentences[r].charAt(i+1)+sentences[r].charAt(i+2)!='&x'){
 					hint.push('');
 						for(let j=i+1; j<sentences[r].length; j++){
 							if(sentences[r].charAt(j)=='/' || sentences[r].charAt(j)==']'){
@@ -124,7 +127,7 @@
 				document.getElementById('qNum').textContent='あなた賢いですねぇ';
 				document.getElementById('title').textContent='さぁ第二ラウンドだ';
 				document.getElementById('title').classList.remove('none');
-				for(let i=0; i<10; i++){
+				for(let i=0; i<rangeForm.length; i++){
 					changeCheck(i,false);
 				}
 				document.getElementById('sellectRange').classList.remove('none');
@@ -143,6 +146,10 @@
 		let info=[''];
 		for(let i=0; i<sentence.length; i++){
 			if(sentence.charAt(i)=='['){
+				if(sentence.charAt(i+1)+sentence.charAt(i+2)=='&x'){
+					info[0]+='<span class="attention"> *</span>';
+					i=i+2;
+				}
 				info[0]+=`<input type="text" id="text${info.length}" class="input-text">`;
 				info.push('');
 				for(let j=i+1; j<sentence.length; j++){
