@@ -96,12 +96,12 @@ h1#title {
   margin: 6px 8px;
 }
 
-#question p.attention {
+#question .attention {
   color: #f00;
   font-weight: bold;
 }
 
-#question p.attention.black {
+#question .attention.black {
   color: #282523;
 }
 
