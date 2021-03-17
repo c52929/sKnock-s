@@ -1,0 +1,153 @@
+*{
+	margin:0;
+	border:none;
+	padding:0;
+	font-family: 'Yu Mincho Light','Yu Gothic','Hiragino Kaku Gothic ProN','Yu Mincho Light','Hiragino Mincho ProN','Meiryo UI',sans-serif;
+}
+.inner{
+	width:100%;
+	max-width:1366px;
+	margin:0 auto;
+	overflow-x:hidden;
+}
+/* ul,ol{
+	margin: 8px 0;
+	padding-inline-start: 2em;
+} */
+h1{
+	box-sizing: border-box;
+	text-align: center;
+	margin: 8px 4px;
+}
+div#buttons{
+	display: flex;
+	justify-content: space-around;
+	.input-submit{
+		-webkit-appearance:none;
+		background-color:#fff;
+		background-image:none;
+		border:2px solid #000;
+		border-radius:50%;
+		color:#000;
+		&#start0{
+			background-color: #000;
+			color:#fff;
+		}
+		cursor:pointer;
+		display:inline-block;
+		font-size:1em;
+		font-weight: bold;
+		margin:0;
+		text-decoration:none;
+		width:18vw;
+		height:18vw;
+		&:hover, &:focus{
+			outline:none;
+		}
+		&::-moz-foucus-inner{
+			border:none;
+			padding:0;
+		}
+	}
+}
+.gaming{
+	p#comment{
+		text-align: center;
+		font-size: 24px;
+		font-weight: bold;
+		margin: 8px 0 4px;
+	}
+	table#board{
+		border-collapse: collapse;
+		margin: 0 auto;
+		tr{
+			td{
+				background-color: #3c3;
+				border:1px solid #000;
+				box-sizing: border-box;
+				width:36px;
+				height:36px;
+				padding: 1px 0 0 1px;
+				.c{
+					&.b,
+					&.w{
+						background-color: #fff;
+						&.b{
+							background-color: #000;
+						}
+						border:2px solid #000;
+						border-radius: 50%;
+						box-sizing: border-box;
+						width:30px;
+						height:30px;
+						margin: 0 auto;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+@media(orientation:landscape){
+	div#buttons{
+		.input-submit{
+			font-size: 5.4vw;
+		}
+	}
+	.gaming{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		p#comment{
+			width:48%;
+			margin: 0;
+		}
+		table#board{
+			margin: 12px auto auto 0;
+		}
+	}
+}
+@media(min-width:768px){
+	h1{
+		font-size: 48px;
+		margin:8px 0 0;
+	}
+	div#buttons{
+		.input-submit{
+			width:120px;
+			height:120px;
+			font-size: 36px;
+		}
+	}
+	.gaming{
+		display: block;
+		p#comment{
+			font-size: 36px;
+			margin: 8px 0 4px;
+			text-align: center;
+			width:100%;
+		}
+		table#board{
+			margin: 0 auto;
+			tr td{
+				width:48px;
+				height:48px;
+				.c{
+					&.b,
+					&.w{
+						width:36px;
+						height:36px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.transparent{
+	opacity:0 !important;
+}
+.none{
+	display:none !important;
+}
