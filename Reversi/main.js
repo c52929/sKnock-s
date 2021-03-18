@@ -107,9 +107,6 @@
 			// console.log(possiposi);
 			if(possiposi.length>0){
 				cornerCheck();
-				preCornerCheck();
-				redX();
-				attentionYellow();
 				// getEdge();
 				let r=Math.floor(Math.random()*possiposi.length);
 				add(possiposi[r][0],possiposi[r][1],opC,true);
@@ -141,6 +138,10 @@
 		}
 		if(copy.length>0){
 			possiposi=copy2dArray(copy);
+		}else{
+			attentionYellow();
+			preCornerCheck();
+			redX();
 		}
 	}
 
@@ -176,9 +177,11 @@
 	function redX(){
 		let copy=copy2dArray(possiposi);
 		for(let i=0; i<copy.length; i++){
-			if([1,6].indexOf(copy[i][0])>-1 && [1,6].indexOf(copy[i][1]>-1)){
-				copy.splice(i,1);
-				i--;
+			if([1,6].indexOf(copy[i][0])>-1 && [1,6].indexOf(copy[i][1])>-1){
+				if(board[[0,7][[1,6].indexOf(copy[i][0])]][[0,7][[1,6].indexOf(copy[i][1])]]!=opC){
+					copy.splice(i,1);
+					i--;
+				}
 			}
 		}
 		if(copy.length>0){
@@ -187,8 +190,121 @@
 	}
 
 	function attentionYellow(){
+		let suggestion=[];
 		// (0,1), (0,6), (1,0), (1,7), (6,0), (6,7), (7,1), (7,6)
+		// ↑ preCornerCheck() もあるし保留;
 
+		let i;
+		if(board[0][0]==''){
+			if(board[0][1]==opC && board[0][7]!=pC){
+				i=2;
+				while(board[0][i]==opC && i<6){
+					i++;
+				}
+				while(board[0][i]==pC && i<7){
+					i++;
+				}
+				if(board[0][i-1]==pC && board[0][i]==''){
+					suggestion.push([0,i]);
+				}
+			}
+			if(board[1][0]==opC && board[7][0]!=pC){
+				i=2;
+				while(board[i][0]==opC && i<6){
+					i++;
+				}
+				while(board[i][0]==pC && i<7){
+					i++;
+				}
+				if(board[i-1][0]==pC && board[i][0]==''){
+					suggestion.push([i,0]);
+				}
+			}
+		}
+		if(board[0][7]==''){
+			if(board[0][6]==opC && board[0][0]!=pC){
+				i=5;
+				while(board[0][i]==opC && i>1){
+					i--;
+				}
+				while(board[0][i]==pC && i>0){
+					i--;
+				}
+				if(board[0][i]=='' && board[0][i+1]==pC){
+					suggestion.push([0,i]);
+				}
+			}
+			if(board[1][7]==opC && board[7][7]!=pC){
+				i=2;
+				while(board[i][7]==opC && i<6){
+					i++;
+				}
+				while(board[i][7]==pC && i<7){
+					i++;
+				}
+				if(board[i][7]=='' && board[i-1][7]==pC){
+					suggestion.push([i,7]);
+				}
+			}
+		}
+		if(board[7][0]==''){
+			if(board[6][0]==opC && board[0][0]!=pC){
+				i=5;
+				while(board[i][0]==opC && i>1){
+					i--;
+				}
+				while(board[i][0]==pC && i>0){
+					i--;
+				}
+				if(board[i][0]=='' && board[i+1][0]==pC){
+					suggestion.push([i,0]);
+				}
+			}
+			if(board[7,1]==opC && board[7][7]!=pC){
+				i=2;
+				while(board[7][i]==opC && i<6){
+					i++;
+				}
+				while(board[7][i]==pC && i<7){
+					i++;
+				}
+				if(board[7][i-1]==pC && board[7][i]==''){
+					suggestion.push([7,i]);
+				}
+			}
+		}
+		if(board[7][7]==''){
+			if(board[7][6]==opC && board[7][0]!=pC){
+				i=5;
+				while(board[7][i]==opC && i>1){
+					i--;
+				}
+				while(board[7][i]==pC && i>0){
+					i--;
+				}
+				if(board[7][i]=='' && board[7][i+1]==pC){
+					suggestion.push([7,i]);
+				}
+			}
+			if(board[6][7]==opC && board[0][7]!=pC){
+				i=5;
+				while(board[i][7]==opC && i>1){
+					i--;
+				}
+				while(board[i][7]==pC && i>0){
+					i--;
+				}
+				if(board[7][i]=='' && board[7][i+1]==pC){
+					suggestion.push([7,i]);
+				}
+			}
+		}
+		if(suggestion.length>0){
+			// console.log('角ふせぎ発動！！');
+			// console.log(possiposi);
+			possiposi=copy2dArray(suggestion);
+			// console.log(possiposi);
+		}
 	}
 
 	function equalArray(arr1,arr2){
