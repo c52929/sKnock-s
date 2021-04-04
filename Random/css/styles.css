@@ -59,7 +59,7 @@ ul, ol {
 .button#add_button {
   background-color: #0a5;
   margin: 0 4px;
-  padding: 2px 12px;
+  padding: 4px 12px;
 }
 
 .button#start_button {
@@ -86,14 +86,15 @@ h1 {
   text-align: center;
 }
 
-.adding #error {
-  margin-top: 2px;
+.error {
   color: #f00;
+  margin-top: 2px;
+  text-align: center;
 }
 
 .list_container {
   text-align: center;
-  margin: 12px auto 0;
+  margin: 12px auto 8px;
   padding: 4px;
   border: 1px solid #a1a499;
   width: 96%;
@@ -106,10 +107,14 @@ h1 {
   text-align: left;
 }
 
+input#checkboxProhibitDuplicate {
+  margin: 4px 4px 0 8px;
+}
+
 #start_button {
   width: 84%;
   font-size: 20px;
-  margin: 12px auto;
+  margin: 4px auto 0;
   display: block;
 }
 
@@ -167,6 +172,40 @@ h1 {
   right: 0;
   padding: 2px 4px;
   position: absolute;
+}
+
+@media (orientation: landscape) {
+  div.flex {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 2px;
+  }
+  div.flex div.addAndReturn {
+    box-sizing: border-box;
+    width: 50%;
+  }
+  div.flex div.results {
+    box-sizing: border-box;
+    margin: 0 4px;
+    width: 50%;
+  }
+}
+
+@media (min-width: 768px) {
+  .clear {
+    cursor: pointer;
+  }
+  div.flex {
+    width: 96%;
+    margin: 0 auto;
+  }
+  div.flex div.addAndReturn {
+    width: 48%;
+  }
+  div.flex div.results {
+    width: 48%;
+  }
 }
 
 .transparent {
