@@ -16,6 +16,7 @@
 } */
 h1{
 	box-sizing: border-box;
+	font-size: 14.4vw;
 	text-align: center;
 	margin: 8px 4px;
 }
@@ -50,7 +51,65 @@ div#buttons{
 		}
 	}
 }
-.gaming{
+div#codeTeam{
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin: 18px 0;
+	p{
+		width: 100%;
+		display: inline-block;
+		font-size: 8vw;
+		text-align: center;
+		margin: 4px 0;
+	}
+	.input-text{
+		-moz-appearance:none;
+		-webkit-appearance:none;
+		appearance:none;
+		background-color:transparent;
+		background-image:none;
+		border:1px solid #a1a499;
+		border-radius:0;
+		color:inherit;
+		font-family:inherit;
+		font-size:16px;
+		margin: 0 4px;
+		padding: 0 4px;
+		width:54%;
+		&:focus{
+			border:1px solid #a1a499;
+			box-shadow:none;
+			outline:none;
+		}
+	}
+	.input-submit{
+		-webkit-appearance:none;
+		background-color: #a1a499;
+		background-image:none;
+		border:none;
+		border-radius:4px;
+		color:#fff;
+		cursor: text;
+		display:inline-block;
+		font-size:16px;
+		margin:0 4px;
+		padding:0 8px;
+		text-decoration:none;
+		&.available{
+			background-color:#c52929;
+			cursor: pointer;
+		}
+		&:hover, &:focus{
+			outline:none;
+		}
+		&::-moz-foucus-inner{
+			border:none;
+			padding:0;
+		}
+	}
+}
+#gaming{
 	p#comment{
 		text-align: center;
 		font-size: 24px;
@@ -86,26 +145,102 @@ div#buttons{
 			}
 		}
 	}
-}
-
-
-@media(orientation:landscape){
-	div#buttons{
-		.input-submit{
-			font-size: 5.4vw;
+	div#mover{
+		display: flex;
+		justify-content: space-between;
+		width:64%;
+		margin: 12px auto 0;
+		div{
+			border:1px solid #a1a499;
+			border-radius:4px;
+			font-size: 24px;
+			font-weight: bold;
+			padding: 0 12px;
 		}
 	}
-	.gaming{
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		p#comment{
-			width:48%;
+}
+p.codeInComment{
+	box-sizing: border-box;
+	color:#282523;
+	padding: 0 12px;
+	code{
+		background-color: #e5e5e5;
+		box-sizing: border-box;
+		color:#282523;
+		display: block;
+		margin: 2px auto;
+		overflow-x: scroll;
+		padding: 0 4px;
+		width:100%;
+	}
+	span{
+		color:#999;
+		display: block;
+		text-align: center;
+	}
+}
+
+@media(orientation:portrait){
+	div#gaming p#comment p.codeInComment{
+		display: none;
+	}
+	div#codeHere p.codeInComment{
+		// box-sizing: border-box;
+		// padding: 0 12px;
+		margin: 8px 0;
+		code{
+			// margin: 0 auto;
+			width:100%;
+		}
+	}
+}
+@media(orientation:landscape){
+	h1{
+		font-size: 40px;
+		margin:2px 4px;
+	}
+	div#buttons{
+		.input-submit{
+			font-size: 4.8vw;
+			width:14.4vw;
+			height:14.4vw;
+		}
+	}
+	div#codeTeam{
+		p{
+			font-size: 5.4vw;
 			margin: 0;
 		}
-		table#board{
-			margin: 12px auto auto 0;
+	}
+	#gaming{
+		display: flex;
+		align-items: center;
+		height:100vh;
+		justify-content: flex-start;
+		flex-direction: row-reverse;
+		p#comment{
+			text-align: center;
+			display: block;
+			margin: 0;
+			width:48%;
+			p.codeInComment{
+				font-size: 16px;
+				font-weight: normal;
+				text-align: left;
+				code{
+					font-size: 14px;
+				}
+				span{
+					font-size: 14px;
+				}
+			}
 		}
+		table#board{
+			margin: 0;
+		}
+	}
+	div#codeHere p.codeInComment{
+		display: none;
 	}
 }
 @media(min-width:768px){
@@ -120,13 +255,23 @@ div#buttons{
 			font-size: 36px;
 		}
 	}
-	.gaming{
-		display: block;
-		p#comment{
+	div#codeTeam{
+		p{
 			font-size: 36px;
-			margin: 8px 0 4px;
+		}
+	}
+	#gaming{
+		display: block;
+		height:unset;
+		padding-top: 8px;
+		p#comment{
+			font-size: 32px;
+			margin: 0 0 4px;
 			text-align: center;
 			width:100%;
+			p.codeInComment{
+				display: none;
+			}
 		}
 		table#board{
 			margin: 0 auto;
@@ -141,6 +286,18 @@ div#buttons{
 					}
 				}
 			}
+		}
+	}
+	div#codeHere p.codeInComment{
+		display: block;
+		font-weight: bold;
+		margin: 12px auto 0;
+		width:54%;
+		code{
+			font-weight: normal;
+		}
+		span{
+			font-weight: normal;
 		}
 	}
 }
