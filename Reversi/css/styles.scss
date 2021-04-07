@@ -145,18 +145,32 @@ div#codeTeam{
 			}
 		}
 	}
-	div#mover{
-		display: flex;
-		justify-content: space-between;
-		width:64%;
-		margin: 12px auto 0;
-		div{
-			border:1px solid #a1a499;
-			border-radius:4px;
-			font-size: 24px;
-			font-weight: bold;
-			padding: 0 12px;
+}
+div#mover{
+	display: flex;
+	justify-content: space-between;
+	width:84%;
+	margin: 12px auto 0;
+	div{
+		border:1px solid #a1a499;
+		border-radius:4px;
+		font-size: 24px;
+		font-weight: bold;
+		padding: 0 12px;
+		position: relative;
+		&.unavailable{
+			opacity: 0.5;
 		}
+	}
+	code{
+		background-color: #e5e5e5;
+		box-sizing: border-box;
+		color:#282523;
+		display: block;
+		margin: 0;
+		overflow-x: scroll;
+		padding: 0 4px;
+		width:54%;
 	}
 }
 p.codeInComment{
@@ -215,9 +229,10 @@ p.codeInComment{
 	#gaming{
 		display: flex;
 		align-items: center;
-		height:100vh;
-		justify-content: flex-start;
-		flex-direction: row-reverse;
+		margin: 8px 0 0;
+		// height:100vh;
+		justify-content: space-around;
+		// flex-direction: row-reverse;
 		p#comment{
 			text-align: center;
 			display: block;
@@ -237,6 +252,25 @@ p.codeInComment{
 		}
 		table#board{
 			margin: 0;
+			tr td{
+				width:10vmin;
+				height:10vmin;
+				.c{
+					&.b,
+					&.w{
+						border:1px solid #000;
+						width:84%;
+						height:84%;
+					}
+				}
+			}
+		}
+	}
+	div#mover{
+		margin: 4px auto 0;
+		width:64%;
+		code{
+			width:64%;
 		}
 	}
 	div#codeHere p.codeInComment{
@@ -286,6 +320,26 @@ p.codeInComment{
 					}
 				}
 			}
+		}
+	}
+	div#mover{
+		margin: 12px auto 0;
+		width:64%;
+		div{
+			&:hover{
+				background-color: #f1f1f1;
+				cursor: pointer;
+			}
+			&.unavailable{
+				opacity: 0.5;
+				&:hover{
+					background-color: #fff;
+					cursor: default;
+				}
+			}
+		}
+		code{
+			width:72%;
 		}
 	}
 	div#codeHere p.codeInComment{
