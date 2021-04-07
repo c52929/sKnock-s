@@ -13,7 +13,7 @@
 			secretCode();
 			document.querySelector('h1').classList.add('none');
 			document.getElementById('buttons').classList.add('none');
-			// document.getElementById('codeTeam').classList.add('none');
+			document.getElementById('codeTeam').classList.add('none');
 			document.getElementById('gaming').classList.remove('none');
 			if(pN==1){
 				comsTurn();
@@ -22,34 +22,35 @@
 			}
 		})
 	}
-	// document.getElementById('putCode').addEventListener('paste',()=>{
-	// 	setTimeout(() => {
-	// 		if(putCode.value.length>0){
-	// 			document.getElementById('returnCode').classList.add('available');
-	// 		}else{
-	// 			document.getElementById('returnCode').classList.remove('available');
-	// 		}
-	// 	}, 50);
-	// })
-	// document.getElementById('putCode').addEventListener('keyup',(e)=>{
-	// 	if(putCode.value.length>0){
-	// 		document.getElementById('returnCode').classList.add('available');
-	// 	}else{
-	// 		document.getElementById('returnCode').classList.remove('available');
-	// 	}
-	// })
+	document.getElementById('putCode').addEventListener('paste',()=>{
+		setTimeout(() => {
+			if(putCode.value.length>0){
+				document.getElementById('returnCode').classList.add('available');
+			}else{
+				document.getElementById('returnCode').classList.remove('available');
+			}
+		}, 50);
+	})
+	document.getElementById('putCode').addEventListener('keyup',(e)=>{
+		if(putCode.value.length>0){
+			document.getElementById('returnCode').classList.add('available');
+		}else{
+			document.getElementById('returnCode').classList.remove('available');
+		}
+	})
 
-	// document.getElementById('returnCode').addEventListener('click',()=>{
-	// 	if(document.getElementsByClassName('available').length>0){
-	// 		code=putCode.value;
-	// 		solveCode();
-	// 		document.getElementById('mover').classList.remove('none');
-	// 		document.querySelector('h1').classList.add('none');
-	// 		document.getElementById('buttons').classList.add('none');
-	// 		document.getElementById('gaming').classList.remove('none');
-	// 		document.getElementById('codeTeam').classList.add('none');
-	// 	}
-	// })
+	document.getElementById('returnCode').addEventListener('click',()=>{
+		if(document.getElementsByClassName('available').length>0){
+			code=putCode.value;
+			document.getElementById('moverCode').textContent=code;
+			solveCode();
+			document.getElementById('mover').classList.remove('none');
+			document.querySelector('h1').classList.add('none');
+			document.getElementById('buttons').classList.add('none');
+			document.getElementById('gaming').classList.remove('none');
+			document.getElementById('codeTeam').classList.add('none');
+		}
+	})
 
 	function prepareBoard(){
 		board=[];
@@ -74,7 +75,7 @@
 		// change(4,3,'w',true);
 		// change(4,4,'b',true);
 		turn=0;
-		// drawOnconsole();
+		// drawOnconsole(board);
 	}
 
 	function myTurn(){
@@ -108,7 +109,7 @@
 		if(possiposi.length==0){
 			pass[0]=1;
 			if(pass[1]==1){
-				result();
+				result(true);
 			}else{
 				// console.log(r,pass);
 				// console.log(r,'you: pass');
@@ -122,7 +123,7 @@
 	let possiposi;
 
 	function comsTurn(){
-		// drawOnconsole();
+		// drawOnconsole(board);
 		document.getElementById('comment').textContent="COM's turn...";
 		setTimeout(() => {
 			// console.log('Hi!');
@@ -149,7 +150,7 @@
 			}else{
 				pass[1]=1;
 				if(pass[0]==1){
-					result();
+					result(true);
 					return;
 				}else{
 					// console.log('com: pass');
@@ -157,7 +158,7 @@
 					myTurn();
 				}
 			}
-			// drawOnconsole();
+			// drawOnconsole(board);
 		}, 10);
 	}
 
@@ -589,7 +590,7 @@
 				}
 			}
 		}
-		// drawOnconsole();
+		// drawOnconsole(board);
 	}
 
 	function change(i,j,c,real){
@@ -604,7 +605,7 @@
 		}
 	}
 
-	function result(){
+	function result(real){
 		let nums=[0,0,0];
 		for(let i=0; i<8; i++){
 			for(let j=0; j<8; j++){
@@ -613,15 +614,21 @@
 		}
 		// console.log(nums);
 		if(nums[0]==nums[1]){
-			document.getElementById('comment').innerHTML=`Black:${nums[0]} - White:${nums[1]}<br>DRAW!!<br><p class="codeInComment" id="landscapeCode">Game code:<code id="landscapeTellCode">${code}</code></p>`;
+			document.getElementById('comment').innerHTML=`Black:${nums[0]} - White:${nums[1]}<br>DRAW${['!!',''][[true,false].indexOf(real)]}${['<br><p class="codeInComment" id="landscapeCode">Game code:<code id="landscapeTellCode">${code}</code></p>',''][[true,false].indexOf(real)]}`;
 		}else{
-			document.getElementById('comment').innerHTML=`Black:${nums[0]} - White:${nums[1]}<br>YOU ${['WIN!','LOSE...'][[true,false].indexOf(nums.indexOf(Math.max(nums[0],nums[1]))==pN)]}<br><p class="codeInComment" id="landscapeCode">Game code:<code id="landscapeTellCode">${code}</code></p>`;
+			if(real){
+				document.getElementById('comment').innerHTML=`Black:${nums[0]} - White:${nums[1]}<br>YOU ${['WIN!','LOSE...'][[true,false].indexOf(nums.indexOf(Math.max(nums[0],nums[1]))==pN)]}<br><p class="codeInComment" id="landscapeCode">Game code:<code id="landscapeTellCode">${code}</code></p>`;
+			}else{
+				document.getElementById('comment').innerHTML=`Black:${nums[0]} - White:${nums[1]}<br>YOU ${['WON','LOST'][[true,false].indexOf(nums.indexOf(Math.max(nums[0],nums[1]))==pN)]}`;
+			}
 		}
-		// document.getElementById('normalCode').innerHTML=`Game code:<code id="normalTellCode">${code}</code>`;
+		if(real){
+			document.getElementById('normalCode').innerHTML=`Game code:<code id="normalTellCode">${code}</code>`;
+		}
 		return;
 	}
 
-	function drawOnconsole(){
+	function drawOnconsole(board){
 		let conBo='';
 		for(let i=0; i<8; i++){
 			conBo+=board[i][0];
@@ -643,25 +650,98 @@
 	// 345tkksuvlnsvnf5mndnkekwdhd7cjvpevrf0c3k4g5iobuh5c61ht6lh05iukhboax4gfgo4uhkb31lqadbtcaba6c4ri2rkmqw1iqn77qoq6pwo7hxgjbajpr
 	// 405efndoc6tgmxtvcg5n4o1p060ctrlhb41mkuolamqdjcapex2vrnqlvhvrckujirrhg22vnogl7u77h2pa0kbq3qkq1tclwcvjmier50nf71oqpcwj7foiowx
 
-	// function solveCode(){
-	// 	pN=(parseInt(code.charAt(0),10)+parseInt(code.charAt(1),10)+parseInt(code.charAt(2),10))%2;
-	// 	pC=['b','w'][pN];
-	// 	opC=['b','w'][1-pN];
-	// 	document.getElementById('comment').innerHTML=`YOU: ${['Black','White'][pN]}<br>COM: ${['Black','White'][1-pN]}`;
-	// 	let moves=[];
-	// 	for(let i=2; i<2+(code.length-3)/2; i++){
-	// 		moves.push([alph.indexOf(code.charAt(2*i-1))%8,alph.indexOf(code.charAt(2*i))%8]);
-	// 	}
-	// 	console.log(moves);
-	// }
+	let changeHistory=[];
 
-	// let move_num=0;
-	// document.getElementById('mover1').addEventListener('click',()=>{
-	// 	if(move_num>0){
-	// 		// ぐはっ！！ め、めんどいっ！
-	// 	}
-	// })
-	
+	let moves=[];
+
+	function solveCode(){
+		pN=(parseInt(code.charAt(0),10)+parseInt(code.charAt(1),10)+parseInt(code.charAt(2),10))%2;
+		pC=['b','w'][pN];
+		opC=['b','w'][1-pN];
+		document.getElementById('comment').textContent=`YOU:${['Black','White'][pN]} - COM:${['Black','White'][1-pN]}`;
+		moves=[];
+		for(let i=2; i<2+(code.length-3)/2; i++){
+			moves.push([alph.indexOf(code.charAt(2*i-1))%8,alph.indexOf(code.charAt(2*i))%8]);
+		}
+		// console.log(moves);
+	}
+
+	let move_num=0;
+	let copy;
+	document.getElementById('mover1').addEventListener('click',()=>{
+		moveBack();
+	})
+	document.getElementById('mover2').addEventListener('click',()=>{
+		moveForward();
+	})
+
+	document.addEventListener('keydown',(e)=>{
+		if(moves.length>0){
+			if(e.key=='ArrowLeft'){
+				moveBack();
+			}
+			if(e.key=='ArrowRight'){
+				moveForward();
+			}
+		}
+	})
+
+	function moveBack(){
+		if(move_num>0){
+			document.getElementById('mover2').classList.remove('unavailable');
+			document.getElementById('comment').textContent=`YOU:${['Black','White'][pN]} - COM:${['Black','White'][1-pN]}`;
+			move_num--;
+			board[changeHistory[move_num].charAt(0)][changeHistory[move_num].charAt(1)]='';
+			document.getElementById(`c${changeHistory[move_num].charAt(0)}-${changeHistory[move_num].charAt(1)}`).classList.remove(['b','w'][move_num%2]);
+			for(let i=1; i<changeHistory[move_num].length/2; i++){
+				change(changeHistory[move_num].charAt(2*i),changeHistory[move_num].charAt(2*i+1),['w','b'][move_num%2],true);
+			}
+			if(move_num==0){
+				document.getElementById('mover1').classList.add('unavailable');
+			}
+		}
+	}
+	function moveForward(){
+		if(move_num<moves.length){
+			document.getElementById('mover1').classList.remove('unavailable');
+			// console.log(move_num,changeHistory.length,move_num==changeHistory.length);
+			if(move_num==changeHistory.length){
+				copy=copy2dArray(board);
+				// drawOnconsole(copy);
+				// console.log(moves[move_num]);
+				add(moves[move_num][0],moves[move_num][1],['b','w'][move_num%2],true);
+				// drawOnconsole(board);
+				changeHistory.push(`${moves[move_num][0]}${moves[move_num][1]}${difference(copy,board,moves[move_num])}`);
+			}else{
+				add(moves[move_num][0],moves[move_num][1],['b','w'][move_num%2],true);
+				// board[moves[move_num][0]][moves[move_num][1]]=['b','w'][move_num%2];
+				// document.getElementById(`c${changeHistory[move_num].charAt(0)}-${changeHistory[move_num].charAt(1)}`).classList.add(['b','w'][move_num%2]);
+				// for(let i=1; i<changeHistory[move_num].length/2; i++){
+				// 	change(changeHistory[move_num].charAt(2*i),changeHistory[move_num].charAt(2*i+1),['b','w'][move_num%2],true);
+				// }
+			}
+			move_num++;
+			// console.log(move_num,moves.length,move_num==moves.length);
+			if(move_num==moves.length){
+				document.getElementById('mover2').classList.add('unavailable');
+				result(false);
+			}
+		}
+	}
+
+	function difference(b,a,move){
+		let diff='';
+		for(let i=0; i<8; i++){
+			for(let j=0; j<8; j++){
+				if(b[i][j]!=a[i][j] && (move[0]!=i || move[1]!=j)){
+					diff+=`${i}${j}`;
+				}
+			}
+		}
+		// console.log(moveNum,`${move[0]}${move[1]}${diff}`);
+		return diff;
+	}
+
 	function secretCode(){
 		let r=[Math.floor(Math.random()*9)+1,Math.floor(Math.random()*10)];
 		r.push(1-(pN-(r[0]+r[1])%2)**2);

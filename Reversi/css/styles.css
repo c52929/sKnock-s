@@ -160,19 +160,35 @@ div#codeTeam .input-submit::-moz-foucus-inner {
   background-color: #000;
 }
 
-#gaming div#mover {
+div#mover {
   display: flex;
   justify-content: space-between;
-  width: 64%;
+  width: 84%;
   margin: 12px auto 0;
 }
 
-#gaming div#mover div {
+div#mover div {
   border: 1px solid #a1a499;
   border-radius: 4px;
   font-size: 24px;
   font-weight: bold;
   padding: 0 12px;
+  position: relative;
+}
+
+div#mover div.unavailable {
+  opacity: 0.5;
+}
+
+div#mover code {
+  background-color: #e5e5e5;
+  box-sizing: border-box;
+  color: #282523;
+  display: block;
+  margin: 0;
+  overflow-x: scroll;
+  padding: 0 4px;
+  width: 54%;
 }
 
 p.codeInComment {
@@ -227,9 +243,8 @@ p.codeInComment span {
   #gaming {
     display: flex;
     align-items: center;
-    height: 100vh;
-    justify-content: flex-start;
-    flex-direction: row-reverse;
+    margin: 8px 0 0;
+    justify-content: space-around;
   }
   #gaming p#comment {
     text-align: center;
@@ -250,6 +265,22 @@ p.codeInComment span {
   }
   #gaming table#board {
     margin: 0;
+  }
+  #gaming table#board tr td {
+    width: 10vmin;
+    height: 10vmin;
+  }
+  #gaming table#board tr td .c.b, #gaming table#board tr td .c.w {
+    border: 1px solid #000;
+    width: 84%;
+    height: 84%;
+  }
+  div#mover {
+    margin: 4px auto 0;
+    width: 64%;
+  }
+  div#mover code {
+    width: 64%;
   }
   div#codeHere p.codeInComment {
     display: none;
@@ -293,6 +324,24 @@ p.codeInComment span {
   #gaming table#board tr td .c.b, #gaming table#board tr td .c.w {
     width: 36px;
     height: 36px;
+  }
+  div#mover {
+    margin: 12px auto 0;
+    width: 64%;
+  }
+  div#mover div:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
+  div#mover div.unavailable {
+    opacity: 0.5;
+  }
+  div#mover div.unavailable:hover {
+    background-color: #fff;
+    cursor: default;
+  }
+  div#mover code {
+    width: 72%;
   }
   div#codeHere p.codeInComment {
     display: block;
