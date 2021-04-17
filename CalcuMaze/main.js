@@ -13,84 +13,138 @@
 		can.width=(Math.floor(winSize[2]/12)-2)*12;
 		can.height=(Math.floor(winSize[2]/12)-2)*12;
 	}
-	let mazeSize;
-	let bitSize;
+	let mazeSize, bitSize;
 	// console.log(winSize);
 	// console.log(can.width);
 
 	// ctx.fillStyle='pink';
 	// ctx.fillRect(0,0,winSize[0],winSize[1]);
 
-	let maze=[];
-	let whites=[];
-	let r;
-	let result;
-	let history=[''];
-	let dHis;
-	let done=false;
-	let position;
-	let sum=0;
-	// let 
-	let time=[];
+	let maze=[], whites=[], r, result, history=[''], dHis, done=false, position, sum=0, time=[], code='', decision, phase=0;
 	let alpha=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 	// abcdefghij / klmnopqrst / uv / wxyz
-	let code='';
 
-	let decision;
+	for(let i=0; i<10; i++){
+		const addKeyEmpty=document.createElement('div');
+		addKeyEmpty.classList.add('keyEmpty');
+		if(i>3){
+			addKeyEmpty.classList.add('landscape');
+		}
+		document.getElementById('keyboard').appendChild(addKeyEmpty);
+	}
+	const addKeyDel=document.createElement('div');
+	addKeyDel.setAttribute('id','keyDel');
+	addKeyDel.textContent='< x';
+	document.getElementById('keyboard').appendChild(addKeyDel);
+	for(let i=0; i<10; i++){
+		const addKey=document.createElement('div');
+		addKey.setAttribute('id',`key${[1,2,3,4,5,6,7,8,9,0][i]}`);
+		addKey.textContent=[1,2,3,4,5,6,7,8,9,0][i];
+		document.getElementById('keyboard').appendChild(addKey);
+	}
 
 	document.getElementById('askSize').focus();
 	document.getElementById('returnSize').addEventListener('click',()=>{
 		mazeSize=parseInt(document.getElementById('askSize').value,10);
 		if([1,2,3,4,5,6,7,8,9,10].indexOf(mazeSize)>-1){
-			code=alpha[10*Math.floor(Math.random()*2)+mazeSize-1];
-			mazeSize=2*(mazeSize+2)+1;
-			bitSize=can.width/mazeSize;
-			document.getElementById('starting').classList.add('none');
-			for(let i=0; i<mazeSize**2; i++){
-				maze.push(false);
-			}
-			whites=[(2*Math.floor(Math.random()*Math.floor(mazeSize/2))+1)*mazeSize+2*Math.floor(Math.random()*Math.floor(mazeSize/2))+1];
-			maze[whites[0]]=true;
-			// maze[whites[0]]=1;
-			// console.log(whites, Math.floor(whites[0]/mazeSize), whites[0]%mazeSize);
-			repeat(null);
-
-			// console.log(maze);
-			for(let i=1; i<mazeSize-1; i++){
-				for(let j=1; j<mazeSize-1; j++){
-					if(i%2==0){
-						code+=[alpha[j-1],''][[true,false].indexOf(maze[i*mazeSize+j])];
-					}else{
-						if(j%2==0){
-							code+=['',alpha[10*Math.floor(Math.random()*2)]][[true,false].indexOf(maze[i*mazeSize+j])];
-						}else if((i!=1 || j!=1) && (i!=mazeSize-2 || j!=mazeSize-2)){
-							code+=alpha[10*Math.floor(Math.random()*2)+maze[i*mazeSize+j]];
-						}
-					}
-				}
-				code+=alpha[23+Math.floor(Math.random()*3)];
-			}
-			drawOnConsole();
-			position=mazeSize+1;
-			findBranch(position);
-
-			// console.log(dHis);
-			position=mazeSize+1;
-			for(let i=0; i<dHis.length-1; i++){
-				position+=[(-2)*mazeSize,2,2*mazeSize,-2][dHis.charAt(i)];
-				sum+=maze[position];
-			}
-			// console.log(sum);
-
-			document.getElementById('table').classList.remove('none');
-			document.getElementById('answering').classList.remove('none');
-			document.getElementById('answerSum').focus();
-			time.push(Date.now());
+			prepareMaze();
 		}else{
 			document.getElementById('chui').innerHTML='迷路の大きさ<span style="color:#f00;font-weight:bold;">(半角1~10)</span>';
 			document.getElementById('askSize').focus();
 		}
 	})
+
+	document.getElementById('askSize').addEventListener('keyup',(e)=>{
+		if(e.key=="Enter"){
+			let active=[document.getElementById('askSize'), document.activeElement];
+			if(active[0]==active[1]){
+				mazeSize=parseInt(document.getElementById('askSize').value,10);
+				prepareMaze();
+			}
+		}
+	})
+	document.getElementById('askSize').addEventListener('keyup',(e)=>{
+		if(['1','2','3','4','5','6','7','8','9','10'].indexOf(askSize.value)>-1){
+			document.getElementById('returnSize').classList.add('available');
+			document.getElementById('chui').innerHTML='迷路の大きさ(半角1~10)';
+		}else{
+			document.getElementById('returnSize').classList.remove('available');
+			if(askSize.value.length>0){
+				document.getElementById('chui').innerHTML='迷路の大きさ<span style="color:#f00;font-weight:bold;">(半角1~10)</span>';
+			}else{
+				document.getElementById('chui').innerHTML='迷路の大きさ(半角1~10)';
+			}
+		}
+	})
+
+	document.getElementById('codeHere').addEventListener('paste',()=>{
+		setTimeout(() => {
+			if(codeHere.value.length>0){
+				document.getElementById('returnCode').classList.add('available');
+			}else{
+				document.getElementById('returnCode').classList.remove('available');
+			}
+		}, 50);
+	})
+	document.getElementById('codeHere').addEventListener('keyup',(e)=>{
+		if(codeHere.value.length>0){
+			document.getElementById('returnCode').classList.add('available');
+		}else{
+			document.getElementById('returnCode').classList.remove('available');
+		}
+	})
+
+	document.getElementById('returnCode').addEventListener('click',()=>{
+		if(document.getElementsByClassName('available').length>0){
+			solveCode(codeHere.value);
+		}
+	})
+
+	function prepareMaze(){
+		code=alpha[10*Math.floor(Math.random()*2)+mazeSize-1];
+		mazeSize=2*(mazeSize+2)+1;
+		bitSize=can.width/mazeSize;
+		document.getElementById('starting').classList.add('none');
+		for(let i=0; i<mazeSize**2; i++){
+			maze.push(false);
+		}
+		whites=[(2*Math.floor(Math.random()*Math.floor(mazeSize/2))+1)*mazeSize+2*Math.floor(Math.random()*Math.floor(mazeSize/2))+1];
+		maze[whites[0]]=true;
+		// maze[whites[0]]=1;
+		// console.log(whites, Math.floor(whites[0]/mazeSize), whites[0]%mazeSize);
+		repeat(null);
+		// console.log(maze);
+		for(let i=1; i<mazeSize-1; i++){
+			for(let j=1; j<mazeSize-1; j++){
+				if(i%2==0){
+					code+=[alpha[j-1],''][[true,false].indexOf(maze[i*mazeSize+j])];
+				}else{
+					if(j%2==0){
+						code+=['',alpha[10*Math.floor(Math.random()*2)]][[true,false].indexOf(maze[i*mazeSize+j])];
+					}else if((i!=1 || j!=1) && (i!=mazeSize-2 || j!=mazeSize-2)){
+						code+=alpha[10*Math.floor(Math.random()*2)+maze[i*mazeSize+j]];
+					}
+				}
+			}
+			code+=alpha[23+Math.floor(Math.random()*3)];
+		}
+		// drawOnConsole();
+		position=mazeSize+1;
+		findBranch(position);
+		// console.log(dHis);
+		position=mazeSize+1;
+		for(let i=0; i<dHis.length-1; i++){
+			position+=[(-2)*mazeSize,2,2*mazeSize,-2][dHis.charAt(i)];
+			sum+=maze[position];
+		}
+		// console.log(sum);
+
+		document.getElementById('table').classList.remove('none');
+		document.getElementById('answering').classList.remove('none');
+		document.getElementById('answerSum').value='';
+		phase=1;
+		time.push(Date.now());
+	}
 
 	function repeat(condition){
 		if(condition==null){
@@ -277,17 +331,41 @@
 			}
 			pile+='\n';
 		}
-		// console.log(pile);
+		console.log(pile);
 	}
 
-	document.getElementById('returnSum').addEventListener('click',()=>{
-		returnSum();
+	for(let i=0; i<10; i++){
+		document.getElementById(`key${[1,2,3,4,5,6,7,8,9,0][i]}`).addEventListener('click',()=>{
+			document.getElementById('answerSum').value+=`${[1,2,3,4,5,6,7,8,9,0][i]}`;
+		})
+	}
+	document.getElementById('keyDel').addEventListener('click',()=>{
+		let answer=[answerSum.value,''];
+		for(let i=0; i<answer[0].length-1; i++){
+			answer[1]+=answer[0].charAt(i);
+		}
+		answerSum.value=answer[1];
 	})
 	document.addEventListener('keydown',(e)=>{
 		let active=[document.getElementById('answerSum'),document.activeElement];
-		if(e.key=="Enter" && active[0]==active[1]){
+		if(['1','2','3','4','5','6','7','8','9','0'].indexOf(e.key)>-1){
+			if(active[0]!=active[1]){
+				document.getElementById('answerSum').value+=e.key;
+			}
+		}else if(e.key=="Backspace"){
+			if(active[0]!=active[1]){
+				let answer=[answerSum.value,''];
+				for(let i=0; i<answer[0].length-1; i++){
+					answer[1]+=answer[0].charAt(i);
+				}
+				answerSum.value=answer[1];
+			}
+		}else if(e.key=="Enter"){
 			returnSum();
 		}
+	})
+	document.getElementById('returnSum').addEventListener('click',()=>{
+		returnSum();
 	})
 
 	function returnSum(){
@@ -314,31 +392,15 @@
 			document.getElementById('result').classList.remove('none');
 			// console.log(code);
 			document.getElementById('code').textContent=code;
+		}else{
+			if(phase==1){
+				document.getElementById('answerSum').classList.add('incorrect');
+				document.getElementById('answerSum').addEventListener('animationend',(e)=>{
+					document.getElementById('answerSum').classList.remove('incorrect');
+				})
+			}
 		}
 	}
-
-	document.getElementById('codeHere').addEventListener('paste',()=>{
-		setTimeout(() => {
-			if(codeHere.value.length>0){
-				document.getElementById('returnCode').classList.add('available');
-			}else{
-				document.getElementById('returnCode').classList.remove('available');
-			}
-		}, 50);
-	})
-	document.getElementById('codeHere').addEventListener('keyup',(e)=>{
-		if(codeHere.value.length>0){
-			document.getElementById('returnCode').classList.add('available');
-		}else{
-			document.getElementById('returnCode').classList.remove('available');
-		}
-	})
-
-	document.getElementById('returnCode').addEventListener('click',()=>{
-		if(document.getElementsByClassName('available').length>0){
-			solveCode(codeHere.value);
-		}
-	})
 
 	function solveCode(code){
 		document.getElementById('starting').classList.add('none');

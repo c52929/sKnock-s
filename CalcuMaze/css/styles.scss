@@ -63,17 +63,24 @@ div#starting{
 	h1{
 		margin: 12px 0;
 	}
-	p.or{
-		font-size: 24px;
-		margin: 18px auto;
+	p{
+		&#chui{
+			margin: 8px 0 0;
+		}
+		&.or{
+			font-size: 24px;
+			margin: 18px auto;
+		}
 	}
 	input#codeHere{
 		width:54%;
 	}
-	input#returnCode{
+	input[type="submit"]{
 		background-color:#a1a499;
+		cursor: default;
 		&.available{
 			background-color:#c52929;
+			cursor: pointer;
 		}
 	}
 }
@@ -84,6 +91,45 @@ div#answering{
 	flex-wrap: wrap;
 	margin: 12px auto 0;
 	width:100%;
+	input.input-text{
+		background-color: #fff;
+		&.incorrect{
+			animation-name: incorrect;
+			animation-duration: 0.75s;
+			animation-timing-function: ease-out;
+			animation-fill-mode: forwards;
+		}
+	}
+	div.keyboard{
+		width: 96%;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		margin: 8px 0 0;
+		div{
+			border:1px solid #a1a499;
+			box-sizing: border-box;
+			margin: 4px 2px 2px;
+			padding: 4px 5px 3px;
+			text-align: center;
+			width:18%;
+			&.keyEmpty{
+				border: none;
+				opacity: 0;
+				&.landscape{
+					display: none;
+				}
+			}
+		}
+	}
+}
+@keyframes incorrect{
+	from{
+		background-color: #f00;
+	}
+	to{
+		background-color: #fff;
+	}
 }
 div#result{
 	display: flex;
@@ -93,6 +139,7 @@ div#result{
 		padding: 0 6px;
 		&#resultTime{
 			text-align: center;
+			margin: 0 0 4px;
 			width: 100%;
 		}
 	}
@@ -154,7 +201,6 @@ table#table{
 		div#answering,
 		div#result{
 			align-items: center;
-			height:4.8em;
 			margin: auto;
 			width:40%;
 			p{
@@ -182,6 +228,22 @@ table#table{
 		display: block;
 		div#answering,
 		div#result{
+			div.keyboard div{
+				width:8%;
+				&:hover{
+					background-color: #e5e5e5;
+					cursor: pointer;
+				}
+				&.keyEmpty{
+					&.landscape{
+						display: block;
+					}
+					&:hover{
+						cursor: auto;
+						background-color: transparent;
+					}
+				}
+			}
 			height: unset;
 			margin: 12px auto;
 			width:48%;
