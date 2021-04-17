@@ -72,6 +72,10 @@ div#starting h1 {
   margin: 12px 0;
 }
 
+div#starting p#chui {
+  margin: 8px 0 0;
+}
+
 div#starting p.or {
   font-size: 24px;
   margin: 18px auto;
@@ -81,12 +85,14 @@ div#starting input#codeHere {
   width: 54%;
 }
 
-div#starting input#returnCode {
+div#starting input[type="submit"] {
   background-color: #a1a499;
+  cursor: default;
 }
 
-div#starting input#returnCode.available {
+div#starting input[type="submit"].available {
   background-color: #c52929;
+  cursor: pointer;
 }
 
 div#answering {
@@ -96,6 +102,52 @@ div#answering {
   flex-wrap: wrap;
   margin: 12px auto 0;
   width: 100%;
+}
+
+div#answering input.input-text {
+  background-color: #fff;
+}
+
+div#answering input.input-text.incorrect {
+  animation-name: incorrect;
+  animation-duration: 0.75s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+div#answering div.keyboard {
+  width: 96%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 8px 0 0;
+}
+
+div#answering div.keyboard div {
+  border: 1px solid #a1a499;
+  box-sizing: border-box;
+  margin: 4px 2px 2px;
+  padding: 4px 5px 3px;
+  text-align: center;
+  width: 18%;
+}
+
+div#answering div.keyboard div.keyEmpty {
+  border: none;
+  opacity: 0;
+}
+
+div#answering div.keyboard div.keyEmpty.landscape {
+  display: none;
+}
+
+@keyframes incorrect {
+  from {
+    background-color: #f00;
+  }
+  to {
+    background-color: #fff;
+  }
 }
 
 div#result {
@@ -110,6 +162,7 @@ div#result p {
 
 div#result p#resultTime {
   text-align: center;
+  margin: 0 0 4px;
   width: 100%;
 }
 
@@ -174,7 +227,6 @@ table#table tr td.selected {
   div.gaming div#answering,
   div.gaming div#result {
     align-items: center;
-    height: 4.8em;
     margin: auto;
     width: 40%;
   }
@@ -211,6 +263,24 @@ table#table tr td.selected {
     height: unset;
     margin: 12px auto;
     width: 48%;
+  }
+  div.gaming div#answering div.keyboard div,
+  div.gaming div#result div.keyboard div {
+    width: 8%;
+  }
+  div.gaming div#answering div.keyboard div:hover,
+  div.gaming div#result div.keyboard div:hover {
+    background-color: #e5e5e5;
+    cursor: pointer;
+  }
+  div.gaming div#answering div.keyboard div.keyEmpty.landscape,
+  div.gaming div#result div.keyboard div.keyEmpty.landscape {
+    display: block;
+  }
+  div.gaming div#answering div.keyboard div.keyEmpty:hover,
+  div.gaming div#result div.keyboard div.keyEmpty:hover {
+    cursor: auto;
+    background-color: transparent;
   }
   div.gaming div#answering p,
   div.gaming div#result p {

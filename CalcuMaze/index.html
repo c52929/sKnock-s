@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="とんでもなくくだらないゲームができてしまいました。供養します">
+	<meta name="description" content="とんでもなくおもろくないゲームができてしまいました。供養します">
 	<title>CalcuMaze</title>
 	<link rel="icon" href="icon.png">
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -19,7 +19,7 @@
 		</div>
 		<div id="starting">
 			<h1>CalcuMaze</h1>
-			<p>迷路のスタート<span style="color:#222;font-weight:bold;font-size:1.05em;">|</span><span style="color:#0a5;font-weight:bold;font-size:1.05em;">&gt;</span> からゴール<span style="background-color:#fc0;color:#f00;font-weight:bold;padding:0 2px;font-size:1.05em;">G</span> までにある数字をすべて足して答えるゲームです。</p>
+			<p>迷路のスタート<span style="color:#777;font-weight:bold;font-size:1.05em;">|</span><span style="color:#0a5;font-weight:bold;font-size:1.05em;">&gt;</span> からゴール<span style="background-color:#fc0;color:#f00;font-weight:bold;padding:0 2px;font-size:1.05em;">G</span> までにある数字をすべて足して答えるゲームです。</p>
 			<p id="chui">迷路の大きさ(半角1~10)</p>
 			<input type="text" name="mazeSize" id="askSize" class="input-text">
 			<input type="submit" value="Start" id="returnSize" class="input-submit">
@@ -33,6 +33,7 @@
 				<p>SUM 合計</p>
 				<input type="text" name="sum" id="answerSum" class="input-text">
 				<input type="submit" id="returnSum" class="input-submit" value="Return">
+				<div class="keyboard" id="keyboard"></div>
 			</div>
 			<div id="result" class="none">
 				<p id="resultTime"></p>
