@@ -20,15 +20,21 @@
 	text-align: center;
 	padding: 4px;
 	margin: 0;
+	&.changeRubyAvailable{
+		border-bottom: 4px solid #0a5;
+	}
 	p#qNum{
 		color:#2c84cc;
 		margin:0 4px;
 	}
 	p#question{
 		font-size: 9.6vw;
+		span.qPoint{
+			text-decoration: underline;
+		}
 	}
 }
-.selects{
+#selects{
 	background-color: #f1f1f1;
 	border:1px solid #a1a499;
 	border-radius: 5px;
@@ -93,7 +99,7 @@
 		background-color: #2c84cc;
 	}
 }
-.buttons{
+#buttons{
 	display: flex;
 	justify-content: space-around;
 	.input-submit{
@@ -111,12 +117,34 @@
 	.wall p#question{
 		font-size: 24px;
 	}
-	.buttons .input-submit.startButton{
+	#buttons .input-submit.startButton{
 		font-size: 18px;
 	}
 }
 @media(min-width:768px){
-	
+	.wall.changeRubyAvailable:hover{
+		background-color: #555;
+		cursor: pointer;
+	}
+	#selects .select:hover{
+		background-color: #e5e5e5;
+		cursor: pointer;
+		&.selected{
+			background-color: #fda;
+		}
+		&.correct{
+			background-color: #a8dba8;
+		}
+		&.incorrect{
+			background-color: #f38181;
+		}
+		&.nothing{
+			background-color: #ddd;
+		}
+		&.wascorrect{
+			border:2px solid #0c1;
+		}
+	}
 }
 
 .transparent{
