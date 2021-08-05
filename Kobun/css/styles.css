@@ -122,12 +122,13 @@
 #buttons {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 #buttons .input-submit {
   padding: 4px 0;
   box-sizing: border-box;
-  width: 28%;
+  width: 48%;
 }
 
 #buttons .input-submit.startButton {
@@ -144,6 +145,9 @@
 }
 
 @media (min-width: 768px) {
+  #buttons .input-submit {
+    width: 20%;
+  }
   .wall.changeRubyAvailable:hover {
     background-color: #555;
     cursor: pointer;
