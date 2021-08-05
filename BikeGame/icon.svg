@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="120.0px"
+   height="120.0px"
+   viewBox="0 0 120.0 120.0"
+   version="1.1"
+   id="SVGRoot"
+   sodipodi:docname="icon.svg"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview110"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="4.3583333"
+     inkscape:cx="26.042065"
+     inkscape:cy="60"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid116" />
+  </sodipodi:namedview>
+  <defs
+     id="defs105" />
+  <g
+     inkscape:label="レイヤー 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       fill="currentColor"
+       d="m 71.428976,37.543149 a 6.8031496,6.8031496 0 1 0 -6.80315,-6.80315 6.8031496,6.8031496 0 0 0 6.80315,6.80315 z m -0.56693,17.149607 a 4.5212598,4.5212598 0 0 0 2.834646,0.992126 h 9.070866 a 4.535433,4.535433 0 0 0 0,-9.070866 H 75.286927 L 65.192754,38.535275 a 4.5269292,4.5269292 0 0 0 -5.784094,0.09638 L 43.534644,52.237952 a 4.535433,4.535433 0 0 0 0.436536,7.217008 l 11.58378,7.727244 V 82.89748 a 4.535433,4.535433 0 0 0 9.070866,0 V 64.755748 A 4.535433,4.535433 0 0 0 62.606139,60.982834 L 56.744094,57.075276 65,50 Z m 16.440945,5.527558 A 18.141732,18.141732 0 1 0 105.44472,78.362046 18.141732,18.141732 0 0 0 87.302991,60.220314 Z m 0,27.212598 a 9.070866,9.070866 0 1 1 9.070865,-9.070866 9.070866,9.070866 0 0 1 -9.070865,9.070866 z M 32.877794,60.220314 A 18.141732,18.141732 0 1 0 51.019526,78.362046 18.141732,18.141732 0 0 0 32.877794,60.220314 Z m 0,27.212598 a 9.070866,9.070866 0 1 1 9.070866,-9.070866 9.070866,9.070866 0 0 1 -9.070866,9.070866 z"
+       id="path157"
+       style="stroke-width:0.141732" />
+  </g>
+</svg>
