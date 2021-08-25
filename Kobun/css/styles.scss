@@ -92,6 +92,17 @@
 		border:none;
 		padding:0;
 	}
+	&#jissenQ{
+		background-color: #2c84cc;
+		display: block;
+		margin: 48px auto;
+		padding: 8px;
+		text-align: center;
+		width:50%;
+		&:hover{
+			background-color: #1c74bc;
+		}
+	}
 }
 #return{
 	display: block;
