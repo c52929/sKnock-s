@@ -38,7 +38,7 @@
 #hangImage{
 	display: block;
 	margin: 0 auto;
-	height:50vh;
+	height:48vh;
 	object-fit: contain;
 }
 #buttons{
@@ -50,6 +50,7 @@
 	z-index: 28;
 	.input-submit{
 		color:#fff;
+		cursor: pointer;
 		font-size: 8.4vw;
 		width:54%;
 		margin: 12px auto 8px;
@@ -262,25 +263,62 @@
 	}
 }
 @media(min-width:768px){
-	#alphabets{
-		width:64%;
-		.alphabet{
-			width:12%;
-			margin: 4px;
-			font-size: 3.6vw;
-			&.guessed{
+	.game{
+		display: flex;
+		#hangImage{
+			box-sizing: border-box;
+			margin: 0;
+			width:36%;
+			height: 64vh;
+		}
+		#alphabets{
+			box-sizing: border-box;
+			position: unset;
+			transform: unset;
+			width:54%;
+			margin-right:0;
+			.alphabet{
+				font-size: 3.6vw;
+				margin-bottom: 12px;
+				width:12%;
+				&.guessed{
+					&:hover{
+						cursor:default;
+						background-color: #fff;
+						color:#ccc;
+						border:1px dotted #e5e5e5;
+					}
+				}
 				&:hover{
-					cursor:default;
-					background-color: #fff;
-					color:#ccc;
-					border:1px dotted #e5e5e5;
+					cursor: pointer;
+					background-color: #07f;
+					color:#fff;
+					border:1px solid #0af;
 				}
 			}
-			&:hover{
-				cursor: pointer;
-				background-color: #07f;
-				color:#fff;
-				border:1px solid #0af;
+		}
+	}
+	#buttons .input-submit{
+		font-size: 3.2vw;
+		width: 30%;
+	}
+	#searchMenu{
+		width: 84%;
+		h1{
+			font-size: 5.4vw;
+			margin-bottom: 18px;
+		}
+		#closeMenu{
+			cursor: pointer;
+			border-radius: 0 4px 0 0;
+			line-height:3.6vw;
+			height:3.6vw;
+			width:3.6vw;
+		}
+		.site{
+			width:30%;
+			p{
+				font-size: 2.4vw;
 			}
 		}
 	}
