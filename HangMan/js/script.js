@@ -85,7 +85,7 @@
 					document.getElementById('hangImage').setAttribute('alt',`Lives ${lives}`);
 					if(missed==6){
 						document.getElementById('continueBlack').classList.add('show');
-						document.getElementById('alphabets').classList.add('none');
+						document.getElementById('alphabets').classList.add('transparent');
 						document.getElementById('buttonContinue').classList.remove('none');
 					}
 				}
@@ -104,7 +104,7 @@
 		document.getElementById('hangImage').removeAttribute('alt');
 		document.getElementById('hangImage').setAttribute('alt',`Lives [ ♡ ♡ ♡ ♡ ♡ ♡ ]`);
 		document.getElementById('buttonContinue').classList.add('none');
-		document.getElementById('alphabets').classList.remove('none');
+		document.getElementById('alphabets').classList.remove('transparent');
 		document.getElementById('continueBlack').classList.remove('show');
 	})
 
@@ -120,7 +120,7 @@
 		document.getElementById('question').textContent=answer[0];
 		if(asterisks==0){
 			document.getElementById('correctCircle').classList.add('show');
-			document.getElementById('alphabets').classList.add('none');
+			document.getElementById('alphabets').classList.add('transparent');
 			document.getElementById('buttonSearch').classList.remove('none');
 			document.getElementById('buttonAgain').classList.remove('none');
 			document.getElementById('searchTitle').innerHTML=`Search <b>"${answer[0]}"</b>`;
@@ -153,7 +153,7 @@
 		}
 		document.getElementById('buttonSearch').classList.add('none');
 		document.getElementById('buttonAgain').classList.add('none');
-		document.getElementById('alphabets').classList.remove('none');
+		document.getElementById('alphabets').classList.remove('transparent');
 		words.splice(words.indexOf(answer[0]),1);
 		if(words.length<1){
 			getWordsData();
