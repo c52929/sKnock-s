@@ -1,7 +1,7 @@
 'use strict';
 {
-	const selAll=document.getElementById('sellectAll');
-	const rangeForm=document.sellectRange.range;
+	const selAll=document.getElementById('selectAll');
+	const rangeForm=document.selectRange.range;
 	let checkCondition=[];
 	let active, ans, correct, info, r, supplement, saveValue;
 	let qNum=[], hint=[], cheat=[], againSentences=[], againChoices=[];
@@ -33,7 +33,7 @@
 
 	document.getElementById('startButton').addEventListener('click',()=>{
 		if(checkCondition.indexOf(true)>-1){
-			document.sellectRange.classList.add('none');
+			document.selectRange.classList.add('none');
 			document.getElementById('startButton').classList.add('none');
 			document.getElementById('title').classList.add('none');
 			document.getElementById('QandA').classList.remove('none');
@@ -130,7 +130,7 @@
 				for(let i=0; i<rangeForm.length; i++){
 					changeCheck(i,false);
 				}
-				document.getElementById('sellectRange').classList.remove('none');
+				document.getElementById('selectRange').classList.remove('none');
 				document.getElementById('startButton').classList.remove('none','enable');
 				document.getElementById('hint').classList.add('none');
 			}
