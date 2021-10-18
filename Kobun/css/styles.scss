@@ -46,6 +46,7 @@
 	width:92%;
 	.select{
 		background-color: #fff;
+		border:2px solid #fff;
 		box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 		box-sizing: border-box;
 		text-align: center;
@@ -55,15 +56,19 @@
 		}
 		&.selected{
 			background-color: #fda;
+			border:2px solid #fda;
 		}
 		&.correct{
 			background-color: #a8dba8;
+			border:2px solid #a8dba8;
 		}
 		&.incorrect{
 			background-color: #f38181;
+			border:2px solid #f38181;
 		}
 		&.nothing{
 			background-color: #ddd;
+			border:2px solid #ddd;
 		}
 		&.wascorrect{
 			border:2px solid #0c1;
@@ -77,7 +82,7 @@
 	border:none;
 	border-radius:4px;
 	color:#fff;
-	cursor:pointer;
+	cursor: pointer;
 	display:inline-block;
 	font-size:24px;
 	margin:18px auto 4px;
@@ -91,6 +96,17 @@
 	&::-moz-foucus-inner{
 		border:none;
 		padding:0;
+	}
+	&#sb{
+		box-sizing: border-box;
+		display: block;
+		font-size: 5.4vw;
+		padding: 2px;
+		margin: 12px auto 4px;
+		width:48%;
+		&.unavailable{
+			background-color: #a1a499;
+		}
 	}
 	&#jissenQ{
 		background-color: #2c84cc;
@@ -110,16 +126,19 @@
 		background-color: #2c84cc;
 	}
 }
-#buttons{
-	display: flex;
-	justify-content: space-around;
-	flex-wrap: wrap;
-	.input-submit{
-		padding: 4px 0;
+form.qSelect{
+	p{
+		background-color: #fe7;
+		border-left:10px solid #f60;
 		box-sizing: border-box;
-		width:48%;
-		&.startButton{
-			font-size: 5.4vw;
+		font-weight: bold;
+		padding:3px 0 0 6px;
+		margin: 12px 12px 4px 12px;
+	}
+	input[type="checkbox"]{
+		margin: 18px 4px 12px 32px;
+		&.indent{
+			margin: 0 4px 0 32px;
 		}
 	}
 }
@@ -134,9 +153,42 @@
 	}
 }
 @media(min-width:768px){
-	#buttons{
-		.input-submit{
-			width:20%;
+	form.qSelect{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		margin: 0 auto;
+		width:50%;
+		div{
+			&.landscape0{
+				text-align: center;
+				width:100%;
+				input[type="checkbox"]{
+					margin-left:0;
+				}
+			}
+			&.landscape1,
+			&.landscape2{
+				width:50%;
+				input[type="checkbox"]{
+					margin: 20px 4px 12px 32px;
+					&.indent{
+						margin: 0 4px 0 32px;
+					}
+				}
+			}
+		}
+	}
+	.input-submit#sb{
+		font-size: 20px;
+		margin:12px auto 0;
+		width:24%;
+		&:hover{
+			color: #ff0;
+		}
+		&.unavailable{
+			color:#fff;
+			cursor: default;
 		}
 	}
 	.wall.changeRubyAvailable:hover{
@@ -145,20 +197,26 @@
 	}
 	#selects .select:hover{
 		background-color: #e5e5e5;
+		border:2px solid #e5e5e5;
 		cursor: pointer;
 		&.selected{
 			background-color: #fda;
+			border:2px solid #fda;
 		}
 		&.correct{
 			background-color: #a8dba8;
+			border:2px solid #a8dba8;
 		}
 		&.incorrect{
 			background-color: #f38181;
+			border:2px solid #f38181;
 		}
 		&.nothing{
 			background-color: #ddd;
+			border:2px solid #ddd;
 		}
 		&.wascorrect{
+			background-color: #fff;
 			border:2px solid #0c1;
 		}
 	}
