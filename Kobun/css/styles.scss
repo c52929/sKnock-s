@@ -47,10 +47,11 @@
 	.select{
 		background-color: #fff;
 		border:2px solid #fff;
+		border-radius: 3px;
 		box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 		box-sizing: border-box;
 		text-align: center;
-		padding: 0.8em 4px;
+		padding: 0.64em 4px;
 		&:not(:last-child){
 			margin-bottom: 0.8em;
 		}
@@ -102,7 +103,7 @@
 		display: block;
 		font-size: 5.4vw;
 		padding: 2px;
-		margin: 12px auto 4px;
+		margin: 12px auto;
 		width:48%;
 		&.unavailable{
 			background-color: #a1a499;
