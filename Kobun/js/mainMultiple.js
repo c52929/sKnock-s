@@ -2,7 +2,7 @@
 {
 	let words, meanings, rew, rem, allMeanings, hideMeanings;
 	let rs=[], selects, qNum, selected, ideal, jokyo, mode, showRuby, getRuby;
-	let ,bengiW,bengiM;
+	let bengiW,bengiM;
 
 	function newQuestion(){
 		// console.log(words);
