@@ -54,6 +54,8 @@
 		}
 		selects.push(hokan);
 		ideal.push(true);
+		// console.log(bengiW[0],bengiM[0]);
+		// console.log(bengiW[7],bengiM[7]);
 		for(let i=0; i<8; i++){
 			if(bengiW[i].indexOf(words[rs[0]])>-1){
 				rs[1]=i;
@@ -298,7 +300,8 @@
 			document.getElementById('sb').classList.add('none');
 			document.getElementById('selects').classList.remove('none');
 			document.getElementById('return').classList.remove('none');
-			reset(sedQ);
+			reset(sedQ,"(^0^)/ { ﾑｽﾞｶｯﾀﾖ!!)");
+			reset(1,1);
 			newQuestion();
 		}
 	})
@@ -354,8 +357,16 @@
 		// 実践問題
 	// })
 
-	function reset(sedQ){
-		words=[], meanings=[], bengiW=[[],[],[],[],[],[],[]], bengiM=[[],[],[],[],[],[],[]];
+	function reset(sedQ,orz){
+		bengiW=[[],[],[],[],[],[],[],[]], bengiM=[[],[],[],[],[],[],[],[]];
+		if(orz==1){
+			sedQ=["(^0^)/ { ｺﾝﾅﾝｷﾂﾞｸｶ!!)"];
+			for(let i=1; i<=25; i++){
+				sedQ.push(true);
+			}
+		}else{
+			words=[], meanings=[];
+		}
 		if(sedQ[1]){
 			bengiW[0].push("驚:おどろ;く","ののしる","念:ねん;ず","覚:おぼ;ゆ","忍:しの;ぶ","眺:なが;む","見:み;ゆ","あふ","居:ゐ;る","歩:あり;く","飽:あ;く","飽:あ;かず");
 			bengiM[0].push("気づく/目を覚ます","大騒ぎする/評判になる","祈る/がまんする","思われる/似る/思い出される","がまんする/人目を避ける","もの思いに沈む/ぼんやり見る","見える/姿を見せる/見られる","結婚する","座る/～ている","動き回る/(～して)まわる/(～し)続ける","満足する","満ち足りない");
@@ -456,12 +467,16 @@
 			bengiW[7].push("いとしもなし","数:かず;ならず","{如何}{いか}にぞや","さればよ・さればこそ","世の常なり","ただならず","物:もの;も覚:おぼ;えず","人:ひと;遣:や;りならず","又:また;の日:ひ;","～あへず");
 			bengiM[7].push("たいしたことはない","取るに足りない","あまり感心しない","思った通りだ","ありきたりだ/月並みな表現だ","様子が普通ではない/心が平静ではない/妊娠する","呆然としている/道理をわきまえない","他のせいではなく、自分の心からする","翌日","最後まで～しきれない");
 		}
-		for(let i=0; i<7; i++){
-			for(let j=0; j<bengiW[i].length; j++){
-				words.push(bengiW[i][j]);
-				meanings.push(bengiM[i][j]);
+		if(orz!=1){
+			for(let i=0; i<8; i++){
+				for(let j=0; j<bengiW[i].length; j++){
+					words.push(bengiW[i][j]);
+					meanings.push(bengiM[i][j]);
+				}
 			}
+			// console.log(words);
 		}
+		// console.log(words);
 
 		rew=[];
 		rem=[];
