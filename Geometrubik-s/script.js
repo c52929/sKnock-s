@@ -88,6 +88,11 @@
 	window.onresize=windowLoad;
 	function windowLoad(){
 		winSize=[window.innerWidth,window.innerHeight];
+		if(winSize[0]>768){
+			document.getElementById('sorryPC').classList.remove("none");
+		}else{
+			document.getElementById('sorryPC').classList.add("none");
+		}
 	}
 
 	let oneSpot=document.getElementsByClassName('color');
