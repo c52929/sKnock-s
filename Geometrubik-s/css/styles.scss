@@ -181,6 +181,17 @@ table{
 				}
 			}
 		}
+		&:nth-of-type(2),
+		&:nth-of-type(3),
+		&:nth-of-type(8),
+		&:nth-of-type(9),
+		&:nth-of-type(11),
+		&:nth-of-type(12){
+			td:nth-of-type(1){
+				border-left:2px solid #000;
+			}
+		}
+		
 		&:nth-of-type(3),
 		&:nth-of-type(12){
 			td{
@@ -241,6 +252,9 @@ table{
 		}
 	}
 }
+#sorryPC{
+	display: none;
+}
 
 
 @media(orientation:landscape){
@@ -277,6 +291,20 @@ table{
 		i{
 			cursor: pointer;
 		}
+	}
+	#sorryPC{
+		background: #fff;
+		border:1px solid #a1a499;
+		display: block;
+		font-size: 24px;
+		font-family: 'Yu Gothic', 'Hiragino Kaku Gothic ProN', sans-serif; ;
+		padding: 8px;
+		position:fixed;
+		left:50%;
+		top:50%;
+		transform: translate(-50%,-50%);
+		width: 50vw;
+		z-index: 1;
 	}
 	#hamburger_menu{
 		h1{
