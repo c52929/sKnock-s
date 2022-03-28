@@ -12,6 +12,7 @@
 }
 h1{
 	margin: 0.2em;
+	font-size: 1.8em;
 	text-align: center;
 }
 .input-text{
@@ -83,15 +84,24 @@ h1{
 // 	}
 // }
 
-.returned{
-	margin: 8px 8px 18px;
-	font-size: 1.2em;
-	overflow-wrap: break-word;
-	p{
-		font-size: 14.4px;
-		margin: 0;
-		color:#f00;
-		font-weight: bold;
+#codeWrapper{
+	margin-top: 12px;
+	#returnedNum{
+		background-color: #e5e5e5;
+		box-sizing: border-box;
+		color:#282523;
+		display: block;
+		font-size: 1.2em;
+		margin: 8px 8px 18px;
+		overflow-x: scroll;
+		padding: 0 4px;
+		width: 84%;
+		// p{
+		// 	font-size: 14.4px;
+		// 	margin: 0;
+		// 	color:#f00;
+		// 	font-weight: bold;
+		// }
 	}
 }
 
@@ -107,20 +117,22 @@ h1{
 }
 @media(min-width:768px){
 	h1{
-		text-align: left;
+		font-size: 2em;
 		margin: 4px 12px 6px;
+		text-align: left;
 	}
 	.input-text{
 		font-size: 1em;
-		width:14em;
+		width:18em;
 	}
 	.input-submit{
 		font-size: 1em;
 	}
-	.returned{
-		font-size: 32px;
-		p{
-			font-size: 18px;
+	#codeWrapper{
+		margin-top: 20px;
+		#returnedNum{
+			font-size: 24px;
+			width: 40vw;
 		}
 	}
 	// #choose{
