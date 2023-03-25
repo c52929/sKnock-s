@@ -70,10 +70,6 @@
 		change(3,4,'b',true);
 		change(4,3,'b',true);
 		change(4,4,'w',true);
-		// change(3,3,'b',true);
-		// change(3,4,'w',true);
-		// change(4,3,'w',true);
-		// change(4,4,'b',true);
 		turn=0;
 		// drawOnconsole(board);
 	}
@@ -107,6 +103,7 @@
 		}
 		// console.log(r,possiposi);
 		if(possiposi.length==0){
+			code+="yz";
 			pass[0]=1;
 			if(pass[1]==1){
 				result(true);
@@ -149,6 +146,7 @@
 				myTurn();
 			}else{
 				pass[1]=1;
+				code+="yz";
 				if(pass[0]==1){
 					result(true);
 					return;
@@ -661,13 +659,19 @@
 		document.getElementById('comment').textContent=`YOU:${['Black','White'][pN]} - COM:${['Black','White'][1-pN]}`;
 		moves=[];
 		for(let i=2; i<2+(code.length-3)/2; i++){
-			moves.push([alph.indexOf(code.charAt(2*i-1))%8,alph.indexOf(code.charAt(2*i))%8]);
+			if(`${code.charAt(2*i-1)}${code.charAt(2*i)}`=="yz"){
+				passed.push(i-2);
+				moves.push("passed");
+			}else{
+				moves.push([alph.indexOf(code.charAt(2*i-1))%8,alph.indexOf(code.charAt(2*i))%8]);
+			}
 		}
 		// console.log(moves);
 	}
 
 	let move_num=0;
 	let copy;
+	let passed=[];
 	document.getElementById('mover1').addEventListener('click',()=>{
 		moveBack();
 	})
@@ -688,9 +692,13 @@
 
 	function moveBack(){
 		if(move_num>0){
+			move_num--;
+			if(passed.indexOf(move_num)>-1){
+				move_num--;
+			}
 			document.getElementById('mover2').classList.remove('unavailable');
 			document.getElementById('comment').textContent=`YOU:${['Black','White'][pN]} - COM:${['Black','White'][1-pN]}`;
-			move_num--;
+			// console.log(changeHistory);
 			board[changeHistory[move_num].charAt(0)][changeHistory[move_num].charAt(1)]='';
 			document.getElementById(`c${changeHistory[move_num].charAt(0)}-${changeHistory[move_num].charAt(1)}`).classList.remove(['b','w'][move_num%2]);
 			for(let i=1; i<changeHistory[move_num].length/2; i++){
@@ -705,26 +713,34 @@
 		if(move_num<moves.length){
 			document.getElementById('mover1').classList.remove('unavailable');
 			// console.log(move_num,changeHistory.length,move_num==changeHistory.length);
-			if(move_num==changeHistory.length){
-				copy=copy2dArray(board);
-				// drawOnconsole(copy);
-				// console.log(moves[move_num]);
-				add(moves[move_num][0],moves[move_num][1],['b','w'][move_num%2],true);
-				// drawOnconsole(board);
-				changeHistory.push(`${moves[move_num][0]}${moves[move_num][1]}${difference(copy,board,moves[move_num])}`);
+			if(passed.indexOf(move_num)>-1){
+				move_num++;
+				changeHistory.push("passed");
+				moveForward();
 			}else{
-				add(moves[move_num][0],moves[move_num][1],['b','w'][move_num%2],true);
-				// board[moves[move_num][0]][moves[move_num][1]]=['b','w'][move_num%2];
-				// document.getElementById(`c${changeHistory[move_num].charAt(0)}-${changeHistory[move_num].charAt(1)}`).classList.add(['b','w'][move_num%2]);
-				// for(let i=1; i<changeHistory[move_num].length/2; i++){
-				// 	change(changeHistory[move_num].charAt(2*i),changeHistory[move_num].charAt(2*i+1),['b','w'][move_num%2],true);
-				// }
-			}
-			move_num++;
-			// console.log(move_num,moves.length,move_num==moves.length);
-			if(move_num==moves.length){
-				document.getElementById('mover2').classList.add('unavailable');
-				result(false);
+				if(move_num==changeHistory.length){
+					copy=copy2dArray(board);
+					// drawOnconsole(copy);
+					// console.log(moves[move_num]);
+					add(moves[move_num][0],moves[move_num][1],['b','w'][move_num%2],true);
+					// drawOnconsole(board);
+					let diff=difference(copy,board,moves[move_num]);
+					// console.log(diff);
+					changeHistory.push(`${moves[move_num][0]}${moves[move_num][1]}${diff}`);
+				}else{
+					add(moves[move_num][0],moves[move_num][1],['b','w'][move_num%2],true);
+					// board[moves[move_num][0]][moves[move_num][1]]=['b','w'][move_num%2];
+					// document.getElementById(`c${changeHistory[move_num].charAt(0)}-${changeHistory[move_num].charAt(1)}`).classList.add(['b','w'][move_num%2]);
+					// for(let i=1; i<changeHistory[move_num].length/2; i++){
+					// 	change(changeHistory[move_num].charAt(2*i),changeHistory[move_num].charAt(2*i+1),['b','w'][move_num%2],true);
+					// }
+					move_num++;
+					// console.log(move_num,moves.length,move_num==moves.length);
+					if(move_num==moves.length){
+						document.getElementById('mover2').classList.add('unavailable');
+						result(false);
+					}
+				}
 			}
 		}
 	}
@@ -744,7 +760,7 @@
 
 	function secretCode(){
 		let r=[Math.floor(Math.random()*9)+1,Math.floor(Math.random()*10)];
-		r.push(1-(pN-(r[0]+r[1])%2)**2);
+		r.push(1-((pN-(r[0]+r[1])%2)**2));
 		let nums=[0,1,2,3,4,5,6,7,8,9];
 		for(let i=r[2]; i<10; i++){
 			nums.splice(i,1);
