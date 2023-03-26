@@ -103,11 +103,21 @@
 		}
 		// console.log(r,possiposi);
 		if(possiposi.length==0){
-			code+="yz";
 			pass[0]=1;
 			if(pass[1]==1){
+				// console.log(code);
+				if(`${code.charAt(code.length-2)}${code.charAt(code.length-1)}`=="yz"){
+					let backpack=code;
+					code="";
+					// console.log(backpack);
+					for(let i=0; i<backpack.length-2; i++){
+						code+=backpack.charAt(i);
+					}
+					// console.log(code);
+				}
 				result(true);
 			}else{
+				code+="yz";
 				// console.log(r,pass);
 				// console.log(r,'you: pass');
 				turn=1-turn;
@@ -146,11 +156,21 @@
 				myTurn();
 			}else{
 				pass[1]=1;
-				code+="yz";
 				if(pass[0]==1){
+					// console.log(code);
+					if(`${code.charAt(code.length-2)}${code.charAt(code.length-1)}`=="yz"){
+						let backpack=code;
+						code="";
+						// console.log(backpack);
+						for(let i=0; i<backpack.length-2; i++){
+							code+=backpack.charAt(i);
+						}
+						// console.log(code);
+					}
 					result(true);
 					return;
 				}else{
+					code+="yz";
 					// console.log('com: pass');
 					turn=1-turn;
 					myTurn();
@@ -718,6 +738,9 @@
 				changeHistory.push("passed");
 				moveForward();
 			}else{
+				// console.log(move_num);
+				// console.log(changeHistory);
+				// console.log(move_num==changeHistory.length);
 				if(move_num==changeHistory.length){
 					copy=copy2dArray(board);
 					// drawOnconsole(copy);
@@ -734,12 +757,12 @@
 					// for(let i=1; i<changeHistory[move_num].length/2; i++){
 					// 	change(changeHistory[move_num].charAt(2*i),changeHistory[move_num].charAt(2*i+1),['b','w'][move_num%2],true);
 					// }
-					move_num++;
 					// console.log(move_num,moves.length,move_num==moves.length);
-					if(move_num==moves.length){
-						document.getElementById('mover2').classList.add('unavailable');
-						result(false);
-					}
+				}
+				move_num++;
+				if(move_num==moves.length){
+					document.getElementById('mover2').classList.add('unavailable');
+					result(false);
 				}
 			}
 		}
