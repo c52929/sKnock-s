@@ -84,6 +84,7 @@
 
 .inner #display table tr td.imgin {
   padding: 2px;
+  text-align: center;
 }
 
 .inner #display table tr td#word {
@@ -114,26 +115,47 @@
   position: fixed;
 }
 
-@media (orientation: landscape) {
-  .inner #buttons div div {
-    font-size: 24px;
-    padding: 12px;
-  }
-  .inner #buttons div div.comB {
-    width: 18%;
-  }
-  .inner #buttons div div.mathB {
-    width: 12.6%;
-  }
-}
-
 @media (min-width: 768px) {
+  .inner {
+    font-size: 180%;
+  }
   .inner #buttons div div {
     cursor: pointer;
   }
   .inner #buttons div div:hover {
     background-color: #fc3;
     border-color: #e74b4b;
+  }
+  .inner #buttons div div.empty {
+    cursor: default;
+  }
+  .inner #buttons div div.empty:hover {
+    background: none;
+    border: 0;
+  }
+}
+
+@media (orientation: landscape) {
+  .inner {
+    font-size: 120%;
+  }
+  .inner #buttons div div {
+    font-size: 24px;
+    padding: 12px;
+  }
+  .inner #buttons div div.comB {
+    width: 20.1%;
+  }
+  .inner #buttons div div.mathB {
+    width: 14.3%;
+  }
+  .inner #display {
+    width: 72%;
+  }
+  .inner #display table tr td img {
+    max-width: 100%;
+    max-height: 54vh;
+    width: auto;
   }
 }
 
