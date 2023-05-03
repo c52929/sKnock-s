@@ -41,6 +41,7 @@ h1 {
 }
 
 .input-submit {
+  appearance: none;
   -webkit-appearance: none;
   background-color: #eee;
   background-image: none;
@@ -70,20 +71,72 @@ h1 {
   padding: 0;
 }
 
-#codeWrapper {
-  margin-top: 12px;
+.inner div.section {
+  margin: 20px 12px 48px;
+  padding-left: 18px;
 }
 
-#codeWrapper #returnedNum {
+.inner div.section h1 {
+  display: inline-block;
+  font-family: "Times New Roman";
+  font-style: italic;
+  margin-right: 18px;
+  margin-left: 0;
+}
+
+.inner div.section h3 {
+  display: inline-block;
+  font-weight: normal;
+  font-family: "Times New Roman";
+}
+
+.inner div.section input {
+  margin-left: 0;
+}
+
+.inner div.section div.codeWrapper {
+  margin: 12px 0 24px 0;
+}
+
+.inner div.section div.codeWrapper code#returnedNum {
   background-color: #e5e5e5;
   box-sizing: border-box;
   color: #282523;
   display: block;
-  font-size: 1.2em;
-  margin: 8px 8px 18px;
+  font-size: 1.44em;
+  margin: 8px 8px 18px 0;
   overflow-x: scroll;
-  padding: 0 4px;
+  padding: 2px 5px;
   width: 84%;
+}
+
+.inner div.section p#code_copy {
+  font-size: 1em;
+  padding: 2px 5px;
+}
+
+.inner div.section p#returnedTxt {
+  font-size: 1.44em;
+  margin: 18px 12px 24px 0;
+}
+
+.inner div.section #selection {
+  margin: 12px 0 8px;
+}
+
+.inner div.section #selection .select {
+  margin: 0 12px 0 0;
+  padding: 3px 8px 4px;
+}
+
+.inner div.section #selection .select.select_back {
+  margin-left: 32px;
+}
+
+.inner div.section #selection .select.unavailable {
+  background-color: #fff;
+  color: #a1a499;
+  cursor: default;
 }
 
 .transparent {
