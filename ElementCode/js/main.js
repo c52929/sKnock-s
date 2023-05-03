@@ -12,6 +12,7 @@
 		elm[i]=elm[i].toUpperCase();
 	}
 
+	document.getElementById("returnedNum").innerHTML="<span style=color:#a1a499;>[solution]</span>";
 	document.getElementById('roman_text').focus();
 	document.getElementById('roman_text').value='gensogasuki';
 	document.getElementById('create_button').addEventListener('click',()=>{
@@ -280,5 +281,6 @@
 		}else{
 			document.getElementById('returnedNum').innerHTML=`<p>私の下手なプログラムにより、暗号化に失敗しました。</p><p>暗号化したかった単語をメアドかなんかで教えてください。</p><p>(参考)誤った暗号:${code}</p>`;
 		}
+		document.getElementById('returnedNum').classList.remove('none');
 	}
 }

@@ -3,28 +3,42 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>元素暗号</title>
-	<link rel="icon" href="icon.svg">
+	<title>327168code</title>
+	<link rel="icon" href="icon.png">
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<link rel="stylesheet" href="css/styles.min.css">
 </head>
 <body>
 	<div class="inner">
-		<h1>Element Code Creator</h1>
-		<input type="text" name="roman" id="roman_text" class="input-text">
-		<input type="submit" value="Create" id="create_button" class="input-submit">
-		<!-- <div id="choose">
-			<h1 id="chooseTitle" class="none">Which do you want to use?</h1>
-		</div> -->
-		<div id="codeWrapper">
-			<code id="returnedNum"></code>
-			<span></span>
+		<div class="section">
+			<h1>Elenigma</h1><h3> - 327168code Generator</h3>
+			<p><!--改行用--></p>
+			<input type="text" name="roman" id="roman_text" class="input-text">
+			<input type="submit" value="Create" id="create_button" class="input-submit">
+			<!-- <div id="choose">
+				<h1 id="chooseTitle" class="none">Which do you want to use?</h1>
+			</div> -->
+			<div class="codeWrapper">
+				<code id="returnedNum"></code>
+			</div>
 		</div>
-		<!-- <input type="text" name="code" id="code_text" class="input-text">
-		<input type="submit" value="Decipher" id="decipher_button" class="input-submit">
-		<div id="returnedTxt"></div> -->
+		<div class="section">
+			<h1>Batomba &beta;</h1><h3> - 327168code Decrypter</h3>
+			<p><!--改行用--></p>
+			<input type="text" name="code" id="code_text" class="input-text" value="3271611833921953">
+			<input type="submit" value="Decrypt" id="decrypt_button" class="input-submit">
+			<p id="code_copy"></p>
+			<p id="returnedTxt"></p>
+			<div id="selection">
+				<input type="submit" value="1. " id="select1" class="input-submit select unavailable">
+				<input type="submit" value="2. " id="select2" class="input-submit select unavailable">
+				<input type="submit" value="3. " id="select3" class="input-submit select unavailable">
+				<input type="submit" value="&lt; back" id="select_back" class="input-submit select select_back unavailable">
+			</div>
+			<p id="next"></p>
+		</div>
 	</div>
 	<script src="js/main.js"></script>
-	<!-- <script src="js/solve.js"></script> -->
+	<script src="js/solve.js"></script>
 </body>
 </html>
