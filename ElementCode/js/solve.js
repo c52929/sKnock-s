@@ -71,6 +71,7 @@
 	}
 
 	function prepareSelection(){
+		// console.log(decipher_i);
 		if(decipher_i<code.length){
 			if(['0','1','2','3','4','5','6','7','8','9'].indexOf(code.charAt(decipher_i))<0){
 				toggleAvailable(1,true,`${code.charAt(decipher_i)}`);
@@ -114,10 +115,11 @@
 		let nextText='';
 		// console.log(decipher_i);
 		// console.log(isAvailable);
-		for(let extra=0; extra<3; extra++){
+		for(let extra=0; extra<3; extra++){	
 			if(isAvailable[extra+1]){
 				nextSelects.push([null,null,null]);
 				if(!isNaN(code.charAt(decipher_i+extra+1))){
+					// console.log(code.charAt(decipher_i+extra+1), code.charAt(decipher_i+extra+1)==' ');
 					if(decipher_i+extra+1>=code.length){
 						nextSelects[nextSelects.length-1][0]="<span style=color:#a1a499;>end</span>";
 					}else if(code.charAt(decipher_i+extra+1)>0){
@@ -135,6 +137,8 @@
 						// else{
 						// 	nextSelects[nextSelects.length-1][1]=code.charAt(decipher_i+extra+2);
 						// }
+					}else if(code.charAt(decipher_i+extra+1)==' '){
+						nextSelects[nextSelects.length-1][0]=' ';
 					}
 				}else{
 					nextSelects[nextSelects.length-1][0]=code.charAt(decipher_i+extra+1);
@@ -274,7 +278,9 @@
 	function reload(){
 		suggestion='';
 		for(let i=0; i<history.length; i++){
-			if(!isNaN(history[i])){
+			if(history[i]==' '){
+				suggestion+=' ';
+			}else if(!isNaN(history[i])){
 				suggestion+=elm[history[i]];
 			}else{
 				suggestion+=history[i];
