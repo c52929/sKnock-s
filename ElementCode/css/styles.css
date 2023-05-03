@@ -12,12 +12,6 @@
   overflow-x: hidden;
 }
 
-h1 {
-  margin: 0.2em;
-  font-size: 1.8em;
-  text-align: center;
-}
-
 .input-text {
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -28,10 +22,11 @@ h1 {
   border-radius: 2px;
   color: #282523;
   font-family: inherit;
-  font-size: 5.4vw;
+  font-size: 16px;
+  overflow-x: auto;
   padding: 2px 4px 3px;
   margin: 4px 0 2px 8px;
-  width: 60vw;
+  width: 50vw;
 }
 
 .input-text:focus {
@@ -50,7 +45,7 @@ h1 {
   color: #282523;
   cursor: pointer;
   display: inline-block;
-  font-size: 5.4vw;
+  font-size: 16px;
   margin: 4px 0 2px;
   padding: 2px 4px 3px;
   text-decoration: none;
@@ -72,15 +67,15 @@ h1 {
 }
 
 .inner div.section {
-  margin: 20px 12px 48px;
-  padding-left: 18px;
+  margin: 12px 8px 24px;
+  padding-left: 4px;
 }
 
 .inner div.section h1 {
   display: inline-block;
   font-family: "Times New Roman";
   font-style: italic;
-  margin-right: 18px;
+  margin-right: 12px;
   margin-left: 0;
 }
 
@@ -103,7 +98,7 @@ h1 {
   box-sizing: border-box;
   color: #282523;
   display: block;
-  font-size: 1.44em;
+  font-size: 1.2em;
   margin: 8px 8px 18px 0;
   overflow-x: scroll;
   padding: 2px 5px;
@@ -112,12 +107,14 @@ h1 {
 
 .inner div.section p#code_copy {
   font-size: 1em;
+  overflow-x: auto;
   padding: 2px 5px;
 }
 
 .inner div.section p#returnedTxt {
-  font-size: 1.44em;
+  font-size: 1.2em;
   margin: 18px 12px 24px 0;
+  overflow-x: auto;
 }
 
 .inner div.section #selection {
@@ -125,12 +122,12 @@ h1 {
 }
 
 .inner div.section #selection .select {
-  margin: 0 12px 0 0;
-  padding: 3px 8px 4px;
+  margin: 0;
+  padding: 2px 4px 3px;
 }
 
 .inner div.section #selection .select.select_back {
-  margin-left: 32px;
+  margin-left: 16px;
 }
 
 .inner div.section #selection .select.unavailable {
@@ -148,11 +145,6 @@ h1 {
 }
 
 @media (min-width: 768px) {
-  h1 {
-    font-size: 2em;
-    margin: 4px 12px 6px;
-    text-align: left;
-  }
   .input-text {
     font-size: 1em;
     width: 18em;
@@ -160,11 +152,39 @@ h1 {
   .input-submit {
     font-size: 1em;
   }
-  #codeWrapper {
-    margin-top: 20px;
+  .inner div.section h1 {
+    font-size: 2em;
+    margin: 4px 12px 6px;
   }
-  #codeWrapper #returnedNum {
-    font-size: 24px;
+  .inner div.section div.codeWrapper {
+    margin-top: 12px;
+  }
+  .inner div.section div.codeWrapper code#returnedNum {
+    font-size: 20px;
+    overflow-x: scroll;
     width: 40vw;
+  }
+  .inner div.section p#returnedTxt {
+    font-size: 20px;
+  }
+  .inner div.section #selection {
+    margin: 12px 0 8px;
+  }
+  .inner div.section #selection .select {
+    margin: 0 12px 0 0;
+    padding: 3px 8px 4px;
+  }
+  .inner div.section #selection .select.select_back {
+    margin-left: 32px;
+  }
+}
+
+@media (orientation: landscape) {
+  .inner div.section {
+    margin: 20px 12px 48px;
+    padding-left: 18px;
+  }
+  .inner div.section h1 {
+    margin-right: 18px;
   }
 }
