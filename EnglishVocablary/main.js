@@ -69,6 +69,24 @@
     }
   });
 
+  document.addEventListener('keydown',(e)=>{
+    if(e.key=="ArrowLeft"){
+      if(list_i>0){
+        list_i--;
+        display();
+      }
+    }else if(e.key=="ArrowRight"){
+      if(list_i+1<allN.length){
+        list_i++;
+        display();
+      }else{
+        document.getElementById("buttons").classList.remove("none");
+        document.getElementById("display").classList.add("none");
+        document.getElementById("touchscreen").classList.add("none");
+      }
+    }
+  });
+
   function display(){
     document.getElementById("i").textContent=`${list_i+1}/${allN.length}`;
     document.getElementById("word").textContent=word[list_num][allN[list_i]];
@@ -134,7 +152,7 @@
       ["Number","Numeral","Integer","Digit","Single digit numbers","Double-digit numbers","Triple-digit numbers","Place Value","Ones place","Tens place","Hundreds place","One","Ten","Hundred","Thousand","Million","Billion","Trillion","Cardinal Number","Ordinal Number","First, Second, Third","Fourth, Fifth, Sixth","Twelfth, Thirteenth","Twenieth, Thirtieth","Even Number","Odd Number"],
       ["Addition","Add","Equation","Plus Sign",'"Plus"',"Equals Sign",'"Equals"',"Regroup","carry","Addend","Sum"],
       ["Subtraction","Subtract","Minus Sign",'"Minus"','"Take Away"',"Regroup","Borrow","Difference"],
-      ["Multiplication","Multiply","Multiplation sign","Times sign",'"Times"',"Product","Factors","Prime Number","Composite Number","Multiple"],
+      ["Multiplication","Multiply","Multiplication sign","Times sign",'"Times"',"Product","Factors","Prime Number","Composite Number","Multiple"],
       ["Division","Divide","Division sign",'"Divided by"',"Remainder","Dividend","Divisor","Quotient","Divisible"],
       ["Fractions","One half, two halves","One third, two thirds","One fourth, two fourths","One fifth, two fifths","One sixth, two sixths","One seventh, two sevenths", "Numerator","Denominator",'"x over y"',"Whole","Equivalent fractions","Improper fraction","Mixed number","Invert","Reciprocal"],
       ["Decimal","Tenths place","Hundredths place","Decimal point",'"Point"',"Percentage","Percent sign",'"Percent"'],
