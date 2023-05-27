@@ -46,7 +46,7 @@
       if(document.getElementById("underline").checked){
         decotext=`${decotext}text-decoration:underline;`;
       }
-      document.getElementById("display").innerHTML=`<span style=font-size:${fz.value};color:${color.value};font-family:${font.value},sans-serif;${decotext}>${text.value}</span>`;
+      document.getElementById("display").innerHTML=`<span style="font-size:${fz.value};color:${color.value};font-family:'${font.value}',sans-serif;${decotext}">${text.value}</span>`;
     }
     document.getElementById("edit").classList.add("none");
     document.getElementById("drawer").classList.remove("none");
