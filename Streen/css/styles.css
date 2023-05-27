@@ -14,7 +14,7 @@ body {
   box-sizing: border-box;
   max-width: 1366px;
   margin: 0 auto;
-  overflow: hidden;
+  overflow-x: hidden;
   padding: 12px 8px;
   width: 100%;
   height: 100%;
@@ -205,6 +205,10 @@ div#drawer:hover {
   div#edit div#general {
     width: 72%;
     margin: 2px auto;
+  }
+  div#edit textarea#advanced {
+    width: 72%;
+    margin: 4px auto;
   }
 }
 
