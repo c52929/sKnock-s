@@ -1,21 +1,40 @@
 'use strict';
 {
 
-	const can=document.getElementById('canvas');
-	const ctx=can.getContext('2d');
-	let winSize=[window.innerWidth,window.innerHeight];
-	winSize.push(Math.min(winSize[0],winSize[1]));
-	// console.log(winSize[2], winSize[2]>=600);
-	if(winSize[2]>=540){
-		can.width=480;
-		can.height=480;
-	}else{
-		can.width=(Math.floor(winSize[2]/12)-2)*12;
-		can.height=(Math.floor(winSize[2]/12)-2)*12;
-	}
+	let winSize, canSize=[0,0];
 	let mazeSize, bitSize;
-	// console.log(winSize);
-	// console.log(can.width);
+	
+	function windowResize(){
+		winSize=[window.innerWidth,window.innerHeight];
+		winSize.push(Math.min(winSize[0],winSize[1]));
+		// console.log(winSize);
+		if(winSize[2]>=540){
+			canSize[0]=480;
+			canSize[1]=480;
+		}else{
+			canSize[0]=(Math.floor(winSize[2]/12)-2)*12;
+			canSize[1]=(Math.floor(winSize[2]/12)-2)*12;
+		}
+	}
+
+	windowResize();
+	window.onresize = windowResize;
+	
+
+	// canvasですが、使わん
+	// const can=document.getElementById('canvas');
+	// const ctx=can.getContext('2d');
+	
+	// console.log(winSize[2], winSize[2]>=600);
+	// if(winSize[2]>=540){
+	// 	can.width=480;
+	// 	can.height=480;
+	// }else{
+	// 	can.width=(Math.floor(winSize[2]/12)-2)*12;
+	// 	can.height=(Math.floor(winSize[2]/12)-2)*12;
+	// }
+	// // console.log(winSize);
+	// // console.log(can.width);
 
 	// ctx.fillStyle='pink';
 	// ctx.fillRect(0,0,winSize[0],winSize[1]);
@@ -103,7 +122,7 @@
 	function prepareMaze(){
 		code=alpha[10*Math.floor(Math.random()*2)+mazeSize-1];
 		mazeSize=2*(mazeSize+2)+1;
-		bitSize=can.width/mazeSize;
+		bitSize=canSize[0]/mazeSize;
 		document.getElementById('starting').classList.add('none');
 		for(let i=0; i<mazeSize**2; i++){
 			maze.push(false);
@@ -215,6 +234,7 @@
 		// 		ctx.fillRect((i%mazeSize)*bitSize,Math.floor(i/mazeSize)*bitSize,bitSize,bitSize);
 		// 	}
 		// }
+		windowResize();
 		for(let i=0; i<mazeSize; i++){
 			const addTr=document.createElement('tr');
 			addTr.setAttribute('id',`tr${i}`);
@@ -234,10 +254,8 @@
 					}else{
 						if(bool){
 							maze[i*mazeSize+j]=Math.floor(Math.random()*9)+1;
-							addTd.textContent=maze[i*mazeSize+j];
-						}else{
-							addTd.textContent=maze[i*mazeSize+j];
 						}
+						addTd.textContent=maze[i*mazeSize+j];
 					}
 				}
 				document.getElementById(`tr${i}`).appendChild(addTd);
@@ -406,7 +424,7 @@
 		document.getElementById('starting').classList.add('none');
 		// console.log(code);
 		mazeSize=2*(alpha.indexOf(code.charAt(0))%10+3)+1;
-		bitSize=can.width/mazeSize;
+		bitSize=canSize[0]/mazeSize;
 		// console.log(mazeSize);
 		for(let i=0; i<mazeSize; i++){
 			for(let j=0; j<mazeSize; j++){
