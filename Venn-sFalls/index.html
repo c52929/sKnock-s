@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="ヴェン図を使ったゲームです">
 	<title>Venn's Falls</title>
 	<!-- <link rel="icon" href="#"> -->
 	<link rel="stylesheet" href="css/styles.min.css">
@@ -12,15 +13,17 @@
 </head>
 <body>
 	<div class="inner">
-		<div class="question">A &cap; B</div>
-		<div class="territory">
+		<!-- <div class="question">A &cap; B</div> -->
+		<!-- <div class="territory">
 			<div class="set" id="setA"><span></span><span>A</span><span></span><span></span></div>
 			<div class="set" id="setB"><span></span><span></span><span>B</span><span></span></div>
-		</div>
+		</div> -->
+		<p id="question">A &cap; B</p>
+		<canvas id="canvas"></canvas>
 		<div class="moveButton" id="toLeft"></div>
 		<div class="moveButton" id="toRight"></div>
 	</div>
 
-	<script src="script.js"></script>
+	<script src="main.js"></script>
 </body>
 </html>

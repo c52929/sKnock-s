@@ -2,7 +2,7 @@
   margin: 0;
   border: none;
   padding: 0;
-  font-family: Arial,'Yu Gothic','Hiragino Kaku Gothic ProN','Yu Mincho Light','Hiragino Mincho ProN','Meiryo UI',sans-serif;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .inner {
@@ -16,9 +16,10 @@
 	margin: 8px 0;
 	padding-inline-start: 2em;
 } */
-.question {
+p#question {
   margin: 4px auto;
   text-align: center;
+  font-size: 150%;
 }
 
 .territory {
@@ -26,8 +27,8 @@
   border: 2px solid #a1a499;
   box-sizing: border-box;
   position: fixed;
-  width: 60%;
-  height: 64%;
+  width: 480px;
+  height: 320px;
   bottom: 10%;
   left: 50%;
   transform: translateX(-50%);
@@ -54,6 +55,12 @@
 
 .territory .set#setB {
   right: 14.4%;
+}
+
+canvas#canvas {
+  display: block;
+  margin: 2px auto;
+  text-align: center;
 }
 
 .moveButton {
