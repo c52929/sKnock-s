@@ -9,6 +9,12 @@
 	max-width:1366px;
 	margin:0 auto;
 	overflow-x:hidden;
+	.input-submit{
+		-webkit-appearance:none;
+		background-image:none;
+		display:inline-block;
+		text-decoration:none;
+	}
 }
 /* ul,ol{
 	margin: 8px 0;
@@ -20,13 +26,29 @@ h1{
 	text-align: center;
 	margin: 8px 4px;
 }
+div#howManyPlayers{
+	text-align: center;
+	.input-submit{
+		background-color: #3c3;
+		border: 2px solid #282523;
+		border-radius: 12%;
+		color: #fff;
+		cursor: pointer;
+		font-size: 1.2em;
+		font-weight: bold;
+		height: 14vw;
+		margin: 2vw 24px;
+		padding: 0 24px;
+		&:hover{
+			background-color: #2a2;
+		}
+	}
+}
 div#buttons{
 	display: flex;
 	justify-content: space-around;
 	.input-submit{
-		-webkit-appearance:none;
 		background-color:#fff;
-		background-image:none;
 		border:2px solid #000;
 		border-radius:50%;
 		color:#000;
@@ -35,11 +57,9 @@ div#buttons{
 			color:#fff;
 		}
 		cursor:pointer;
-		display:inline-block;
 		font-size:1em;
 		font-weight: bold;
 		margin:0;
-		text-decoration:none;
 		width:18vw;
 		height:18vw;
 		&:hover, &:focus{
@@ -84,18 +104,14 @@ div#codeTeam{
 		}
 	}
 	.input-submit{
-		-webkit-appearance:none;
 		background-color: #a1a499;
-		background-image:none;
 		border:none;
 		border-radius:4px;
 		color:#fff;
 		cursor: text;
-		display:inline-block;
 		font-size:16px;
 		margin:0 4px;
 		padding:0 8px;
-		text-decoration:none;
 		&.available{
 			background-color:#c52929;
 			cursor: pointer;
@@ -212,6 +228,16 @@ p.codeInComment{
 	h1{
 		font-size: 40px;
 		margin:2px 4px;
+	}
+	div#howManyPlayers{
+		text-align: center;
+		.input-submit{
+			border-radius: 12%;
+			font-size: 2.4vw;
+			margin: 3.6vw 36px;
+			padding: 1.5vw 36px;
+			height: auto;
+		}
 	}
 	div#buttons{
 		.input-submit{

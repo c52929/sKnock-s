@@ -12,6 +12,13 @@
   overflow-x: hidden;
 }
 
+.inner .input-submit {
+  -webkit-appearance: none;
+  background-image: none;
+  display: inline-block;
+  text-decoration: none;
+}
+
 /* ul,ol{
 	margin: 8px 0;
 	padding-inline-start: 2em;
@@ -23,24 +30,41 @@ h1 {
   margin: 8px 4px;
 }
 
+div#howManyPlayers {
+  text-align: center;
+}
+
+div#howManyPlayers .input-submit {
+  background-color: #3c3;
+  border: 2px solid #282523;
+  border-radius: 12%;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.2em;
+  font-weight: bold;
+  height: 14vw;
+  margin: 2vw 24px;
+  padding: 0 24px;
+}
+
+div#howManyPlayers .input-submit:hover {
+  background-color: #2a2;
+}
+
 div#buttons {
   display: flex;
   justify-content: space-around;
 }
 
 div#buttons .input-submit {
-  -webkit-appearance: none;
   background-color: #fff;
-  background-image: none;
   border: 2px solid #000;
   border-radius: 50%;
   color: #000;
   cursor: pointer;
-  display: inline-block;
   font-size: 1em;
   font-weight: bold;
   margin: 0;
-  text-decoration: none;
   width: 18vw;
   height: 18vw;
 }
@@ -97,18 +121,14 @@ div#codeTeam .input-text:focus {
 }
 
 div#codeTeam .input-submit {
-  -webkit-appearance: none;
   background-color: #a1a499;
-  background-image: none;
   border: none;
   border-radius: 4px;
   color: #fff;
   cursor: text;
-  display: inline-block;
   font-size: 16px;
   margin: 0 4px;
   padding: 0 8px;
-  text-decoration: none;
 }
 
 div#codeTeam .input-submit.available {
@@ -230,6 +250,16 @@ p.codeInComment span {
   h1 {
     font-size: 40px;
     margin: 2px 4px;
+  }
+  div#howManyPlayers {
+    text-align: center;
+  }
+  div#howManyPlayers .input-submit {
+    border-radius: 12%;
+    font-size: 2.4vw;
+    margin: 3.6vw 36px;
+    padding: 1.5vw 36px;
+    height: auto;
   }
   div#buttons .input-submit {
     font-size: 4.8vw;
