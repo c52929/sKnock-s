@@ -674,7 +674,7 @@ function result(real){
 	}
 	// console.log(nums);
 	if(nums[0]==nums[1]){
-		document.getElementById('comment').innerHTML=`Black:${nums[0]} - White:${nums[1]}<br>DRAW${['!!',''][[true,false].indexOf(real)]}${['<br><p class="codeInComment" id="landscapeCode">Game code:<code id="landscapeTellCode">${code}</code></p>',''][[true,false].indexOf(real)]}`;
+		document.getElementById('comment').innerHTML=`Black:${nums[0]} - White:${nums[1]}<br>DRAW${['!!',''][[true,false].indexOf(real)]}${[`<br><p class="codeInComment" id="landscapeCode">Game code:<code id="landscapeTellCode">${code}</code></p>`,''][[true,false].indexOf(real)]}`;
 	}else{
 		if(howManyPlayer==1){
 			if(real){
