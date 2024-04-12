@@ -79,3 +79,11 @@ wordsdata.push("creed","meditation","synonym","autograph","pessimist","theme","p
 wordsdata.push("fake","portraint","patron","perfume","prophecy","representation","script","shrine","version","witch","devote","define","erect","fancy","tempt","conceive","incline","convey","exclude","utter","bless","revise","modify","entitle","illuminate");
 wordsdata.push("dedicate","glitter","worship","carve","preach","presume","curse","adore","presevere","enhance","muse","accord","characterize","erase","reproduce","complicate","contemplate","dictate","mold","recite","edit","interpret","uncover","unveil","visualize");
 wordsdata.push("vague","decent","vivid","wicked","authentic","magnificent","sacred","hollow","sophisticated","subtle","fragile","verbal","pious","elaborate","solemn","eminent","exquisite","vicious","dogmatic","ingenious","ethical","awesome","memorable","superb","subjective");
+
+// let maxLen_idx=0;
+// for(let i=0; i<wordsdata.length; i++){
+// 	if(wordsdata[i].length > wordsdata[maxLen_idx].length){
+// 		maxLen_idx=i;
+// 	}
+// }
+// console.log(maxLen_idx, wordsdata[maxLen_idx]);
