@@ -177,6 +177,7 @@
 	}
 	#closeMenu{
 		background-color: #c52929;
+		border-radius: 0 4px 0 0;
 		color:#fff;
 		content:'';
 		top:0;
@@ -261,6 +262,21 @@
 	#hangImage{
 		height:40vh;
 	}
+	#searchMenu{
+		height: 72vh;
+		h1{
+			font-size: 5.4vw;
+		}
+		a.site{
+			width: 32%;
+			p{
+				font-size: 3.2vw;
+			}
+		}
+		#closeMenu{
+			font-size: 4vw;
+		}
+	}
 }
 @media(min-width:768px){
 	.game{
@@ -305,17 +321,18 @@
 	#searchMenu{
 		width: 84%;
 		h1{
-			font-size: 5.4vw;
+			font-size: 4.8vw;
 			margin-bottom: 18px;
 		}
 		#closeMenu{
 			cursor: pointer;
-			border-radius: 0 4px 0 0;
+			font-size: 2.4vw;
 			line-height:3.6vw;
 			height:3.6vw;
 			width:3.6vw;
 		}
-		.site{
+		a.site{
+			padding: 0;
 			width:30%;
 			p{
 				font-size: 2.4vw;
