@@ -3,6 +3,7 @@
 	border:none;
 	padding:0;
 	font-family:'Consolas','Courier','Lucida Console', sans-serif;
+	font-family: Menlo, Consolas, 'Courier New', Courier, monospace;
 }
 .inner{
 	width:100%;
@@ -17,6 +18,7 @@
 	h1{
 		font-family: 'Trebuchet MS', sans-serif;
 		font-size: 14.4vw;
+		font-style: italic;
 	}
 }
 .projects{
@@ -30,6 +32,9 @@
 	justify-content: space-around;
 	&.featured{
 		background-color: #fbe;
+	}
+	&.archived{
+		background-color: #ddd;
 	}
 	h2{
 		text-align: center;
@@ -52,7 +57,7 @@
 		p{
 			color: #2c84cc;
 			font-weight: bold;
-			font-size: 24px;
+			font-size: 20px;
 			text-align: center;
 		}
 		&.empty{
@@ -66,7 +71,7 @@
 	.header{
 		padding: 4px;
 		h1{
-			font-size: 36px;
+			font-size: 32px;
 		}
 	}
 	.projects{
@@ -78,7 +83,7 @@
 @media(min-width:768px){
 	.header{
 		h1{
-			font-size: 48px;
+			font-size: 40px;
 		}
 	}
 	.projects{
