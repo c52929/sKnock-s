@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<!-- <meta name="description" content="description"> -->
+	<title>Dizzy Maze</title>
+	<link rel="icon" href="icon.png">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<link rel="stylesheet" href="css/styles.min.css">
+</head>
+<body>
+	<div class="inner">
+		<div id="starting">
+			<h1>Dizzy Maze</h1>
+			<p id="chui">迷路の大きさ(1~5)</p>
+			<input type="text" name="mazeSize" id="askSize" class="input-text">
+			<input type="submit" value="Start" id="returnSize" class="input-submit">
+			<p class="or">or</p>
+			<input type="text" name="putCode" id="codeHere" class="input-text" placeholder="Paste game code">
+			<input type="submit" value="Return" id="returnCode" class="input-submit">
+		</div>
+		<div id="gaming" class="none">
+			<table id="table"></table>
+			<div id="navigation">
+				<table>
+					<tr>
+						<td></td>
+						<td class="button" id="nav_up"></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="button" id="nav_left"></td>
+						<td></td>
+						<td class="button" id="nav_right"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td class="button" id="nav_down"></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+			<div id="result" class="none">
+				<p id="resultTime"></p>
+				<p id="codename">Game code:</p>
+				<code id="code"></code>
+			</div>
+		</div>
+	</div>
+
+	<script src="main.js"></script>
+</body>
+</html>
