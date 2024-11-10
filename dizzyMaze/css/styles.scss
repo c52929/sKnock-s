@@ -114,23 +114,30 @@ div#gaming{
 		}
 	}
 	div#navigation{
-		display: block;
-		margin: auto;
-		padding: 18px 0 0;
-		text-align: center;
-		width:100%;
-		table{
-			margin: 0 auto;
-			td{
-				width:12vh;
-				height:12vh;
-				&.button{
-					background-color: #eee;
-					border-radius: 50%;
-					&.clicked{
-						background-color: #ddd;
-					}
-				}
+		div.button{
+			position:fixed;
+			content: '';
+			width:14vh;
+			height:14vh;
+			background-color: #eee;
+			border-radius: 50%;
+			top:70%;
+			left:50%;
+			&#nav_up{
+				top:60%;
+			}
+			&#nav_down{
+				top:80%;
+			}
+			&#nav_left{
+				left:30%;
+			}
+			&#nav_right{
+				left:70%;
+			}
+			transform:translate(-50%,-50%);
+			&.clicked{
+				background-color: #ddd;
 			}
 		}
 	}
@@ -165,22 +172,42 @@ div#gaming{
 
 @media(orientation:landscape){
 	div#gaming{
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
+		table#table{
+			position:fixed;
+			top:50%;
+			left:30%;
+			transform: translate(-50%,-50%);
+		}
 		div#navigation{
 			display: block;
 			width: 40%;
-			table{
-				td{
-					width:12vw;
-					height:12vw;
+			div.button{
+				width:20vh;
+				height:20vh;
+				top:50%;
+				left:75%;
+				&#nav_up{
+					top:35%;
 				}
+				&#nav_down{
+					top:65%;
+				}
+				&#nav_left{
+					left:66%;
+				}
+				&#nav_right{
+					left:84%;
+				}
+				transform:translate(-50%,-50%);
 			}
 		}
 		div#result{
-			align-items: center;
-			margin: auto;
+			position:fixed;
+			top:50%;
+			left:75%;
+			transform: translate(-50%,-50%);
+			// align-items: center;
+			// margin: auto;
 			width:40%;
 			p{
 				width: 100%;
@@ -205,10 +232,27 @@ div#gaming{
 @media(min-width:768px){
 	div#gaming{
 		display: block;
+		// position:relative;
+		// text-align: center;
+		// display: flex;
+		// align-items: center;
+		// flex-wrap: wrap;
+		// height:100vh;
+		// justify-content: center;
+		table#table{
+			top: 10px;
+			left: 50%;
+			transform: translateX(-50%);
+		}
 		div#navigation{
 			display: none;
 		}
 		div#result{
+			// align-items: center;
+			// margin: auto;
+			top: 500px;
+			left: 50%;
+			transform: translateX(-50%);
 			div.keyboard div{
 				width:8%;
 				&:hover{
