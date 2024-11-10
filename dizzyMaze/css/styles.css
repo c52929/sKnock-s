@@ -126,29 +126,35 @@ div#gaming table#table tr td.selected {
   font-weight: bold;
 }
 
-div#gaming div#navigation {
-  display: block;
-  margin: auto;
-  padding: 18px 0 0;
-  text-align: center;
-  width: 100%;
-}
-
-div#gaming div#navigation table {
-  margin: 0 auto;
-}
-
-div#gaming div#navigation table td {
-  width: 12vh;
-  height: 12vh;
-}
-
-div#gaming div#navigation table td.button {
+div#gaming div#navigation div.button {
+  position: fixed;
+  content: '';
+  width: 14vh;
+  height: 14vh;
   background-color: #eee;
   border-radius: 50%;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-div#gaming div#navigation table td.button.clicked {
+div#gaming div#navigation div.button#nav_up {
+  top: 60%;
+}
+
+div#gaming div#navigation div.button#nav_down {
+  top: 80%;
+}
+
+div#gaming div#navigation div.button#nav_left {
+  left: 30%;
+}
+
+div#gaming div#navigation div.button#nav_right {
+  left: 70%;
+}
+
+div#gaming div#navigation div.button.clicked {
   background-color: #ddd;
 }
 
@@ -180,22 +186,40 @@ div#gaming div#result code {
 }
 
 @media (orientation: landscape) {
-  div#gaming {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  div#gaming table#table {
+    position: fixed;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
   }
   div#gaming div#navigation {
     display: block;
     width: 40%;
   }
-  div#gaming div#navigation table td {
-    width: 12vw;
-    height: 12vw;
+  div#gaming div#navigation div.button {
+    width: 20vh;
+    height: 20vh;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+  }
+  div#gaming div#navigation div.button#nav_up {
+    top: 35%;
+  }
+  div#gaming div#navigation div.button#nav_down {
+    top: 65%;
+  }
+  div#gaming div#navigation div.button#nav_left {
+    left: 66%;
+  }
+  div#gaming div#navigation div.button#nav_right {
+    left: 84%;
   }
   div#gaming div#result {
-    align-items: center;
-    margin: auto;
+    position: fixed;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%, -50%);
     width: 40%;
   }
   div#gaming div#result p {
@@ -221,10 +245,18 @@ div#gaming div#result code {
   div#gaming {
     display: block;
   }
+  div#gaming table#table {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
   div#gaming div#navigation {
     display: none;
   }
   div#gaming div#result {
+    top: 500px;
+    left: 50%;
+    transform: translateX(-50%);
     height: unset;
     margin: 12px auto;
     width: 48%;

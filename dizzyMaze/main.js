@@ -11,8 +11,8 @@ function windowResize(){
 		canSize[0]=480;
 		canSize[1]=480;
 	}else{
-		canSize[0]=(Math.floor(winSize[2]/12)-2)*12;
-		canSize[1]=(Math.floor(winSize[2]/12)-2)*12;
+		canSize[0]=(Math.floor(winSize[2]/12)-2)*10;
+		canSize[1]=(Math.floor(winSize[2]/12)-2)*10;
 	}
 }
 
@@ -242,7 +242,6 @@ function draw(random){
 			}else if(i==mazeSize-2 && j==mazeSize-2){
 				addTd.textContent='G';
 				addTd.classList.add('goalCell');
-			// }else if(i%8==(j+[4,0][Number(mazeSize==19)])%8 && (i%8)%4==1){
 			}else if(i%8==(j+4)%8 && (i%8)%4==1){
 				if(random){
 					maze[i*mazeSize+j]=Math.floor(Math.random()*3)+1;  // 1,2,3
@@ -356,7 +355,7 @@ for(let i=0; i<4; i++){
 	let elm=document.getElementsByClassName("button")[i];
 	elm.addEventListener("touchstart",(e)=>{
 		e.preventDefault();
-		move([0,3,1,2][i]);
+		move(i);
 		elm.classList.add("clicked");
 	})
 	elm.addEventListener("touchend",(e)=>{
