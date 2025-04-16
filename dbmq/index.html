@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="description" content="DBMQ: Database Managing Quiz">
+	<title>DBMQ</title>
+	<link rel="icon" href="icon.svg">
+	<link rel="apple-touch-icon" href="icon.png">
+	<link rel="stylesheet" href="css/styles.min.css">
+</head>
+<body>
+	<div class="inner">
+		<div class="wall">
+			<p id="qNum">データベースをなんとかするクイズ</p>
+			<span class="none" id="info">(i)</span>
+		</div>
+		<h1 id="title">Database Managing Quiz</h1>
+		<form name="selectRange" id=selectRange class="checkboxes">
+			<input type="checkbox" name="range" id="selectAll">Select All<br>
+			<input type="checkbox" name="range" id="select1">#2 データモデルの種類とDBMS<br>
+		</form>
+		<input type="submit" value="START" id="startButton" class="input-submit">
+		<div class="none" id="QandA">
+			<p id="question" class="none"></p>
+			<div id="tableWrapper" class="none"></div>
+			<input type="submit" value="ANSWER" id="answerButton" class="input-submit">
+			<input type="submit" value="NEXT" id="nextButton" class="input-submit none">
+		</div>
+		<div id="hint" class="none">
+			<div class="hintTitle">
+				<h2>語群</h2>
+				<div class="on-off-wrapper">
+					<div class="on-off off" id="showHint"></div>
+				</div>
+			</div>
+			<div id="hints" class="none"></div>
+		</div>
+		<div id="black" class="blackNone"></div>
+		<div id="modal" class="modalNone"></div>
+	</div>
+	<script src="js/questions.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>
