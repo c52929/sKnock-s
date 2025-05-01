@@ -5,6 +5,14 @@
   font-family: 'Times New Roman', Times, serif ,sans-serif;
 }
 
+* span.italic {
+  font-style: italic;
+}
+
+* sup {
+  font-size: 0.72em;
+}
+
 .inner {
   width: 100%;
   max-width: 1366px;
@@ -18,11 +26,11 @@
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  margin: 8px 2px;
+  margin: 8px 2px 12px;
   box-sizing: border-box;
 }
 
-.front .shiki_field {
+.front .shikiField {
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
@@ -32,48 +40,63 @@
   border-radius: 0;
   box-sizing: border-box;
   color: inherit;
-  cursor: text;
+  cursor: pointer;
   display: inline-block;
   font-family: inherit;
-  font-size: 1.6em;
+  font-size: 1.2em;
   letter-spacing: 0.05em;
   margin: 0;
   padding: 2px 8px;
-  width: 76%;
+  width: 36%;
+  overflow-x: scroll;
 }
 
-.front .shiki_field:focus {
+.front .shikiField:focus {
   border: 1px solid #a1a499;
   box-shadow: none;
   outline: none;
 }
 
-.front .shiki_field .cursor {
-  width: 0;
-  border: 0.8px solid #555;
-  animation: cursor-animation 1s ease 0s infinite normal forwards running;
+.front .shikiField.selected {
+  border: 3px solid #2c84cc;
 }
 
-.front #key_delete {
+.front .shikiField.selected span.focus {
+  background-color: #080;
+  color: #fff;
+}
+
+.front .shikiField.selected span.focus.gray {
+  border: 2px solid #080;
+}
+
+.front .shikiField span {
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+.front .shikiField span.focus.gray {
+  background: none;
+  color: #ddd;
+}
+
+.front .shikiField#shikiFieldL span.gray {
+  font-style: italic;
+}
+
+.front img#deleteKey {
   box-sizing: border-box;
   margin: 0;
-  font-size: 2.4em;
-  color: #606060;
+  width: 10%;
   border: none;
 }
 
-.front #key_delete.dont-click {
+.front img#deleteKey.dont-click {
   z-index: -2;
-  opacity: 0.36;
-}
-
-.front #key_delete:active {
-  background: none;
-  color: #777;
+  opacity: 0.32;
 }
 
 .front button {
-  -webkit-appearance: none;
   background-color: #c52929;
   background-image: none;
   border: none;
@@ -82,11 +105,11 @@
   cursor: pointer;
   display: inline-block;
   font-family: sans-serif;
-  font-size: 1.6em;
-  margin: 8px 0 0;
+  font-size: 1.2em;
+  margin: 14px 0 0;
   padding: 2px 12px;
   text-decoration: none;
-  width: 84%;
+  width: 64%;
 }
 
 .front button:hover, .front button:focus {
@@ -98,45 +121,11 @@
   padding: 0;
 }
 
-.front button.dont-solve {
-  position: relative;
-  z-index: -2;
-}
-
-.front button.dont-solve::after {
-  background-color: #fff;
-  content: '';
-  width: 110%;
-  top: 50%;
-  height: 110%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0.8;
-  position: absolute;
-  z-index: 20;
-}
-
-@keyframes cursor-animation {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 1;
-  }
-  51% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
 #result {
   display: inline-flex;
   border-bottom: 1px solid #a1a499;
   padding: 0 4px 0 12px;
-  font-size: 2.4em;
-  font-style: italic;
+  font-size: 1.44em;
   letter-spacing: 0.1em;
   margin: 2px 2px 4px;
 }
@@ -144,7 +133,6 @@
 #result .x-equals {
   display: flex;
   align-items: center;
-  font-style: italic;
 }
 
 #result .answer {
@@ -181,64 +169,117 @@
 #result .error {
   color: #ff0000;
   font-family: sans-serif;
-  font-size: 6.4vw;
+  font-size: 6vw;
   font-style: normal;
   letter-spacing: normal;
 }
 
-.keyboards {
+div.edit {
+  border-top: 1px solid #d5d5d5;
+  margin: 20px 8px 4px;
+  padding-top: 4px;
+}
+
+div.edit div {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-top: 12px;
+  margin: 20px 0 18px;
 }
 
-.keyboards .key {
-  width: 16vw;
-  height: 16vw;
-  line-height: 16vw;
-  box-sizing: border-box;
-  border: 1px solid #e5e5e5;
-  color: #282523;
-  font-size: 9.6vw;
-  margin: 4px 2px;
+div.edit div.disabled {
+  opacity: 0.24;
 }
 
-.keyboards .key:active {
-  background-color: #f0f0f0;
-}
-
-.keyboards .key#key_x {
-  font-style: italic;
-}
-
-.keyboards .key#key_x2 {
-  font-style: italic;
+div.edit div h3 {
+  width: 100%;
   position: relative;
+  margin-bottom: 4px;
 }
 
-.keyboards .key#key_x2::after {
-  content: '2';
-  width: 12px;
-  height: 12px;
-  line-height: 12px;
-  font-style: normal;
-  font-size: 0.5em;
-  top: 24%;
-  right: 16%;
+div.edit div h3 span#elmAddCandidate {
+  font-weight: normal;
+}
+
+div.edit div h3 div#elmAddButton {
+  background-color: #2c84cc;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: normal;
+  width: 64px;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
   position: absolute;
 }
 
-.keyboards .key.dont-click {
-  z-index: -2;
-  opacity: 0.36;
+div.edit div h3 div#elmAddButton:hover {
+  opacity: 0.8;
+}
+
+div.edit div h3 div#elmAddButton.disabled {
+  background-color: #a1a499;
+}
+
+cursor:defau
+div.edit div h3 div#elmAddButton.disabled:hover {
+  opacity: 0.24;
+}
+
+div.edit div div {
+  width: 30%;
+  margin: 0;
+}
+
+div.edit div div p {
+  display: block;
+  margin: 0 2px 4px;
+  text-align: center;
+  width: 100%;
+}
+
+div.edit div div table {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+div.edit div div table tr td {
+  border: 1px solid #a1a499;
+  cursor: pointer;
+  width: 1.5em;
+  height: 1.5em;
+  padding: 1px;
+}
+
+div.edit div div table tr td.checked {
+  border: 2px solid #333;
+  cursor: default;
+  padding: 0;
+}
+
+div.edit div div input[type="text"] {
+  border: 1px solid #a1a499;
+  box-sizing: border-box;
+  font-size: 1em;
+  margin: 0 auto;
+  padding: 2px 4px;
+  width: 64%;
+}
+
+div.edit div div input[type="text"]:invalid {
+  background-color: #faa;
+}
+
+div.edit div div input[type="text"]::placeholder {
+  color: #bbb;
 }
 
 .moves {
   box-sizing: border-box;
   display: flex;
   justify-content: space-around;
-  margin: 12px 4px;
+  margin: 16px 4px;
 }
 
 .moves .move {
@@ -252,58 +293,44 @@
   padding: 12px;
   width: 1.8em;
   height: 1.8em;
+  user-select: none;
 }
 
 .moves .move:active {
   background-color: #f0f0f0;
 }
 
-.moves .move.dont-move {
+.moves .move.disabled {
   z-index: -2;
-  opacity: 0.36;
+  opacity: 0.24;
 }
 
 @media (orientation: landscape) {
   .front {
-    margin: 0;
+    margin: 8px 0 4px;
   }
-  .front .shiki_field {
+  .front .shikiField {
     margin: 0;
-    width: 60%;
-    font-size: 4vw;
+    width: 30%;
+    font-size: 3.6vw;
     display: inline-block;
   }
-  .front #key_delete {
+  .front img#deleteKey {
     margin: 0;
-    width: 8.4vw;
-    font-size: 2.4em;
+    user-select: none;
+    width: 7.2%;
   }
   .front button {
-    font-size: 1.44em;
+    font-size: 1.2em;
     margin: 4px 0;
-    width: 24%;
+    width: 20%;
   }
   #result {
     margin-bottom: 4px;
     font-size: 2em;
   }
-  .keyboards {
-    width: 96%;
-    margin: 4px auto 0;
-    justify-content: space-between;
-  }
-  .keyboards .key {
-    width: 8.4vw;
-    height: 8.4vw;
-    line-height: 8.4vw;
-    font-size: 7.2vw;
-  }
-  .keyboards .key#key_x {
-    width: 14.4vw;
-  }
-  .keyboards .key#key_x2::after {
-    top: 18%;
-    right: 4%;
+  #result span.error {
+    font-size: 24px;
   }
   .moves {
     margin: 4px 4px 0;
@@ -313,6 +340,21 @@
     height: 60px;
     font-size: 32px;
   }
+  div.edit {
+    display: flex;
+    justify-content: space-around;
+    margin: 16px 8px 8px;
+  }
+  div.edit div {
+    width: 48%;
+  }
+  div.edit div div input[type="text"] {
+    width: 100%;
+  }
+  div.edit line {
+    border-right: 1px solid #d5d5d5;
+    width: 0;
+  }
 }
 
 @media (min-width: 768px) {
@@ -320,28 +362,31 @@
     justify-content: center;
     margin: 4px 2px 4px;
   }
-  .front .shiki_field {
-    font-size: 40px;
+  .front .shikiField {
+    font-size: 32px;
     margin: 0 8px;
-    width: 54%;
+    width: 28%;
     display: inline-block;
   }
-  .front #key_delete {
-    width: unset;
-    height: unset;
-    font-size: 4em;
+  .front .shikiField:hover {
+    background-color: #f5f5f5;
+  }
+  .front img#deleteKey {
+    width: 72px;
     margin: 0 8px;
   }
-  .front #key_delete:hover {
-    background: none;
-    color: #777;
+  .front img#deleteKey:hover {
+    opacity: 0.8;
     cursor: pointer;
   }
   .front button {
     margin: 0 8px;
     font-size: 1.8em;
     padding: 4px;
-    width: 24%;
+    width: 250px;
+  }
+  .front button:hover {
+    opacity: 0.8;
   }
   #result {
     margin: 12px 0 8px;
@@ -353,28 +398,6 @@
   }
   #result .error {
     font-size: 36px;
-  }
-  .keyboards {
-    width: 720px;
-    margin: 12px auto 0;
-    justify-content: space-between;
-  }
-  .keyboards .key {
-    width: 64px;
-    height: 64px;
-    line-height: 64px;
-    font-size: 48px;
-  }
-  .keyboards .key:hover {
-    background-color: #f5f5f5;
-    cursor: pointer;
-  }
-  .keyboards .key#key_x {
-    width: 100px;
-  }
-  .keyboards .key#key_x2::after {
-    top: 24%;
-    right: 12%;
   }
   .moves {
     width: 64%;

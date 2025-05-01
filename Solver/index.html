@@ -2,336 +2,96 @@
 <html lang="ja">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta name="description" content="xについての低次方程式作ってくれたら解くよ。めっちゃ頑張った笑">
 	<title>Solver</title>
 	<link rel="icon" href="icon.svg">
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<link rel="stylesheet" href="css/styles.min.css">
-	<link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" rel="stylesheet">
 </head>
 <body>
 	<div class="inner">
 		<div class="front">
-			<div id="shiki_field" class="shiki_field"></div>
-			<i class="fas fa-backspace" id="key_delete"></i>
-			<button>Solve</button>
+			<div id="shikiFieldL" class="shikiField selected"></div>
+			<span>&equals;</span>
+			<div id="shikiFieldR" class="shikiField"></div>
+			<!-- <span id="deleteKey">＜<u>x</u>］</span> -->
+			<img src="deleteKey.png" id="deleteKey">
+			<button id="solveBtn">Solve</button>
 		</div>
 		<div id="result">
 			<div class="x-equals" id="x-equals"></div>
 			<div class="answer" id="answer">
-				<span class="numer" id="numer">(<span style="font-style:italic;">Solution</span>)</span>
+				<span class="numer" id="numer">(<span style="font-style:italic;">solution</span>)</span>
 				<span class="denom none" id="denom"></span>
 			</div>
-			<div class="x-equals none" id="comma">,</div>
+			<div class="x-equals none" id="comma">&comma;</div>
 			<div class="answer none" id="answer_2">
 				<span class="numer" id="numer_2"></span>
 				<span class="denom none" id="denom_2"></span>
 			</div>
 			<span class="error" id="error"></span>
 		</div>
-		<div class="keyboards" id="keyboards"></div>
 		<div class="moves">
-			<div class="move" id="move_l"><i class="fas fa-arrow-left"></i></div>
-			<div class="move" id="move_r"><i class="fas fa-arrow-right"></i></div>
+			<div class="move" id="moveL">&lt;&minus;</div>
+			<div class="move" id="moveR">&minus;&gt;</div>
+		</div>
+		<div class="edit">
+			<div>
+				<h3>項&nbsp;<span id="elmAddCandidate"></span>&nbsp;を追加<div id="elmAddButton">追加</div></h3>
+				<div>
+					<p>正負</p>
+					<table>
+						<tr>
+							<td id="elmAddPmP" class="clickable checked">&plus;</td>
+							<td id="elmAddPmM" class="clickable">&minus;</td>
+						</tr>
+					</table>
+				</div>
+				<div>
+					<p>係数</p>
+					<input type="text" class="inputCoef" id="elmAddCoef" placeholder=1 value=2 inputmode="numeric" pattern="-?\d*">
+				</div>
+				<div>
+					<p><span class="italic">x</span>の次数</p>
+					<table>
+						<tr>
+							<td id="elmAddDim0" class="clickable">0</td>
+							<td id="elmAddDim1" class="clickable checked">1</td>
+							<td id="elmAddDim2" class="clickable">2</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<line></line>
+			<div id="elmEdit" class="disabled">
+				<h3>選択中の項を編集</h3><div>
+					<p>正負</p>
+					<table>
+						<tr>
+							<td id="elmEditPmP" class="clickable checked">&plus;</td>
+							<td id="elmEditPmM" class="clickable">&minus;</td>
+						</tr>
+					</table>
+				</div>
+				<div>
+					<p>係数</p>
+					<input type="text" class="inputCoef" id="elmEditCoef" inputmode="numeric" pattern="-?\d*">
+				</div>
+				<div>
+					<p><span class="italic">x</span>の次数</p>
+					<table>
+						<tr>
+							<td id="elmEditDim0" class="clickable">0</td>
+							<td id="elmEditDim1" class="clickable checked">1</td>
+							<td id="elmEditDim2" class="clickable">2</td>
+						</tr>
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-		'use strict';
-		{
-			const keyboards=['0','1','2','3','4','5','6','7','8','9','x','x2','+','-','='];
-
-			let shiki_elm=['<span class="cursor"></span>'];
-			let shiki_hum=['|'];
-
-			let cursor_position=0;
-
-			function add_elm(elm,hum){
-				shiki_elm.splice(cursor_position,0,elm);
-				shiki_hum.splice(cursor_position,0,hum);
-				// console.log(shiki_hum);
-			}
-			function delete_elm(elm,hum){
-				shiki_elm.splice(cursor_position-1,1);
-				shiki_hum.splice(cursor_position-1,1);
-			}
-
-			function build_shiki(){
-				let pre_elm='';
-				let pre_val='';
-				for(let i=0; i<shiki_hum.length; i++){
-					if(shiki_hum[i]!='|'){
-						pre_val+=shiki_hum[i];
-					}
-					pre_elm+=shiki_elm[i];
-				}
-				document.getElementById('shiki_field').innerHTML=pre_elm;
-				document.getElementById('shiki_field').value=pre_val;
-			}
-
-			for(let i=0; i<keyboards.length; i++){
-				const add_key=document.createElement('div');
-				add_key.classList.add('key');
-				add_key.setAttribute('id',`key_${keyboards[i]}`);
-				if(keyboards[i]=='x2'){
-					add_key.innerHTML='x';
-				}else{
-					add_key.textContent=keyboards[i];
-				}
-				document.getElementById('keyboards').appendChild(add_key);
-			}
-			// const delete_key=document.createElement('i');
-			// delete_key.classList.add('key','fas','fa-backspace');
-			// delete_key.setAttribute('id','key_delete');
-			// document.getElementById('keyboards').appendChild(delete_key);
-
-			for(let i=0; i<keyboards.length; i++){
-				const get_key=document.getElementsByClassName('key');
-				get_key[i].addEventListener('click',()=>{
-					if(i<keyboards.length){
-						if(keyboards[i]=='x2'){
-							add_elm('<span style="font-style:italic;">x</span><sup>2</sup>','^');
-						}else if(keyboards[i]=='x'){
-							add_elm('<span style="font-style:italic;">x</span>','x');
-						}else{
-							add_elm(keyboards[i],keyboards[i]);
-						}
-						build_shiki();
-						// console.log(shiki_elm);
-						// console.log(shiki_hum);
-						cursor_position++;
-					}else{
-						delete_elm();
-						build_shiki();
-						cursor_position--;
-					}
-					build_shiki();
-					allow_click();
-					allow_solve();
-					allow_move();
-				})
-			}
-			document.getElementById('key_delete').addEventListener('click',()=>{
-				if(dont_clicks.indexOf('delete')<0 && cursor_position>0){
-					delete_elm();
-					cursor_position--;
-					build_shiki();
-					allow_click();
-					allow_solve();
-					allow_move();
-				}
-			})
-
-			let dont_clicks=[];
-
-			document.addEventListener('keydown',(event)=>{
-				allow_click();
-				if(keyboards.indexOf(`${event.key}`)>-1){
-					// console.log(dont_clicks);
-					if(dont_clicks.indexOf(`${event.key}`)<0){
-						if(`${event.key}`=='x'){
-							add_elm('<span style="font-style:italic;">x</span>','x');
-						}else{
-							add_elm(`${event.key}`,`${event.key}`);
-						}
-						cursor_position++;
-					}
-				}else if(`${event.key}`=='^'){
-					if(dont_clicks.indexOf('x2')<0){
-						add_elm('<span style="font-style:italic;">x</span><sup>2</sup>','^');
-						cursor_position++;
-					}
-				}else if(`${event.key}`=='Backspace'){
-					if(cursor_position>0){
-						delete_elm();
-						cursor_position--;
-						// console.log(shiki_hum);
-					}
-				}else if(`${event.key}`=='ArrowRight' || `${event.key}`=='ArrowLeft'){
-					// console.log(cursor_position);
-					shiki_elm.splice(cursor_position,1);
-					shiki_hum.splice(cursor_position,1);
-					if(`${event.key}`=='ArrowRight'){
-						if(cursor_position<shiki_elm.length){
-							cursor_position++;
-						}
-					}else{
-						if(cursor_position>0){
-							cursor_position--;
-						}
-					}
-					// console.log(cursor_position);
-					shiki_elm.splice(cursor_position,0,'<span class="cursor"></span>');
-					shiki_hum.splice(cursor_position,0,'|');
-					// console.log(shiki_hum);
-				}
-				build_shiki();
-
-				allow_click();
-				allow_solve();
-				allow_move();
-			})
-
-			let move=document.getElementsByClassName('move');
-			for(let i=0; i<2; i++){
-				move[i].addEventListener('click',()=>{
-					// console.log(shiki_hum);
-					shiki_elm.splice(cursor_position,1);
-					shiki_hum.splice(cursor_position,1);
-					// console.log(cursor_position);
-					// console.log(shiki_hum);
-					if(i==0 && cursor_position>0){
-						cursor_position--;
-					}
-					if(i==1 && cursor_position<shiki_elm.length){
-						cursor_position++;
-					}
-					shiki_elm.splice(cursor_position,0,'<span class="cursor"></span>');
-					shiki_hum.splice(cursor_position,0,'|');
-					// console.log(shiki_hum);
-					build_shiki();
-
-					allow_click();
-					allow_solve();
-					allow_move();
-				})
-			}
-
-			allow_click();
-			allow_solve();
-			allow_move();
-
-			function allow_click(){
-				dont_clicks=[];
-				let check=document.getElementsByClassName('dont-click');
-				while(check.length>0){
-					check[0].classList.remove('dont-click');
-				}
-				let last=shiki_hum[cursor_position-1];
-				switch (last) {
-					case undefined:
-						if(shiki_hum.length<2){
-							dont_click(['+','=','delete']);
-							if(shiki_hum.length<2){
-								document.getElementById('shiki_field').innerHTML='<span class="cursor"></span><span style="color:#a1a499;">(Equation)</span>';
-							}else{
-								if(shiki_hum[0]!='='){
-									document.getElementById('key_0').classList.add('dont-click');
-								}
-							}
-						}
-						break;
-
-					case '0':
-					case '1':
-						let allow=0;
-						if(['1','2','3','4','5','6','7','8','9'].indexOf(shiki_hum[cursor_position-2])<0){
-							if(shiki_hum[cursor_position-2]=='0'){
-								for(let i=0; i<cursor_position; i++){
-									if(['1','2','3','4','5','6','7','8','9'].indexOf(shiki_hum[cursor_position-3-i])>-1){
-										allow=1;
-										break;
-									}
-								}
-							}
-							if(allow==0){
-								if(last=='0'){
-									dont_click(['0','1','2','3','4','5','6','7','8','9','x','x2','+','-']);
-								}else{
-									dont_click(['x','x2']);
-								}
-							}
-						}
-						break;
-
-					case 'x':
-					case '^':
-						dont_click(['0','1','2','3','4','5','6','7','8','9','x','x2']);
-						break;
-
-					case '+':
-					case '-':
-						dont_click(['0','+','-','=']);
-						break;
-
-					case '=':
-						dont_click(['+','=']);
-						break;
-
-					default:
-						break;
-				}
-				if(['','+','-'].indexOf(last)<0){
-					let equaled=0;
-					for(let i=0; i<shiki_hum.length; i++){
-						if(shiki_hum[i]=='='){
-							equaled=1;
-							break;
-						}
-					}
-					if(equaled==1){
-						document.getElementById('key_=').classList.add('dont-click');
-						dont_clicks.push('=');
-					}
-				}
-			}
-
-			function dont_click(array){
-				for(let i=0; i<array.length; i++){
-					dont_clicks.push(array[i]);
-					document.getElementById(`key_${array[i]}`).classList.add('dont-click');
-				}
-			}
-
-			document.querySelector('button').addEventListener('click',()=>{
-				build_shiki();
-			})
-			document.addEventListener('keydown',(event)=>{
-				if(`${event.key}`=='Enter'){
-					let check=document.getElementsByClassName('dont-solve');
-					if(check.length<1){
-						build_shiki();
-						// solve(shiki_field.value);
-					}
-				}
-			})
-
-			function allow_solve(){
-				let last=shiki_hum[shiki_hum.length-1];
-				if(last=='|'){
-					last=shiki_hum[shiki_hum.length-2];
-				}
-				document.querySelector('button').classList.add('dont-solve');
-				if(['+','-','='].indexOf(last)<0){
-					let equaled=[0,0];
-					for(let i=0; i<shiki_hum.length; i++){
-						if(shiki_hum[i]=='='){
-							equaled[0]=1;
-						}else if(shiki_hum[i]=='x' || shiki_hum[i]=='^'){
-							equaled[1]=1;
-						}
-						if(equaled[0]*equaled[1]==1){
-							document.querySelector('button').classList.remove('dont-solve');
-							break;
-						}
-					}
-				}
-			}
-
-			function allow_move(){
-				let check=document.getElementsByClassName('dont-move');
-				while(check.length>0){
-					check[0].classList.remove('dont-move');
-				}
-				if(cursor_position<1){
-					document.getElementById('move_l').classList.add('dont-move');
-				}
-				if(cursor_position==shiki_elm.length-1){
-					document.getElementById('move_r').classList.add('dont-move');
-				}
-			}
-		}
-	</script>
-	<script src="js/solver.js" type="text/javascript"></script>
+	<script src="js/input.js"></script>
+	<script src="js/solve.js"></script>
 </body>
 </html>
