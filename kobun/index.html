@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="出典:『古文単語330』">
+	<title>古文単語</title>
+	<link rel="icon" href="icon.png">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<link rel="stylesheet" href="css/styles.min.css">
+</head>
+<body>
+	<div class="inner">
+		<div class="wall" id="wall">
+			<p id="qNum">Vocablary Training</p>
+			<p id="question">古文単語</p>
+		</div>
+		<div id="selects" class="none">
+			<div class="select"></div>
+			<div class="select"></div>
+			<div class="select"></div>
+			<div class="select"></div>
+		</div>
+		<div class="input-submit none" id="return">Return</div>
+		<form name="qSelect" class="qSelect" id="qSelect">
+			<div class="landscape0">
+				<input type="checkbox" name="qSel" class="qSel" id="selectAll">Select All
+			</div>
+			<div class="landscape1">
+				<!-- <input type="checkbox" name="qSel" class="qSel" id="q10"> --><p>第1章 読解必修語50</p><!-- <br> -->
+				<input type="checkbox" name="qSel" class="qSel indent" id="q11">動詞<br>
+				<input type="checkbox" name="qSel" class="qSel indent" id="q12">形容詞<br>
+				<input type="checkbox" name="qSel" class="qSel indent" id="q13">形容動詞<br>
+				<input type="checkbox" name="qSel" class="qSel indent" id="q14">名詞<br>
+				<input type="checkbox" name="qSel" class="qSel indent" id="q15">副詞<br>
+				<!-- <input type="checkbox" name="qSel" class="qSel" id="q20"> --><p>第2章 入試必修語100</p><!-- <br> -->
+				<input type="checkbox" name="qSel" class="qSel indent" id="q21">動詞<br>
+				<input type="checkbox" name="qSel" class="qSel indent" id="q22">形容詞<br>
+				<input type="checkbox" name="qSel" class="qSel indent" id="q23">形容動詞<br>
+				<input type="checkbox" name="qSel" class="qSel indent" id="q24">名詞<br>
+				<input type="checkbox" name="qSel" class="qSel indent" id="q25">副詞<br>
+				<input type="checkbox" name="qSel" class="qSel indent" id="q26">連体詞・連語<br>
+				<!-- <input type="checkbox" name="qSel" class="qSel" id="q30"> --><p>第3章 最重要敬語30</p><!-- <br> -->
+				<input type="checkbox" name="qSel" class="qSel indent" id="q31">最重要敬語<br>
+			</div>
+			<div class="landscape2">
+				<!-- <input type="checkbox" name="qSel" class="qSel" id="q40"> --><p>第4章 入試重要語100</p><!-- <br> -->
+				<input type="checkbox" name="qSel" class="qSel indent" id="q41">動詞<br>
+				<input type="checkbox" name="qSel" class="qSel indent" id="q42">形容詞<br>
+				<input type="checkbox" name="qSel" class="qSel indent" id="q43">形容動詞<br>
+				<input type="checkbox" name="qSel" class="qSel indent" id="q44">名詞<br>
+				<input type="checkbox" name="qSel" class="qSel indent" id="q45">副詞<br>
+				<input type="checkbox" name="qSel" class="qSel indent" id="q46">連語<br>
+				<!-- <input type="checkbox" name="qSel" class="qSel" id="q50"> --><p>第5章 入試戦略語50</p><!-- <br> -->
+				<input type="checkbox" name="qSel" class="qSel indent" id="q51">動詞<br>
+				<input type="checkbox" name="qSel" class="qSel indent" id="q52">形容詞<br>
+				<input type="checkbox" name="qSel" class="qSel indent" id="q53">形容動詞<br>
+				<input type="checkbox" name="qSel" class="qSel indent" id="q54">名詞<br>
+				<input type="checkbox" name="qSel" class="qSel indent" id="q55">副詞<br>
+				<input type="checkbox" name="qSel" class="qSel indent" id="q56">連体詞・感動詞<br>
+				<input type="checkbox" name="qSel" class="qSel indent" id="q57">連語<br>
+			</div>
+		</form>
+		<!-- <div id="buttons">
+			<div class="input-submit startButton" id="adjNoun">形容動詞</div>
+			<div class="input-submit startButton" id="noun">名詞</div>
+			<div class="input-submit startButton" id="unknown">品詞不明(?)</div>
+			<div class="input-submit startButton" id="verb">動詞</div>
+			<div class="input-submit startButton" id="adjective">形容詞</div>
+			<div class="input-submit startButton" id="polite">敬語</div>
+			<div class="input-submit startButton" id="adverb">副詞</div>
+			<div class="input-submit startButton" id="honoSel">選択</div>
+			<div class="input-submit startButton" id="honoWri">記述</div>
+		</div> -->
+		<div class="input-submit unavailable" id="sb">開始</div>
+		<!-- <div id="jissenQ"> -->
+			<!-- <div class="input-submit" id="jissenQ">実戦問題</div> -->
+		<!-- </div> -->
+	</div>
+	<script src="js/mainMultiple.js"></script>
+	<!-- <script src="js/mainSingular.js"></script> -->
+</body>
+</html>

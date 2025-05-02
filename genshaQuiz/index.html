@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="description" content="私 ≠ あなた">
+	<title>現社 - 情報をくれ</title>
+	<link rel="icon" href="icon.png">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<link rel="stylesheet" href="css/styles.min.css">
+	<link href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" rel="stylesheet">
+</head>
+<body>
+	<div class="inner">
+		<div class="wall">
+			<p id="qNum">雑だけどゆるして</p>
+			<i class="fas fa-info-circle none" id="info"></i>
+		</div>
+		<h1 id="title">現社対策</h1>
+		<form name="selectRange" id=selectRange class="checkboxes">
+			<input type="checkbox" name="range" id="selectAll">Select All (207問)<br>
+			<input type="checkbox" name="range" id="select1">新しい人権 (25問)<br>
+			<input type="checkbox" name="range" id="select2">平和主義と安全保障 (19問)<br>
+			<input type="checkbox" name="range" id="select3">国会の地位と役割 (33問)<br>
+			<input type="checkbox" name="range" id="select4">内閣の地位と役割 (18問)<br>
+			<input type="checkbox" name="range" id="select5">裁判所の役割 (23問)<br>
+			<input type="checkbox" name="range" id="select6">地方自治と住民福祉 (16問)<br>
+			<input type="checkbox" name="range" id="select7">政党の役割 (14問)<br>
+			<input type="checkbox" name="range" id="select8">選挙と国民主権 (11問)<br>
+			<input type="checkbox" name="range" id="select9">世論の形成と現代民主政治の課題 (9問)<br>
+			<input type="checkbox" name="range" id="select10">現代社会ワークプリント7 大問2 (6問)<br>
+			<input type="checkbox" name="range" id="select11">現代社会ワークプリント8 (18問)<br>
+			<input type="checkbox" name="range" id="select12">現代社会ワークプリント9 (15問)<br>
+		</form>
+		<input type="submit" value="START" id="startButton" class="input-submit">
+		<div class="none" id="QandA">
+			<p id="question" class="none"></p>
+			<div id="tableWrapper" class="none"></div>
+			<input type="submit" value="ANSWER" id="answerButton" class="input-submit">
+			<input type="submit" value="NEXT" id="nextButton" class="input-submit none">
+		</div>
+		<div id="hint" class="none">
+			<div class="hintTitle">
+				<h2>語群</h2>
+				<div class="on-off-wrapper">
+					<div class="on-off off" id="showHint"></div>
+				</div>
+			</div>
+			<div id="hints" class="none"></div>
+		</div>
+		<div id="black" class="blackNone"></div>
+		<div id="modal" class="modalNone"></div>
+	</div>
+	<script src="js/QandA0.js"></script>
+	<script src="js/QandA1.js"></script>
+	<script src="js/QandA2.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>

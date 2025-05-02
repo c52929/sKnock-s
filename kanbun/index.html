@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="『漢文ヤマのヤマ』から持ってきたらしい。">
+	<title>漢文読み 最重要語50+&alpha;</title>
+	<link rel="icon" href="icon.png">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<link rel="stylesheet" href="css/styles.min.css">
+</head>
+<body>
+	<div class="inner">
+		<div class="wall">
+			<p id="qNum"></p>
+			<p id="ruby">
+				<ruby>
+					<rb id="question"></rb>
+					<rt id="correctAnswer"></rt>
+				</ruby>
+			</p>
+		</div>
+		<p id="meaning"></p>
+		<div class="answering">
+			<input type="text" name="answer" id="answerText" class="input-text">
+			<input type="button" id="returnButton" class="input-submit" value="Return">
+		</div>
+		<div class="input-submit none" id="againButton">Again</div>
+	</div>
+	<script src="script.js"></script>
+</body>
+</html>

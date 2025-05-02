@@ -74,13 +74,18 @@ h1#title {
   padding: 0;
 }
 
-.input-submit:not(.enable) {
-  background-color: #c77c7c;
-}
-
 .input-submit:hover {
   cursor: pointer;
   opacity: 0.8;
+}
+
+.input-submit.disabled {
+  background-color: #c77c7c;
+}
+
+.input-submit.disabled:hover {
+  cursor: default;
+  opacity: 1;
 }
 
 .input-submit#answerButton {
@@ -523,8 +528,16 @@ div#modal p.solution span {
 }
 
 @media (min-width: 768px) {
+  div.area {
+    max-width: 840px;
+    margin: 12px auto 0;
+  }
+  div.wall {
+    font-size: 18px;
+    padding: 8px;
+  }
   h1#title {
-    font-size: 54px;
+    font-size: 36px;
     margin: 4px 0 8px;
   }
   input[type=checkbox] {

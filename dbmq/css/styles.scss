@@ -63,12 +63,16 @@ h1#title{
 		border:none;
 		padding:0;
 	}
-	&:not(.enable){
-		background-color:#c77c7c;
-	}
 	&:hover{
 		cursor:pointer;
 		opacity: 0.8;
+	}
+	&.disabled{
+		background-color:#c77c7c;
+		&:hover{
+			cursor:default;
+			opacity: 1;
+		}
 	}
 	&#answerButton{
 		background-color: #2c84cc;
@@ -505,8 +509,16 @@ div#modal{
 	}
 }
 @media(min-width:768px){
+	div.area{
+		max-width:840px;
+		margin: 12px auto 0;
+	}
+	div.wall{
+		font-size: 18px;
+		padding: 8px;
+	}
 	h1#title{
-		font-size: 54px;
+		font-size: 36px;
 		margin: 4px 0 8px;
 	}
 	input[type=checkbox]{

@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="240"
-   height="240"
-   viewBox="0 0 63.499999 63.5"
+   width="480"
+   height="480"
+   viewBox="0 0 127 127"
    version="1.1"
    id="svg5"
    xml:space="preserve"
@@ -27,21 +27,22 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="1.5126496"
-     inkscape:cx="118.00485"
-     inkscape:cy="121.9714"
+     inkscape:zoom="0.76808483"
+     inkscape:cx="297.49318"
+     inkscape:cy="327.43779"
      inkscape:window-width="1280"
      inkscape:window-height="697"
      inkscape:window-x="0"
      inkscape:window-y="25"
      inkscape:window-maximized="0"
-     inkscape:current-layer="layer1" /><defs
+     inkscape:current-layer="layer1"
+     showguides="false" /><defs
      id="defs2" /><g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"><g
        id="g4535"
-       transform="translate(0,-0.07639313)"><rect
+       transform="matrix(2,0,0,2,0,-0.15278626)"><rect
          style="fill:#c52929;fill-opacity:1;stroke-width:0.935857;stroke-dasharray:none"
          id="rect999"
          width="30.785025"
@@ -77,15 +78,15 @@
            x="19.065607"
            y="48.276215">Q</tspan></text></g><text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:33.2227px;font-family:'Gurmukhi MN';-inkscape-font-specification:'Gurmukhi MN, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;opacity:1;fill:#000000;stroke-width:4.08171;stroke-dasharray:none"
-       x="-0.43244708"
-       y="49.603577"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:66.4454px;font-family:'Gurmukhi MN';-inkscape-font-specification:'Gurmukhi MN, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;stroke-width:8.16342;stroke-dasharray:none"
+       x="-0.86489415"
+       y="99.207153"
        id="text1219"
        transform="scale(1.0193839,0.9809847)"><tspan
          sodipodi:role="line"
          id="tspan1217"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:33.2227px;font-family:'Gurmukhi MN';-inkscape-font-specification:'Gurmukhi MN, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;stroke-width:4.08171"
-         x="-0.43244708"
-         y="49.603577"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:33.2227px;font-family:'Gurmukhi MN';-inkscape-font-specification:'Gurmukhi MN, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;stroke-width:4.08171"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:66.4454px;font-family:'Gurmukhi MN';-inkscape-font-specification:'Gurmukhi MN, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;stroke-width:8.16342"
+         x="-0.86489415"
+         y="99.207153"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:66.4454px;font-family:'Gurmukhi MN';-inkscape-font-specification:'Gurmukhi MN, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;stroke-width:8.16342"
            id="tspan1377">S   L </tspan></tspan></text></g></svg>

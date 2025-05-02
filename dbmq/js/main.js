@@ -6,7 +6,7 @@ let checkCondition=[];
 let active, ans, correct, correct_perfect, info, r, supplement, saveValue;
 let qNum=[], hint=[], cheat=[], againSentences=[], againoptions=[];
 for(let i=0; i<rangeForm.length; i++){
-	checkCondition.push(false);
+	checkCondition.push(true);
 }
 selAll.addEventListener('click',()=>{
 	for(let i=1; i<rangeForm.length; i++){
@@ -16,11 +16,7 @@ selAll.addEventListener('click',()=>{
 for(let i=0; i<rangeForm.length; i++){
 	rangeForm[i].addEventListener('click',()=>{
 		checkCondition[i]=rangeForm[i].checked;
-		if(checkCondition.indexOf(true)>-1){
-			document.getElementById('startButton').classList.add('enable');
-		}else{
-			document.getElementById('startButton').classList.remove('enable');
-		}
+		document.getElementById('startButton').classList.toggle('disabled',checkCondition.indexOf(true)<0);
 		checkCondition.splice(0,1);
 		checkCondition.splice(0,0,checkCondition.indexOf(false)<0);
 		rangeForm[0].checked=checkCondition.indexOf(false)<0;
@@ -129,7 +125,7 @@ function newQ(){
 				changeCheck(i,false);
 			}
 			document.getElementById('selectRange').classList.remove('none');
-			document.getElementById('startButton').classList.remove('none','enable');
+			document.getElementById('startButton').classList.add('none','disabled');
 			document.getElementById('hint').classList.add('none');
 		}
 	}

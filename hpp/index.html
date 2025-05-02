@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="description" content="キミに届け！ヘッドホンプロジェクト">
+	<title>Headphone Project</title>
+	<link rel="icon" href="photo.png">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<style>
+		*{
+			margin: 0;
+			overflow: hidden;
+			user-select: none;
+		}
+		#inner{
+			box-sizing: border-box;
+			padding:18px 0 0;
+			width: 100vw;
+			height: 100vh;
+		}
+		h1,p{
+			text-align: center;
+			font-family: "Trebuchet MS", sans-serif;
+			margin:0 0 18px;
+		}
+	</style>
+</head>
+<body>
+	<div id="inner">
+		<h1>CONGRATS</h1>
+		<p>キミに届け！ヘッドホンプロジェクト</p>
+	</div>
+	<script>
+		"use strict";
+		document.body.addEventListener("click",()=>{
+			let r=Math.floor(Math.random()*3);
+			let c=[];
+			for(let i=0; i<3; i++){
+				if(i==r){
+					c.push(200);
+				}else{
+					c.push(Math.floor(Math.random()*26)+230);
+				}
+			}
+			document.getElementById("inner").style.backgroundColor=`rgb(${c[0]} ${c[1]} ${c[2]})`;
+		})
+	</script>
+</body>
+</html>
