@@ -5,14 +5,14 @@
   font-family: 'Yu Mincho Light','YuMincho +36p Kana','Yu Mincho','Hiragino Mincho ProN','Yu Gothic',serif;
 }
 
-.inner {
+div.inner {
   width: 100%;
   max-width: 1366px;
   margin: 0 auto;
   overflow-x: hidden;
 }
 
-.inner::before {
+div.inner::before {
   content: '';
   background-color: #fff1af;
   width: 100%;
@@ -21,7 +21,13 @@
   z-index: -1;
 }
 
-.settings h1 {
+p#tellEnd {
+  font-size: 5.4vw;
+  text-align: center;
+  margin: 12px auto 18px;
+}
+
+div#settings div#opening h1 {
   box-sizing: border-box;
   font-size: 7.6vw;
   font-weight: bold;
@@ -29,36 +35,36 @@
   margin: 8px 2px;
 }
 
-.settings p {
+div#settings div#opening p {
   box-sizing: border-box;
   font-family: YuGothic, 'Yu Gothic', serif;
   text-indent: 0.8em;
   margin: 2px 8px;
 }
 
-.settings p b {
+div#settings div#opening p b {
   font-family: YuGothic, 'Yu Gothic', serif;
 }
 
-.settings .setting {
+div#settings div#setting {
   text-align: center;
   margin: 4px;
 }
 
-.settings .setting div {
+div#settings div#setting div {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 4px;
 }
 
-.settings .setting span {
+div#settings div#setting div label {
   display: inline-block;
   font-weight: normal;
   margin: 2px 8px;
 }
 
-.settings .setting .how_many {
+div#settings div#setting div input#howMany {
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
@@ -73,20 +79,20 @@
   width: 36%;
 }
 
-.settings .setting .how_many:focus {
+div#settings div#setting div input#howMany:focus {
   border: 1px solid #007b43;
   box-shadow: none;
   outline: none;
 }
 
-.settings .setting .error {
+div#settings div#setting p#error {
   color: #ff0000;
   text-align: center;
   text-indent: 0;
   margin: 4px 2px;
 }
 
-.settings .setting .on-off {
+div#settings div#setting .on-off {
   margin: 2px;
   width: 60px;
   height: 36px;
@@ -96,7 +102,7 @@
   transition: 0.25s;
 }
 
-.settings .setting .on-off::after {
+div#settings div#setting .on-off::after {
   background-color: #fff;
   border-radius: 20px;
   content: '';
@@ -108,30 +114,29 @@
   transition: 0.25s;
 }
 
-.settings .setting .on-off.off {
+div#settings div#setting .on-off.off {
   background-color: #e9e9eb;
 }
 
-.settings .setting .on-off.off::after {
+div#settings div#setting .on-off.off::after {
   left: 3px;
 }
 
-.settings .setting .on-off.on {
+div#settings div#setting .on-off.on {
   background-color: #35c75a;
 }
 
-.settings .setting .on-off.on::after {
+div#settings div#setting .on-off.on::after {
   left: 26px;
 }
 
-.settings button {
-  -webkit-appearance: none;
-  background-color: #c52929;
+div#settings button#startBtn {
+  background-color: #a1a499;
   background-image: none;
   border: none;
   border-radius: 5px;
   color: #fff;
-  cursor: pointer;
+  cursor: default;
   display: block;
   font-size: 1em;
   margin: 18px auto 2px;
@@ -140,16 +145,34 @@
   width: 72%;
 }
 
-.settings button:hover, .settings button:focus {
+div#settings button#startBtn:hover, div#settings button#startBtn:focus {
   outline: none;
 }
 
-.settings button::-moz-foucus-inner {
+div#settings button#startBtn::-moz-foucus-inner {
   border: none;
   padding: 0;
 }
 
-.question {
+div#settings button#startBtn.enabled {
+  background-color: #c52929;
+}
+
+div#settings button#startBtn.enabled:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+div#game div#margin {
+  font-size: 4.4vw;
+  padding: 4px;
+}
+
+div#game div#margin span {
+  display: block;
+}
+
+div#game div#question {
   position: fixed;
   z-index: 100;
   top: 0;
@@ -161,14 +184,14 @@
   text-align: center;
 }
 
-.question div {
+div#game div#question div {
   margin: 2px 2px 0;
   font-size: 4.4vw;
   display: inline-block;
   position: relative;
 }
 
-.question div .hider {
+div#game div#question div div.hider {
   z-index: 20;
   display: block;
   background-color: #007b43;
@@ -183,15 +206,15 @@
   position: absolute;
 }
 
-.question div .hider.dont_hide {
-  animation: dont_hide 8s linear 1s 1 normal forwards running;
+div#game div#question div div.hider.reveal {
+  animation: reveal 8s linear 1s 1 normal forwards running;
 }
 
-.question div .hider.dont_hide.stopped {
+div#game div#question div div.hider.reveal.stopped {
   animation-play-state: paused;
 }
 
-@keyframes dont_hide {
+@keyframes reveal {
   from {
     width: 100%;
   }
@@ -201,23 +224,14 @@
   }
 }
 
-.margin {
-  font-size: 4.4vw;
-  padding: 4px;
-}
-
-.margin span {
-  display: block;
-}
-
-.cards {
+div#game div#cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-.cards .card,
-.cards .excard {
+div#game div#cards .card,
+div#game div#cards .excard {
   height: 72px;
   border: 2px solid #007b43;
   background-color: #fff;
@@ -232,20 +246,20 @@
   line-height: 1em;
 }
 
-.cards .card#card_20,
-.cards .excard#card_20 {
+div#game div#cards .card#card20,
+div#game div#cards .excard#card20 {
   padding: 2px 4px;
   letter-spacing: -2px;
 }
 
-.cards .card.excard,
-.cards .excard.excard {
+div#game div#cards .card.excard,
+div#game div#cards .excard.excard {
   z-index: -2;
   opacity: 0;
 }
 
-.cards .card.card.wrong::after,
-.cards .excard.card.wrong::after {
+div#game div#cards .card.card.wrong::after,
+div#game div#cards .excard.card.wrong::after {
   font-family: "Font Awesome 5 Free";
   content: '\f00d';
   font-weight: 900;
@@ -275,7 +289,7 @@
   }
 }
 
-.circle {
+div#game div#circle {
   border: 16px solid #2c84cc;
   border-radius: 50%;
   top: 50%;
@@ -286,7 +300,7 @@
   opacity: 0;
 }
 
-.circle.appeal {
+div#game div#circle.appeal {
   animation: appeal 1s linear 0s 1 normal forwards running;
 }
 
@@ -313,24 +327,7 @@
   }
 }
 
-.again {
-  font-weight: bold;
-  font-size: 1.44em;
-  text-align: center;
-  margin: 18px 2px;
-}
-
-.again::before {
-  font-family: "Font Awesome 5 Free";
-  content: '\f2f9';
-  font-size: 24vw;
-  font-weight: 900;
-  text-align: center;
-  color: #282523;
-  display: block;
-}
-
-.footer {
+div#game div#footer {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -340,90 +337,115 @@
   z-index: 125;
 }
 
-.footer div {
+div#game div#footer div {
   box-sizing: border-box;
   width: 50%;
   border-left: 0.5px solid #e5e5e5;
   border-right: 0.5px solid #e5e5e5;
 }
 
-.footer div.menu {
+div#game div#footer div.menu {
   width: 25%;
   text-align: center;
   font-size: 1.2em;
   color: #c52929;
 }
 
-.footer div.menu.skipped {
+div#game div#footer div.menu.skipped {
   color: #a1a499;
 }
 
+div#again {
+  font-weight: bold;
+  font-size: 1.44em;
+  text-align: center;
+  margin: 18px 2px;
+}
+
+div#again::before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f2f9';
+  font-size: 24vw;
+  font-weight: 900;
+  text-align: center;
+  color: #282523;
+  display: block;
+}
+
 @media (orientation: landscape) {
-  .settings h1 {
+  div#settings div#opening h1 {
     font-size: 6.4vw;
   }
-  .settings p {
+  div#settings div#opening p {
     margin: 4px;
   }
-  .question div {
+  div#game div#question div {
     font-size: 14.4px;
   }
-  .margin {
+  div#game div#margin {
     font-size: 14.4px;
     padding: 2px 0 1px;
   }
-  .margin .m2 {
+  div#game div#margin .m2 {
     display: none;
   }
-  .cards .card,
-  .cards .excard {
+  div#game div#cards .card,
+  div#game div#cards .excard {
     font-size: 18px;
     height: 104px;
   }
-  .cards .card.card.wrong::after,
-  .cards .excard.card.wrong::after {
+  div#game div#cards .card.card.wrong::after,
+  div#game div#cards .excard.card.wrong::after {
     font-size: 64px;
   }
 }
 
 @media (min-width: 768px) {
-  .settings h1 {
+  div#settings div#opening h1 {
     font-size: 54px;
   }
-  .settings .how_many {
+  div#settings input#howMany {
     width: 20%;
     padding-right: 0;
   }
-  .question div {
+  div#game div#question div {
     font-size: 20px;
   }
-  .margin {
+  div#game div#margin {
     font-size: 20px;
     padding: 1px;
   }
-  .margin .m2 {
+  div#game div#margin .m2 {
     display: none;
   }
-  .cards .card,
-  .cards .excard {
+  div#game div#cards .card,
+  div#game div#cards .excard {
     font-size: 18px;
     color: #555;
     height: 104px;
   }
-  .cards .card.card,
-  .cards .excard.card {
+  div#game div#cards .card.card,
+  div#game div#cards .excard.card {
     cursor: pointer;
   }
-  .cards .card.card:hover,
-  .cards .excard.card:hover {
+  div#game div#cards .card.card:hover,
+  div#game div#cards .excard.card:hover {
     background-color: #e5e5e5;
   }
-  .cards .card.card.wrong::after,
-  .cards .excard.card.wrong::after {
+  div#game div#cards .card.card.wrong::after,
+  div#game div#cards .excard.card.wrong::after {
     font-size: 64px;
   }
-  .circle {
+  div#game div#circle {
     border: 20px solid #2c84cc;
+  }
+  div#game div#footer .menu:hover {
+    cursor: pointer;
+    background-color: #f0f0f0;
+  }
+  div#game div#footer .menu.skipped:hover {
+    cursor: default;
+    background-color: #fff;
   }
   @keyframes appeal {
     0% {
@@ -446,14 +468,6 @@
       z-index: -3;
       opacity: 0;
     }
-  }
-  .footer .menu:hover {
-    cursor: pointer;
-    background-color: #f0f0f0;
-  }
-  .footer .menu.skipped:hover {
-    cursor: default;
-    background-color: #fff;
   }
 }
 
