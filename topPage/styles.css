@@ -34,11 +34,11 @@
   justify-content: space-around;
 }
 
-.projects.featured {
+.projects#featured {
   background-color: #fbe;
 }
 
-.projects.archived {
+.projects#archived {
   background-color: #ddd;
 }
 

@@ -30,10 +30,10 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
-	&.featured{
+	&#featured{
 		background-color: #fbe;
 	}
-	&.archived{
+	&#archived{
 		background-color: #ddd;
 	}
 	h2{
